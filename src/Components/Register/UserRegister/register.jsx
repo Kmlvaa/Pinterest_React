@@ -6,9 +6,14 @@ import {
     FormControl,
     FormLabel,
     Input,
+    InputGroup,
+    InputRightElement,
+    Button
   } from '@chakra-ui/react'
 
 const Register = () => {
+    const [show, setShow] = React.useState(false)
+    const handleClick = () => setShow(!show)
     return (
         <>
             <div className={Styles.main}>
@@ -21,11 +26,22 @@ const Register = () => {
                     <div className={Styles.form}>
                         <FormControl>
                             <FormLabel>Email</FormLabel>
-                            <Input placeholder='Email' />
+                            <Input placeholder='Enter Email'/>
                             <FormLabel>Password</FormLabel>
-                            <Input placeholder='Password' />
+                            <InputGroup size='md'>
+                                <Input
+                                    pr='4.5rem'
+                                    type={show ? 'text' : 'password'}
+                                    placeholder='Enter password'
+                                />
+                                <InputRightElement width='4.5rem'>
+                                    <Button h='1.75rem' size='sm' onClick={handleClick}>
+                                        {show ? 'Hide' : 'Show'}
+                                    </Button>
+                                </InputRightElement>
+                            </InputGroup>
                             <FormLabel>Username</FormLabel>
-                            <Input placeholder='Username' />
+                            <Input placeholder='Enter Username' />
                         </FormControl>
                         <button className={Styles.btn}>
                             Create account
