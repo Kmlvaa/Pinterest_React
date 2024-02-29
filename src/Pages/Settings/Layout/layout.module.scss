@@ -1,0 +1,26 @@
+.main{
+    display: flex;
+    flex-direction: row;
+    column-gap: 100px;
+    .page{
+        padding: 21px;
+    }
+}
+.menu{
+    padding: 10px 20px;
+    width: 300px;
+    ul{
+        list-style-type: none;  
+        li{
+            cursor: pointer;
+            font-weight: 500;
+            padding: 8px 10px;
+            border: 0;
+            border-radius: 8px;
+            margin: 8px;
+        }
+    }
+}
+.menu ul li:hover{
+    background-color: rgb(239, 239, 239);
+}

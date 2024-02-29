@@ -8,6 +8,10 @@ import Home from './Pages/Home/home'
 import Create from './Pages/Create/index'
 import Profile from './Pages/Profile/index'
 import Explore from './Pages/Explore/index'
+import AddAccount from './Pages/AddAccount/index'
+import SettingLayout from './Pages/Settings/Layout/layout'
+import EditProfile from './Pages/Settings/EditProfile/index'
+import AccountManagement from './Pages/Settings/AccountManagement/index'
 
 function App() {
   return (
@@ -15,9 +19,14 @@ function App() {
     <Routes>
       <Route path="/" element={<Layout />}>
         <Route index element={<Home />}/>
-        <Route path="create" element={<Create />}/>
-        <Route path="profile" element={<Profile />}/>
-        <Route path="explore" element={<Explore />}/>
+        <Route path="/create" element={<Create />}/>
+        <Route path="/profile" element={<Profile />}/>
+        <Route path="/explore" element={<Explore />}/>
+        <Route path="/addAccount" element={<AddAccount />}/>
+        <Route path="/settings" element={<SettingLayout />}>
+            <Route path="/settings/editProfile" element={<EditProfile />}/>
+            <Route path="/settings/accountManagement" element={<AccountManagement />}/>
+        </Route>
       </Route>
         <Route path="/login" element={<Login />}/>
         <Route path="/register" element={<Register />}/>

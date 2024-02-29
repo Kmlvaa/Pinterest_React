@@ -8,6 +8,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBell, faUser } from '@fortawesome/free-regular-svg-icons'
 import { Link, Outlet } from 'react-router-dom';
 import DropDown from '../../Components/SideModal/sideModal'
+import user from '../../Images/user.png'
 
 const Home = () => {
     return (
@@ -25,7 +26,7 @@ const Home = () => {
                 <div className={Styles.right_icons}>
                     <div className={Styles.icon}><img src={notification} width={17} height={17} /></div>
                     <div className={Styles.icon}><img src={message} width={20} height={20} /></div>
-                    <div className={Styles.profile}><Link to='/profile'><img src={logo} width={25} height={25} /></Link></div>
+                    <div className={Styles.profile}><Link to='/profile'><img src={user} width={25} height={25} /></Link></div>
                     <div className={Styles.dropdown}><DropDown /></div>
                 </div>
             </div>
