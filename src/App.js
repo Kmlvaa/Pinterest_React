@@ -7,6 +7,7 @@ import Layout from "./Pages/Layout/layout";
 import Home from './Pages/Home/home'
 import Create from './Pages/Create/index'
 import Profile from './Pages/Profile/index'
+import Explore from './Pages/Explore/index'
 
 function App() {
   return (
@@ -14,13 +15,14 @@ function App() {
     <Routes>
       <Route path="/" element={<Layout />}>
         <Route index element={<Home />}/>
-        <Route path="/create" element={<Create />}/>
-        <Route path="/profile" element={<Profile />}/>
+        <Route path="create" element={<Create />}/>
+        <Route path="profile" element={<Profile />}/>
+        <Route path="explore" element={<Explore />}/>
+      </Route>
         <Route path="/login" element={<Login />}/>
         <Route path="/register" element={<Register />}/>
         <Route path="/business/login" element={<BusinessLogin />}/>
         <Route path="/business/register" element={<BusinessRegister />}/>
-      </Route>
     </Routes>
    </>
   );

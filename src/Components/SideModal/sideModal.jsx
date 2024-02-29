@@ -10,8 +10,8 @@ const SideModal = () => {
 
     let menuRef = useRef();
     useEffect(() => {
-        let handler = (e)=>{
-            if(!menuRef.current.contains(e.target)){
+        let handler = (e) => {
+            if (!menuRef.current.contains(e.target)) {
                 setOpen(false);
             }
         }
@@ -21,30 +21,32 @@ const SideModal = () => {
     return (
         <>
             <div className='menu_container' ref={menuRef}>
-                <div className="menu_trigger" onClick={() => {setOpen(!open)}}>
+                <div className="menu_trigger" onClick={() => { setOpen(!open) }}>
                     <div><HamburgerIcon /></div>
                 </div>
                 <div className={`${open ? Styles.active : Styles.inactive}`}>
-                <div className={Styles.dropdown_menu}>
-                    <p>Currently in</p>
-                    <div className={Styles.profile}>
-                        <img src={logo} width={50} height={50} />
-                        <h3>My Profile <br /><span>Samiraak</span></h3>
+                    <div className={Styles.dropdown_menu}>
+                        <p>Currently in</p>
+                        <Link to='/profile'>
+                            <div className={Styles.profile}>
+                                <img src={logo} width={50} height={50} />
+                                <h3>My Profile <br /><span>Samiraak</span></h3>
+                            </div>
+                        </Link>
+                        <p>Your accounts</p>
+                        <ul>
+                            <DropdownItem text={'Add account'} link={'/register'}></DropdownItem>
+                        </ul>
+                        <p>More options</p>
+                        <ul>
+                            <DropdownItem text={'Settings'} />
+                            <DropdownItem text={'Your privacy rights'} />
+                            <DropdownItem text={'Get help'} />
+                            <DropdownItem text={'See terms of services'} />
+                            <DropdownItem text={'See privacy policy'} />
+                            <DropdownItem text={'Log out'} />
+                        </ul>
                     </div>
-                    <p>Your accounts</p>
-                    <ul>
-                        <DropdownItem link={'Add account'} />
-                    </ul>
-                    <p>More options</p>
-                    <ul>
-                        <DropdownItem link={'Settings'} />
-                        <DropdownItem link={'Your privacy rights'} />
-                        <DropdownItem link={'Get help'} />
-                        <DropdownItem link={'See terms of services'} />
-                        <DropdownItem link={'See privacy policy'} />
-                        <DropdownItem link={'Log out'} />
-                    </ul>
-                </div>
                 </div>
             </div>
         </>
@@ -54,7 +56,7 @@ const SideModal = () => {
 function DropdownItem(props) {
     return (
         <li className={Styles.dropdownItem}>
-            <Link>{props.link}</Link>
+            <Link to={props.link}>{props.text}</Link>
         </li>
     );
 }

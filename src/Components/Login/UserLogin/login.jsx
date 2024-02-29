@@ -44,7 +44,7 @@ const Login = () => {
                             Login
                         </button>
                         <div className={Styles.link}>Not on Pinterest yet?<Link to="/register" style={{ color: 'red' }}>Sign up</Link></div>
-                        <div>Are you a business? <Link to='/business/login'>Get started here!</Link></div>
+                        <div>Are you a business? <Link to='/business/login' style={{color: 'tomato'}}>Get started here!</Link></div>
                     </div>
                 </div>
             </div>
