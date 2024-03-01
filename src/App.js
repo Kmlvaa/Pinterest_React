@@ -6,12 +6,14 @@ import BusinessLogin from "./Components/Login/BusinessLogin/login";
 import Layout from "./Pages/Layout/layout";
 import Home from './Pages/Home/home'
 import Create from './Pages/Create/index'
-import Profile from './Pages/Profile/index'
+import Profile from './Pages/Profile/Layout/index'
 import Explore from './Pages/Explore/index'
 import AddAccount from './Pages/AddAccount/index'
 import SettingLayout from './Pages/Settings/Layout/layout'
 import EditProfile from './Pages/Settings/EditProfile/index'
 import AccountManagement from './Pages/Settings/AccountManagement/index'
+import Created from "./Pages/Profile/CreatedComponent/created";
+import Saved from "./Pages/Profile/SavedComponent/saved";
 
 function App() {
   return (
@@ -20,7 +22,10 @@ function App() {
       <Route path="/" element={<Layout />}>
         <Route index element={<Home />}/>
         <Route path="/create" element={<Create />}/>
-        <Route path="/profile" element={<Profile />}/>
+        <Route path="/profile" element={<Profile />}>
+          <Route path="/profile/created" element={<Created />}/>
+          <Route path="/profile/saved" element={<Saved />}/>
+        </Route>
         <Route path="/explore" element={<Explore />}/>
         <Route path="/addAccount" element={<AddAccount />}/>
         <Route path="/settings" element={<SettingLayout />}>

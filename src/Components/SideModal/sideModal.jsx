@@ -11,8 +11,11 @@ const SideModal = () => {
     let menuRef = useRef();
     useEffect(() => {
         let handler = (e) => {
-            if (!menuRef.current.contains(e.target)) {
-                setOpen(false);
+            console.log(menuRef)
+            if(menuRef.current != null){
+                if (!menuRef.current.contains(e.target)) {
+                    setOpen(false);
+                }
             }
         }
         document.addEventListener('mousedown', handler);
@@ -27,7 +30,7 @@ const SideModal = () => {
                 <div className={`${open ? Styles.active : Styles.inactive}`}>
                     <div className={Styles.dropdown_menu}>
                         <p>Currently in</p>
-                        <Link to='/profile'>
+                        <Link to='/profile/created'>
                             <div className={Styles.profile}>
                                 <img src={user} width={50} height={50} />
                                 <h3>My Profile <br /><span>Samiraak</span></h3>
