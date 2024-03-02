@@ -43,6 +43,8 @@ const SideModal = () => {
                         <p>More options</p>
                         <ul>
                             <DropdownItem text={'Settings'} link={'/settings/editProfile'}/>
+                            <DropdownItem text={'See terms of service'} />
+                            <DropdownItem text={'See privacy policy'} />
                             <DropdownItem text={'Get help'} />
                             <DropdownItem text={'Log out'} />
                         </ul>

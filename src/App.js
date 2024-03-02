@@ -14,6 +14,8 @@ import EditProfile from './Pages/Settings/EditProfile/index'
 import AccountManagement from './Pages/Settings/AccountManagement/index'
 import Created from "./Pages/Profile/CreatedComponent/created";
 import Saved from "./Pages/Profile/SavedComponent/saved";
+import Privacy from "./Pages/Settings/PrivacyAndData/index";
+import Claimed from "./Pages/Settings/ClaimedAccounts/index";
 
 function App() {
   return (
@@ -31,6 +33,8 @@ function App() {
         <Route path="/settings" element={<SettingLayout />}>
             <Route path="/settings/editProfile" element={<EditProfile />}/>
             <Route path="/settings/accountManagement" element={<AccountManagement />}/>
+            <Route path="/settings/privacy" element={<Privacy />}/>
+            <Route path="/settings/claimedAccounts" element={<Claimed />}/>
         </Route>
       </Route>
         <Route path="/login" element={<Login />}/>

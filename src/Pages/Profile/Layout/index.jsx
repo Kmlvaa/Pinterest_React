@@ -42,5 +42,4 @@ function GreyButton(props) {
         </button>
     );
 }
-
 export default Index;

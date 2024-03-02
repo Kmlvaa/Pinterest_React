@@ -1,0 +1,50 @@
+.main{
+    width: 500px;
+    display: flex;
+    flex-direction: column;
+    row-gap: 20px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    .header{
+        h1{
+            font-size: 25px;
+            font-weight: 600;
+        }
+    }
+    .photo{
+        display: flex;
+        flex-direction: column;
+        p{
+            font-size: 12px;
+        }
+        div{
+            display: flex;
+            flex-direction: row;
+            column-gap: 20px;
+            align-items: center;
+        }
+    }
+}
+.modalFooterbtn{
+   margin-right: 10px;
+}
+.form_name{
+    display: flex;
+    flex-direction: row;
+    column-gap: 70px;
+}
+.formControl{
+    margin-bottom: 15px;
+    p{
+        font-size: 12px;
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+    label{
+        font-weight: 100;
+        font-size: 12px;
+    }
+}
+.saveBtn{
+    background-color: rgb(204, 38, 38);
+    color: white;
+}
