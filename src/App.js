@@ -1,8 +1,6 @@
-import { Route, Router, Routes } from "react-router-dom";
-import Register from './Components/Register/UserRegister/register'
-import BusinessRegister from './Components/Register/BusinessRegister/register'
-import Login from "./Components/Login/UserLogin/login";
-import BusinessLogin from "./Components/Login/BusinessLogin/login";
+import { Route, Routes } from "react-router-dom";
+import Register from './Components/Register/register'
+import Login from "./Components/Login/login";
 import Layout from "./Pages/Layout/layout";
 import Home from './Pages/Home/home'
 import Create from './Pages/Create/index'
@@ -14,8 +12,13 @@ import EditProfile from './Pages/Settings/EditProfile/index'
 import AccountManagement from './Pages/Settings/AccountManagement/index'
 import Created from "./Pages/Profile/CreatedComponent/created";
 import Saved from "./Pages/Profile/SavedComponent/saved";
-import Privacy from "./Pages/Settings/PrivacyAndData/index";
+import PrivacyData from "./Pages/Settings/PrivacyAndData/index";
 import Claimed from "./Pages/Settings/ClaimedAccounts/index";
+import Visibility from "./Pages/Settings/Visibility/index";
+import PrivacyLayout from "./Pages/Privacy/Layout/index"
+import Terms from './Pages/Privacy/TermsOfServices/index'
+import PrivacyPolicy from './Pages/Privacy/PrivacyPolicy/index'
+import Help from './Pages/Privacy/GetHelp/index'
 
 function App() {
   return (
@@ -33,14 +36,18 @@ function App() {
         <Route path="/settings" element={<SettingLayout />}>
             <Route path="/settings/editProfile" element={<EditProfile />}/>
             <Route path="/settings/accountManagement" element={<AccountManagement />}/>
-            <Route path="/settings/privacy" element={<Privacy />}/>
+            <Route path="/settings/privacy" element={<PrivacyData />}/>
             <Route path="/settings/claimedAccounts" element={<Claimed />}/>
+            <Route path="/settings/visibility" element={<Visibility />}/>
         </Route>
       </Route>
+      <Route path="/privacy" element={<PrivacyLayout />}>
+            <Route path="/privacy/terms" element={<Terms />}/>
+            <Route path="/privacy/privacy" element={<PrivacyPolicy />}/>
+            <Route path="/privacy/help" element={<Help />}/>
+        </Route>
         <Route path="/login" element={<Login />}/>
         <Route path="/register" element={<Register />}/>
-        <Route path="/business/login" element={<BusinessLogin />}/>
-        <Route path="/business/register" element={<BusinessRegister />}/>
     </Routes>
    </>
   );

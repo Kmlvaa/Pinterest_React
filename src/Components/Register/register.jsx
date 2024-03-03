@@ -1,6 +1,6 @@
 import React from 'react';
-import Styles from './login.module.scss'
-import logo from '../../../Images/Pinterest-logo.png'
+import Styles from './register.module.scss'
+import logo from '../../Images/Pinterest-logo.png'
 import { Link } from "react-router-dom";
 import {
     FormControl,
@@ -9,9 +9,9 @@ import {
     InputGroup,
     InputRightElement,
     Button
-} from '@chakra-ui/react'
+  } from '@chakra-ui/react'
 
-const Login = () => {
+const Register = () => {
     const [show, setShow] = React.useState(false)
     const handleClick = () => setShow(!show)
     return (
@@ -21,6 +21,7 @@ const Login = () => {
                     <div><img src={logo} width={50} height={50} /></div>
                     <div className={Styles.main_section_content}>
                         <div className={Styles.main_section_content_welcome}>Welcome to Pinterest</div>
+                        <div>Find new ideas to try</div>
                     </div>
                     <div className={Styles.form}>
                         <FormControl>
@@ -39,12 +40,13 @@ const Login = () => {
                                     </Button>
                                 </InputRightElement>
                             </InputGroup>
+                            <FormLabel>Username</FormLabel>
+                            <Input placeholder='Enter Username' />
                         </FormControl>
                         <button className={Styles.btn}>
-                            Login
+                            Create account
                         </button>
-                        <div className={Styles.link}>Not on Pinterest yet?<Link to="/register" style={{ color: 'red' }}>Sign up</Link></div>
-                        <div>Are you a business? <Link to='/business/login' style={{color: 'tomato'}}>Get started here!</Link></div>
+                        <div className={Styles.link}>Already have an account?<Link to="/login" style={{color:'red'}}>Login</Link></div>
                     </div>
                 </div>
             </div>
@@ -52,4 +54,4 @@ const Login = () => {
     );
 }
 
-export default Login;
+export default Register;
