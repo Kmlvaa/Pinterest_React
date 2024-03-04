@@ -42,10 +42,10 @@ function App() {
         </Route>
       </Route>
       <Route path="/privacy" element={<PrivacyLayout />}>
-            <Route path="/privacy/terms" element={<Terms />}/>
-            <Route path="/privacy/privacy" element={<PrivacyPolicy />}/>
-            <Route path="/privacy/help" element={<Help />}/>
-        </Route>
+          <Route path="/privacy/terms" element={<Terms />}/>
+          <Route path="/privacy/privacy" element={<PrivacyPolicy />}/>
+          <Route path="/privacy/help" element={<Help />}/>
+      </Route>
         <Route path="/login" element={<Login />}/>
         <Route path="/register" element={<Register />}/>
     </Routes>
