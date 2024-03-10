@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Styles from './register.module.scss'
 import logo from '../../Images/Pinterest-logo.png'
 import { Link } from "react-router-dom";
@@ -16,8 +16,9 @@ import { registerPost } from '../../services/AuthService';
 import { registerSchema } from '../../schemas/RegisterSchema';
 
 const Register = () => {
-    const [show, setShow] = React.useState(false);
+    const [show, setShow] = useState(false);
     const handleClick = () => setShow(!show);
+    const [err, setErr] = useState(null);
     const toast = useToast();
 
     const formik = useFormik({
@@ -42,7 +43,9 @@ const Register = () => {
             }
             catch (error) {
                 console.log(error);
+                setErr(error.response.data);
             }
+            console.log(err)
         },
         validationSchema: registerSchema
     })

@@ -1,0 +1,18 @@
+.context{
+    margin: auto;
+    text-align: center;
+}
+.btn{
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 15px;
+    button{
+        background-color: rgb(218, 4, 4);
+        color: white;
+        border-radius: 20px;
+        padding: 8px 10px;
+        font-weight: 500;
+    }
+}

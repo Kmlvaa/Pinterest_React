@@ -22,6 +22,7 @@ import Help from './Pages/Privacy/GetHelp/index'
 import Community from './Pages/Privacy/Community/index'
 import Advertising from './Pages/Privacy/Advertising/index'
 import Developers from './Pages/Privacy/Developers/index'
+import PostDetails from './Pages/PostDetails/index'
 
 function App() {
   return (
@@ -30,6 +31,7 @@ function App() {
       <Route path="/" element={<Layout />}>
         <Route index element={<Home />}/>
         <Route path="/create" element={<Create />}/>
+        <Route path="/postDetails" element={<PostDetails />}/>
         <Route path="/profile" element={<Profile />}>
           <Route path="/profile/created" element={<Created />}/>
           <Route path="/profile/saved" element={<Saved />}/>
