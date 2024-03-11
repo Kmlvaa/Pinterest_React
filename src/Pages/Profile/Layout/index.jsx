@@ -20,7 +20,6 @@ const Index = () => {
                     <div>About</div>
                     <div>0 following</div>
                     <div className={Styles.btn}>
-                        <GreyButton text={'Share'}></GreyButton>
                         <GreyButton text={'Edit profile'}></GreyButton>
                     </div>
                 </div>
@@ -38,7 +37,7 @@ const Index = () => {
 function GreyButton(props) {
     return (
         <button className={Styles.greyBtnComponent}>
-            {props.text}
+            <Link to={'/settings/editProfile'}>{props.text}</Link>
         </button>
     );
 }

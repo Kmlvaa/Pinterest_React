@@ -2,8 +2,8 @@ import React from 'react';
 import Styles from './sideModal.module.scss'
 import { Link } from 'react-router-dom'
 import user from '../../Images/user.png'
-import hamburger from '../../Images/menu.png'
 import { useState, useEffect, useRef } from 'react';
+import { ArrowDropDown } from '@mui/icons-material';
 
 const SideModal = () => {
     const [open, setOpen] = useState(false);
@@ -25,7 +25,7 @@ const SideModal = () => {
         <>
             <div className='menu_container' ref={menuRef}>
                 <div className="menu_trigger" onClick={() => { setOpen(!open) }}>
-                    <div><img src={hamburger} width={20} height={20}/></div>
+                    <div><ArrowDropDown /></div>
                 </div>
                 <div className={`${open ? Styles.active : Styles.inactive}`}>
                     <div className={Styles.dropdown_menu}>
@@ -45,6 +45,8 @@ const SideModal = () => {
                             <DropdownItem text={'Settings'} link={'/settings/editProfile'}/>
                             <DropdownItem text={'See terms of service'} link={'/privacy/terms'} />
                             <DropdownItem text={'See privacy policy'} link={'privacy/privacy'}/>
+                            <DropdownItem text={'Community'} link={'privacy/community'}/>
+                            <DropdownItem text={'Advertising guideness'} link={'privacy/advertising'}/>
                             <DropdownItem text={'Get help'} link={'privacy/help'}/>
                             <DropdownItem text={'Log out'} />
                         </ul>

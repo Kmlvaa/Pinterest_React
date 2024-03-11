@@ -32,7 +32,9 @@ function CardLayout(props) {
         <SimpleGrid width={300} spacing={4} templateColumns='repeat(auto-fill, minmax(200px, 1fr))'>
             <Card>
                 <CardHeader className={Styles.cardHeader}>
-                    <img src={props.img} width={50} height={50}/>
+                    <div className={Styles.pic_cover}>
+                        <img src={props.img} width={50} height={50} />
+                    </div>
                     <Heading size='md'>{props.heading}</Heading>
                 </CardHeader>
                 <CardBody>

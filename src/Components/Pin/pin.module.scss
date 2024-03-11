@@ -1,0 +1,58 @@
+.pin {
+    border-radius: 16px;
+    margin: 5px;
+    position: relative;
+    overflow: hidden;
+
+    img {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+}
+
+.pin:hover {
+    cursor: zoom-in;
+}
+
+.pin:after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background: rgba(0, 0, 0, 0.5);
+    opacity: 0;
+    transition: all 0.2s;
+    z-index: 1;
+}
+
+.pin:hover:after {
+    opacity: 1;
+}
+
+.pin button {
+    padding: 10px;
+    width: 80px;
+    border-radius: 30px;
+    background-color: #cc0000;
+    color: white;
+    font-weight: bold;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    position: relative;
+    cursor: pointer;
+    z-index: 3;
+    top: 10px;
+    left: 130px;
+}
+
+.pin:hover button {
+    opacity: 1;
+}
+
+.pin button:hover {
+    background-color: #ac0303;
+}
