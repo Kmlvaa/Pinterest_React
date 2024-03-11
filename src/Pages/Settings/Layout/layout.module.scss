@@ -27,3 +27,9 @@
 .active{
     border-bottom: 3px solid black;
 }
+@media (max-width: 850px) {
+    .main{
+        flex-direction: column;
+        row-gap: 20px;
+    }
+}

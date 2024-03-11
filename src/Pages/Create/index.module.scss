@@ -24,7 +24,7 @@
         }
     }
     .second_section{
-        width: 800px;
+        width: auto;
         margin: auto;
         display: flex;
         flex-direction: row;
@@ -58,4 +58,15 @@
 .dropdownItem{
     display: flex;
     margin: 10px auto;
+}
+@media (max-width: 800px) {
+    .main .second_section{
+        flex-direction: column;
+        row-gap: 20px;
+    }
+}
+@media (max-width: 525px) {
+    .main .second_section .form_control{
+        width: auto;
+    }
 }
