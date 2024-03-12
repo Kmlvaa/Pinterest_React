@@ -18,7 +18,6 @@ import Visibility from "./Pages/Settings/Visibility/index";
 import PrivacyLayout from "./Pages/Privacy/Layout/index"
 import Terms from './Pages/Privacy/TermsOfServices/index'
 import PrivacyPolicy from './Pages/Privacy/PrivacyPolicy/index'
-import Help from './Pages/Privacy/GetHelp/index'
 import Community from './Pages/Privacy/Community/index'
 import Advertising from './Pages/Privacy/Advertising/index'
 import Developers from './Pages/Privacy/Developers/index'
@@ -49,7 +48,6 @@ function App() {
       <Route path="/privacy" element={<PrivacyLayout />}>
           <Route path="/privacy/terms" element={<Terms />}/>
           <Route path="/privacy/privacy" element={<PrivacyPolicy />}/>
-          <Route path="/privacy/help" element={<Help />}/>
           <Route path="/privacy/community" element={<Community />}/>
           <Route path="/privacy/advertising" element={<Advertising />}/>
           <Route path="/privacy/developers" element={<Developers />}/>

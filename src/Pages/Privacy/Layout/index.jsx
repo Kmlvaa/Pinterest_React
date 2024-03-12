@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Styles from './index.module.scss'
 import logo from '../../../Images/Pinterest-logo.png'
 import { Outlet, NavLink } from 'react-router-dom';
@@ -25,11 +25,8 @@ const Index = () => {
             path: '/privacy/developers',
             name: 'Developers'
         },
-        {
-            path: '/privacy/help',
-            name: 'Help'
-        },
     ]
+    const [isOpen, setIsOpen] = useState(false)
     return (
         <>
             <div className={Styles.header}>
@@ -37,26 +34,33 @@ const Index = () => {
                     <img src={logo} width={30} height={30} />
                     <p>Policy</p>
                 </div>
-                <div className={Styles.menu}>
-                    <ul>
-                        {
-                            menuItem.map((item) => (
-                                <li>
-                                    <NavLink to={item.path} className={({ isActive }) => {
-                                        return (
-                                            (isActive
-                                                ? Styles.active
-                                                : '')
-                                        )
-                                    }}>
-                                        {item.name}
-                                    </NavLink>
-                                </li>
-                            ))
-                        }
-                    </ul>
+                <div className={Styles.hamburger} onClick={() => {
+                    setIsOpen(!isOpen);
+                }}>
+                    <span className={Styles.bar}></span>
+                    <span className={Styles.bar}></span>
+                    <span className={Styles.bar}></span>
                 </div>
-            </div>
+                <nav className={isOpen ? "nav_open" : ""}>
+                    <ul>
+                    {
+                        menuItem.map((item) => (
+                            <li>
+                                <NavLink to={item.path} className={({ isActive }) => {
+                                    return (
+                                        (isActive
+                                            ? Styles.active
+                                            : '')
+                                    )
+                                }}>
+                                    {item.name}
+                                </NavLink>
+                            </li>
+                        ))
+                    }
+                </ul>
+            </nav>
+        </div >
             <div><Outlet /></div>
             <div className={Styles.footer}>
                 <div><h1>𝓟𝓲𝓷𝓽𝓮𝓻𝓮𝓼𝓽</h1></div>

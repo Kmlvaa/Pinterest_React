@@ -5,14 +5,12 @@ import {
     FormLabel,
     Textarea,
     Input,
-    InputGroup,
-    InputLeftAddon,
     Stack,
     Switch,
-    styled
 } from '@chakra-ui/react'
 import { TriangleDownIcon } from '@chakra-ui/icons'
 import { useState } from 'react';
+import Uploader from '../../Components/Uploader/uploader';
 
 const Index = () => {
     const [open, setOpen] = useState(false);
@@ -25,11 +23,7 @@ const Index = () => {
                     <button>Publish</button>
                 </div>
                 <div className={Styles.second_section}>
-                    <div>
-                        <Stack spacing={3}>
-                            <Input placeholder='large size' size='lg' type='file'/>
-                        </Stack>
-                    </div>
+                    <Uploader />
                     <div className={Styles.form_control}>
                         <FormControl>
                             <FormLabel>Title</FormLabel>

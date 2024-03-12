@@ -47,7 +47,6 @@ const SideModal = () => {
                             <DropdownItem text={'See privacy policy'} link={'privacy/privacy'}/>
                             <DropdownItem text={'Community'} link={'privacy/community'}/>
                             <DropdownItem text={'Advertising guideness'} link={'privacy/advertising'}/>
-                            <DropdownItem text={'Get help'} link={'privacy/help'}/>
                             <DropdownItem text={'Log out'} />
                         </ul>
                     </div>
