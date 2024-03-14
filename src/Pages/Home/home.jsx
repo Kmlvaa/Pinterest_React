@@ -5,7 +5,6 @@ import kaonashi8 from '../../Images/Kaonashi8.jpg'
 import kaonashi4 from '../../Images/Kaonashi4.jpg'
 import pic from '../../Images/Screenshot 2024-01-31 011531.png'
 
-
 const Home = () => {
     return (
         <>

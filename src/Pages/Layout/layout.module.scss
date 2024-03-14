@@ -7,6 +7,8 @@
 .active {
     background-color: black;
     color: white;
+    border-radius: 25px;
+    padding: 12px;
 }
 
 .logo {
@@ -20,7 +22,7 @@
     width: auto;
     display: flex;
     flex-direction: row;
-    column-gap: 30px;
+    column-gap: 10px;
     justify-content: space-between;
     align-items: center;
     padding: 0 30px;
@@ -28,7 +30,8 @@
     top: 0;
     z-index: 10;
 }
-.left_links{
+
+.left_links {
     display: flex;
     flex-direction: row;
 }
@@ -55,18 +58,16 @@
 .header_btn {
     background-color: white;
     border: 0;
-    border-radius: 30px;
-    padding: 10px;
-    width: 70px;
+    width: 100px;
     font-weight: 500;
     color: black;
-    margin-inline: 5px;
 }
 
 .header_left {
     display: flex;
     flex-direction: row;
     align-items: center;
+    column-gap: 5px;
 }
 
 .input_field {
@@ -114,6 +115,17 @@
     color: #5e5e5e;
 }
 
+.lang {
+    width: 60px;
+    display: flex;
+    flex-direction: row;
+    column-gap: 5px;
+}
+
+.lang button:hover {
+    border-bottom: 1px solid black;
+}
+
 .dropdown {
     width: 25px;
     height: 25px;
@@ -142,7 +154,7 @@
 }
 
 @media (max-width: 550px) {
-    .left_links{
+    .left_links {
         flex-direction: column;
         align-items: start;
     }

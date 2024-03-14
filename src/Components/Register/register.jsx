@@ -14,8 +14,10 @@ import {
 import { useFormik } from 'formik';
 import { registerPost } from '../../services/AuthService';
 import { registerSchema } from '../../schemas/RegisterSchema';
+import { useTranslation } from 'react-i18next';
 
 const Register = () => {
+    const {t} = useTranslation(); 
     const [show, setShow] = useState(false);
     const handleClick = () => setShow(!show);
     const [err, setErr] = useState(null);
@@ -55,15 +57,15 @@ const Register = () => {
                 <div className={Styles.main_section}>
                     <div><img src={logo} width={50} height={50} /></div>
                     <div className={Styles.main_section_content}>
-                        <div className={Styles.main_section_content_welcome}>Welcome to Pinterest</div>
-                        <div>Find new ideas to try</div>
+                        <div className={Styles.main_section_content_welcome}>{t("register.header")}</div>
+                        <div>{t("register.p1")}</div>
                     </div>
                     <div className={Styles.form}>
                         <FormControl>
-                            <FormLabel>First name</FormLabel>
+                            <FormLabel>{t("register.firstname")}</FormLabel>
                             <Input
                                 id='firstname'
-                                placeholder='Enter Firstname'
+                                placeholder={t("register.addFirstname")}
                                 name='firstName'
                                 value={formik.values.firstName}
                                 onChange={formik.handleChange}
@@ -71,10 +73,10 @@ const Register = () => {
                                 className={formik.errors.firstName && formik.touched.firstName ? `${Styles.input_error}` : ``}
                             />
                             {formik.errors.firstName && formik.touched.firstName && <p className={Styles.error_msg}>{formik.errors.firstName}</p>}
-                            <FormLabel>Last name</FormLabel>
+                            <FormLabel>{t("register.lastname")}</FormLabel>
                             <Input
                                 id='lastname'
-                                placeholder='Enter Lastname'
+                                placeholder={t("register.addLastname")}
                                 name='lastName'
                                 value={formik.values.lastName}
                                 onChange={formik.handleChange}
@@ -82,10 +84,10 @@ const Register = () => {
                                 className={formik.errors.lastName && formik.touched.lastName ? `${Styles.input_error}` : ``}
                             />
                             {formik.errors.lastName && formik.touched.lastName && <p className={Styles.error_msg}>{formik.errors.lastName}</p>}
-                            <FormLabel>Email</FormLabel>
+                            <FormLabel>{t("register.email")}</FormLabel>
                             <Input
                                 id='email'
-                                placeholder='Enter Email'
+                                placeholder={t("register.addEmail")}
                                 name='email'
                                 value={formik.values.email}
                                 onChange={formik.handleChange}
@@ -93,10 +95,10 @@ const Register = () => {
                                 className={formik.errors.email && formik.touched.email ? `${Styles.input_error}` : ``}
                             />
                             {formik.errors.email && formik.touched.email && <p className={Styles.error_msg}>{formik.errors.email}</p>}
-                            <FormLabel>Username</FormLabel>
+                            <FormLabel>{t("register.username")}</FormLabel>
                             <Input
                                 id='username'
-                                placeholder='Enter Username'
+                                placeholder={t("register.addUsername")}
                                 name='username'
                                 value={formik.values.username}
                                 onChange={formik.handleChange}
@@ -104,13 +106,13 @@ const Register = () => {
                                 className={formik.errors.username && formik.touched.username ? `${Styles.input_error}` : ``}
                             />
                             {formik.errors.username && formik.touched.username && <p className={Styles.error_msg}>{formik.errors.username}</p>}
-                            <FormLabel>Password</FormLabel>
+                            <FormLabel>{t("register.password")}</FormLabel>
                             <InputGroup size='md'>
                                 <Input
                                     id='password'
                                     pr='4.5rem'
                                     type={show ? 'text' : 'password'}
-                                    placeholder='Enter password'
+                                    placeholder={t("register.addPassword")}
                                     name='password'
                                     value={formik.values.password}
                                     onChange={formik.handleChange}
@@ -126,9 +128,9 @@ const Register = () => {
                             {formik.errors.password && formik.touched.password && <p className={Styles.error_msg}>{formik.errors.password}</p>}
                         </FormControl>
                         <button className={Styles.btn} onClick={formik.handleSubmit} type='submit'>
-                            Create account
+                        {t("register.create")}
                         </button>
-                        <div className={Styles.link}>Already have an account?<Link to="/login" style={{ color: 'red' }}>Login</Link></div>
+                        <div className={Styles.link}>{t("register.p2")}<Link to="/login" style={{ color: 'red' }}>{t("register.login")}</Link></div>
                     </div>
                 </div>
             </div>

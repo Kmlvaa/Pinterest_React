@@ -3,8 +3,10 @@ import Styles from './index.module.scss'
 import user from '../../../Images/user.png'
 import logo from '../../../Images/logo-pinterest-gris.png'
 import { Link, Outlet } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
 const Index = () => {
+    const {t, i18n} = useTranslation(); 
     return (
         <>
             <div className={Styles.main}>
@@ -18,16 +20,15 @@ const Index = () => {
                         </div>
                     </div>
                     <div>About</div>
-                    <div>0 following</div>
+                    <div>0 {t("profile.following")}</div>
                     <div className={Styles.btn}>
-                        <GreyButton text={'Share'}></GreyButton>
-                        <GreyButton text={'Edit profile'}></GreyButton>
+                        <GreyButton text={t("profile.edit")}></GreyButton>
                     </div>
                 </div>
                 <div className={Styles.second_section}>
                     <div>
-                        <button><Link to='/profile/created'>Created</Link></button>
-                        <button><Link to='/profile/saved'>Saved</Link></button>
+                        <button><Link to='/profile/created'>{t("profile.created")}</Link></button>
+                        <button><Link to='/profile/saved'>{t("profile.saved")}</Link></button>
                     </div>
                 </div>
                 <div style={{marginTop: 50}}><Outlet /></div>
@@ -38,7 +39,7 @@ const Index = () => {
 function GreyButton(props) {
     return (
         <button className={Styles.greyBtnComponent}>
-            {props.text}
+            <Link to={'/settings/editProfile'}>{props.text}</Link>
         </button>
     );
 }

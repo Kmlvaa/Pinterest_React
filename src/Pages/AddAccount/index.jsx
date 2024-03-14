@@ -5,22 +5,24 @@ import addUser from '../../Images/add-user.png';
 import plus from '../../Images/plus.png'
 import { Card, CardHeader, CardBody, CardFooter, Heading, Text, Button } from '@chakra-ui/react'
 import { Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
 const Index = () => {
+    const {t, i18n} = useTranslation(); 
     return (
         <>
             <div className={Styles.main}>
                 <div className={Styles.first_section}>
-                    <h1>Add Account</h1>
-                    <p>Add a new account or connect an existing account for seamless account switching</p>
+                    <h1>{t("account.addAccount")}</h1>
+                    <p>{t("account.p1")}</p>
                 </div>
                 <div className={Styles.second_section}>
-                    <CardLayout img={addUser} heading={'Connect existing account'}
-                        body={'Connect Pinterest accounts with different emails for seamless account switching'}
-                        button={'Connect account'} link={'/login'}></CardLayout>
-                    <CardLayout img={plus} heading={'Create a new personal account'}
-                        body={'Create a separate account with another email address'}
-                        button={'Create'} link={'/register'}></CardLayout>
+                    <CardLayout img={addUser} heading={t("account.card1Header")}
+                        body={t("account.card1p")}
+                        button={t("account.card1btn")} link={'/login'}></CardLayout>
+                    <CardLayout img={plus} heading={t("account.card2Header")}
+                        body={t("account.card2p")}
+                        button={t("account.card2btn")} link={'/register'}></CardLayout>
 
                 </div>
             </div>

@@ -13,8 +13,10 @@ import {
 import { useFormik } from 'formik';
 import { loginPost } from '../../services/AuthService';
 import { loginSchema } from '../../schemas/LoginSchema';
+import { useTranslation } from 'react-i18next';
 
 const Login = () => {
+    const {t} = useTranslation(); 
     const [show, setShow] = React.useState(false);
     const handleClick = () => setShow(!show);
 
@@ -40,14 +42,14 @@ const Login = () => {
                 <div className={Styles.main_section}>
                     <div><img src={logo} width={50} height={50} /></div>
                     <div className={Styles.main_section_content}>
-                        <div className={Styles.main_section_content_welcome}>Welcome to Pinterest</div>
+                        <div className={Styles.main_section_content_welcome}>{t("login.header")}</div>
                     </div>
                     <div className={Styles.form}>
                         <FormControl>
-                            <FormLabel>Username</FormLabel>
+                            <FormLabel>{t("login.username")}</FormLabel>
                             <Input
                                 id='username'
-                                placeholder='Enter Username'
+                                placeholder={t("login.addUsername")}
                                 name='username'
                                 value={formik.values.username}
                                 onChange={formik.handleChange}
@@ -55,13 +57,13 @@ const Login = () => {
                                 className={formik.errors.username && formik.touched.username ? `${Styles.input_error}` : ``}
                             />
                             {formik.errors.username && formik.touched.username && <p className={Styles.error_msg}>{formik.errors.username}</p>}
-                            <FormLabel>Password</FormLabel>
+                            <FormLabel>{t("login.password")}</FormLabel>
                             <InputGroup size='md'>
                                 <Input
                                     id='password'
                                     pr='4.5rem'
                                     type={show ? 'text' : 'password'}
-                                    placeholder='Enter password'
+                                    placeholder={t("login.addPassword")}
                                     name='password'
                                     value={formik.values.password}
                                     onChange={formik.handleChange}
@@ -77,9 +79,9 @@ const Login = () => {
                                 {formik.errors.password && formik.touched.password && <div className={Styles.error_msg}>{formik.errors.password}</div>}
                         </FormControl>
                         <button className={Styles.btn} onClick={formik.handleSubmit} type='submit'>
-                            Login
+                        {t("login.login")}
                         </button>
-                        <div className={Styles.link}>Not on Pinterest yet?<Link to="/register" style={{ color: 'red' }}>Sign up</Link></div>
+                        <div className={Styles.link}>{t("login.p")}<Link to="/register" style={{ color: 'red' }}>{t("login.signUp")}</Link></div>
                     </div>
                 </div>
             </div>

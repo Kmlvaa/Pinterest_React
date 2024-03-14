@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 import './uploader.css'
 import { MdCloudUpload, MdDelete } from 'react-icons/md'
-import { AiFillFileImage } from 'react-icons/ai'
+import { useTranslation } from 'react-i18next';
 
 const Uploader = () => {
     const [image, setImage] = useState(null);
     const [fileName, setFileName] = useState("No selected file");
+    const {t, i18n} = useTranslation(); 
     return (
         <>
         <div className='main'>
@@ -20,7 +21,7 @@ const Uploader = () => {
                 {image ? <img src={image}  alt={fileName}/>
                 : <>
                     <MdCloudUpload color='#1475cf' size={60}/>
-                    <p>Choose a file to upload</p>
+                    <p>{t("create.upload")}</p>
                 </>}
             </form>
                 {image ?
@@ -28,7 +29,7 @@ const Uploader = () => {
                     onClick={() => {
                         setImage(null);
                         setFileName("No selected file");
-                    }}>Delete</button>
+                    }}>{t("create.delete")}</button>
                  : <></>}
         </div>
         </>

@@ -5,8 +5,10 @@ import Heart from '../../Images/heart.png'
 import Like from '../../Images/like.png'
 import Kaonashi from '../../Images/Kaonashi4.jpg'
 import { ExternalLinkIcon, TriangleDownIcon } from '@chakra-ui/icons'
+import { useTranslation } from 'react-i18next';
 
 const Index = () => {
+    const {t, i18n} = useTranslation(); 
     return (
         <>
             <div className={Styles.main}>
@@ -14,7 +16,7 @@ const Index = () => {
                 <div className={Styles.content_section}>
                     <div className={Styles.section1}>
                         <div><ExternalLinkIcon style={{cursor: 'pointer'}}/></div>
-                        <button>Save</button>
+                        <button>{t("pin.save")}</button>
                     </div>
                     <div className={Styles.section2}>
                         <h1>Title</h1>
@@ -28,10 +30,10 @@ const Index = () => {
                                 <p>32 followers</p>
                             </div>
                         </div>
-                        <div><button>Follow</button></div>
+                        <div><button>{t("pin.follow")}</button></div>
                     </div>
                     <div className={Styles.section4}>
-                        <p>Comments  <span><TriangleDownIcon /></span></p>
+                        <p>{t("pin.comment")}  <span><TriangleDownIcon /></span></p>
                     </div>
                     <div className={Styles.section5}>
                         <div className={Styles.likes_sec}>
@@ -43,7 +45,7 @@ const Index = () => {
                         </div>
                         <div className={Styles.input}>
                             <img src={User} width={50} height={50}/>
-                            <input placeholder='Add comment'/>
+                            <input placeholder={t("pin.addComment")}/>
                         </div>
                     </div>
                 </div>

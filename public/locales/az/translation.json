@@ -1,0 +1,89 @@
+{
+    "layout": {
+        "home": "Ana səhifə",
+        "create": "Yarat",
+        "search": "Axtar"
+    },
+    "sideModal": {
+        "currentProfile": "Hal-hazırda",
+        "yourAccounts": "Hesabların",
+        "moreOptions": "Daha çox",
+        "links": {
+            "addAccount": "Hesab əlavə et",
+            "settings": "Parametrlər",
+            "seeTerms": "Xidmət şərtlərinə baxın",
+            "privacy": "Məxfilik siyasətinə baxın",
+            "community": "İcma",
+            "advertising": "Reklam təlimatı",
+            "logOut": "Cıxış et"
+        }
+    },
+    "home": {
+        "details": "Detallar"
+    },
+    "pin": {
+        "comment": "Şərhlər",
+        "follow": "İzlə",
+        "save": "Yadda saxla",
+        "addComment": "Şərh əlavə et"
+    },
+    "create": {
+        "create": "Pin yarat",
+        "post": "Paylaş",
+        "title": "Başlıq",
+        "desc": "Təsvir",
+        "link": "Link",
+        "upload": "Yükləmək üçün fayl seçin",
+        "delete": "Sil",
+        "addLink": "Link əlavə et",
+        "addtitle": "Başlıq əlavə et",
+        "addDesc": "Ətraflı təsvir əlavə et"
+    },
+    "profile": {
+        "edit": "Profilə düzəliş et",
+        "created": "Paylaşılan",
+        "saved": "Saxlanılan",
+        "createPin": "Pin yarat",
+        "explore": "Kəşf et",
+        "p1": "Göstərəcək heç nə yoxdur... hələ! Yaratdığınız pinlər burada yaşayacaq.",
+        "p2": "Hələ heç bir pin saxlamamısınız",
+        "following": "izləyici"
+    },
+    "account": {
+        "addAccount": "Hesab əlavə et",
+        "p1": "Problemsiz hesab keçidi üçün yeni hesab əlavə edin və ya mövcud hesabı birləşdirin",
+        "card1Header": "Mövcud hesaba keçid et",
+        "card2Header": "Yeni hesab yarat",
+        "card1p": "Problemsiz hesab keçidi üçün Pinterest hesablarını müxtəlif e-poçtlarla birləşdirin",
+        "card2p": "Başqa bir e-poçt ünvanı ilə ayrı hesab yaradın",
+        "card1btn": "Hesaba keçid et",
+        "card2btn": "Hesab yarat"
+    },
+    "login": {
+        "header": "Pinterest'ə xoş gəldiniz",
+        "username": "İstifadəçi adı",
+        "password": "Şifrə",
+        "addUsername": "İstifadəçi adını daxil edin",
+        "addPassword": "Şifrəni daxil edin",
+        "login": "Daxil ol",
+        "p": "Hələ Pinterest-də deyilsən?",
+        "signUp": "Qeydiyyatdan keç"
+    },
+    "register": {
+        "header":"Pinterest'ə xoş gəldiniz",
+        "p1": "Sınamaq üçün yeni ideyalar tapın",
+        "username": "İstifadəçi adı",
+        "password": "Şifrə",
+        "addUsername": "İstifadəçi adını daxil edin",
+        "addPassword": "Şifrəni daxil edin",
+        "firstname": "Ad",
+        "addFirstname": "Adı daxil edin ",
+        "lastname": "Soyad",
+        "addLastname": "Soyadı daxil edin",
+        "email": "Email",
+        "addEmail": "Email daxil edin",
+        "create": "Hesab yarat",
+        "p2": "Artıq bir hesabınız var?",
+        "login": "Giriş et"
+    }
+}

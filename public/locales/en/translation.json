@@ -1,0 +1,89 @@
+{
+    "layout": {
+        "home": "Home",
+        "create": "Create",
+        "search": "Search"
+    },
+    "sideModal": {
+        "currentProfile": "Currently in",
+        "yourAccounts": "Your accounts",
+        "moreOptions": "More options",
+        "links": {
+            "addAccount": "Add account",
+            "settings": "Settings",
+            "seeTerms": "See terms of services",
+            "privacy": "See privacy policy",
+            "community": "Community",
+            "advertising": "Advertising guideness",
+            "logOut": "Log out"
+        }
+    },
+    "home": {
+        "details": "Details"
+    },
+    "pin": {
+        "comment": "Comments",
+        "follow": "Follow",
+        "save": "Save",
+        "addComment": "Add comment"
+    },
+    "create": {
+        "create": "Create pin",
+        "post": "Post",
+        "title": "Title",
+        "desc": "Description",
+        "link": "Link",
+        "upload": "Choose a file to upload",
+        "delete": "Delete",
+        "addLink": "Add a link",
+        "addtitle": "Add a title",
+        "addDesc": "Add a detailed description"
+    },
+    "profile": {
+        "edit": "Edit profile",
+        "created": "Created",
+        "saved": "Saved",
+        "createPin": "Create pin",
+        "explore": "Explore",
+        "p1": "Nothing to show...yet! Pins you create will live here.",
+        "p2": "You haven't save any pins yet",
+        "following": "following"
+    },
+    "account": {
+        "addAccount": "Add account",
+        "p1": "Add a new account or connect an existing account for seamless account switching",
+        "card1Header": "Connect existing account",
+        "card2Header": "Create a new personal account",
+        "card1p": "Connect Pinterest accounts with different emails for seamless account switching",
+        "card2p": "Create a separate account with another email address",
+        "card1btn": "Connect account",
+        "card2btn": "Create"
+    },
+    "login": {
+        "header": "Welcome to Pinterest",
+        "username": "Username",
+        "password": "Password",
+        "addUsername": "Add username",
+        "addPassword": "Add Password",
+        "login": "Login",
+        "p": "Not on Pinterest yet?",
+        "signUp": "Sign up"
+    },
+    "register": {
+        "header":"Welcome to Pinterest",
+        "p1": "Find new ideas to try",
+        "username": "Username",
+        "password": "Password",
+        "addUsername": "Add username",
+        "addPassword": "Add Password",
+        "firstname": "Firstname",
+        "addFirstname": "Add firstname",
+        "lastname": "Lastname",
+        "addLastname": "Add lastname",
+        "email": "Email",
+        "addEmail": "Add email",
+        "create": "Create account",
+        "p2": "Already have an account?",
+        "login": "Login"
+    }
+}
