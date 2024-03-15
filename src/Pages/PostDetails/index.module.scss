@@ -14,6 +14,13 @@
     .img_section {
         width: 500px;
         padding: 30px;
+
+        img {
+            width: 500px;
+            height: 500px;
+            border-radius: 20px;
+            object-fit: cover;
+        }
     }
 
     .content_section {
@@ -85,8 +92,10 @@
                 background-color: #d1d1d1;
             }
         }
-        .section4{
-            p:hover{
+
+        .section4 {
+            margin-bottom: 50px;
+            p:hover {
                 cursor: pointer;
             }
         }
@@ -138,14 +147,16 @@
         }
     }
 }
+
 @media (max-width: 1025px) {
-    .main{
+    .main {
         flex-direction: column;
         width: 550px;
     }
 }
+
 @media (max-width: 580px) {
-    .main{
+    .main {
         width: auto;
     }
 }

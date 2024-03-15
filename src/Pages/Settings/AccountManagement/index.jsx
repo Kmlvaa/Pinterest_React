@@ -1,6 +1,5 @@
 import React from 'react';
 import Styles from './index.module.scss'
-import user from '../../../Images/user.png'
 import {
     FormControl,
     FormLabel,
@@ -10,24 +9,30 @@ import {
     InputGroup,
     InputRightElement
 } from '@chakra-ui/react'
+import { useTranslation } from 'react-i18next';
 
 const Index = () => {
     const [show, setShow] = React.useState(false)
     const handleClick = () => setShow(!show)
 
+    const { t, i18n } = useTranslation();
+    const clickHandler = async (lang) => {
+        await i18n.changeLanguage(lang);
+    }
+
     return (
         <div className={Styles.main}>
             <div className={Styles.header}>
-                <h1>Account Management</h1>
-                <p>Make changes to your personal information or account type.</p>
+                <h1>{t("settings.management.header")}</h1>
+                <p>{t("settings.management.p")}</p>
             </div>
             <div>
                 <FormControl className={Styles.formControl}>
                     <div className={Styles.form_name}>
-                        <h1>Your account</h1>
-                        <FormLabel>Email - private</FormLabel>
+                        <h1>{t("settings.management.account")}</h1>
+                        <FormLabel>{t("settings.management.email")}</FormLabel>
                         <Input type='text' />
-                        <FormLabel>Password</FormLabel>
+                        <FormLabel>{t("settings.management.password")}</FormLabel>
                         <InputGroup size='md'>
                             <Input
                                 pr='4.5rem'
@@ -41,25 +46,29 @@ const Index = () => {
                             </InputRightElement>
                         </InputGroup>
                     </div>
-                    <FormLabel>Birthdate</FormLabel>
+                    <FormLabel>{t("settings.management.birthdate")}</FormLabel>
                     <Input
                         placeholder="Select Date and Time"
                         size="md"
                         type="datetime-local"
                     />
-                    <FormLabel>Country/Region</FormLabel>
+                    <FormLabel>{t("settings.management.country")}</FormLabel>
                     <Select>
-                        <option value='option1'>Amerika</option>
-                        <option value='option2'>Azerbaijan</option>
-                        <option value='option2'>Turkey</option>
-                        <option value='option2'>Germany</option>
-                    </Select><FormLabel>Language</FormLabel>
-                    <Select>
-                        <option value='option1'>Azerbaijani</option>
-                        <option value='option2'>English</option>
+                        <option value='option1'>{t("settings.management.amerika")}</option>
+                        <option value='option2'>{t("settings.management.azerb")}</option>
+                        <option value='option2'>{t("settings.management.turkey")}</option>
+                        <option value='option2'>{t("settings.management.germany")}</option>
                     </Select>
                 </FormControl>
-                <Button className={Styles.saveBtn}>Save</Button>
+                <Button className={Styles.saveBtn}>{t("settings.management.save")}</Button>
+            </div>
+            <div className={Styles.lang_sec}>
+                <h1>{t("settings.management.lang")}</h1>
+                <div className={Styles.lang}>
+                    <button onClick={() => clickHandler('az')}>Az</button>
+                    <span> / </span>
+                    <button onClick={() => clickHandler('en')}>En</button>
+                </div>
             </div>
         </div>
     );

@@ -24,7 +24,7 @@
     "pin": {
         "comment": "Şərhlər",
         "follow": "İzlə",
-        "save": "Yadda saxla",
+        "save": "Saxla",
         "addComment": "Şərh əlavə et"
     },
     "create": {
@@ -70,7 +70,7 @@
         "signUp": "Qeydiyyatdan keç"
     },
     "register": {
-        "header":"Pinterest'ə xoş gəldiniz",
+        "header": "Pinterest'ə xoş gəldiniz",
         "p1": "Sınamaq üçün yeni ideyalar tapın",
         "username": "İstifadəçi adı",
         "password": "Şifrə",
@@ -85,5 +85,70 @@
         "create": "Hesab yarat",
         "p2": "Artıq bir hesabınız var?",
         "login": "Giriş et"
+    },
+    "settings": {
+        "layout": {
+            "edit": "Profilə düzəliş et",
+            "manage": "Hesabın idarə edilməsi",
+            "privacy": "Məxfilik və məlumat",
+            "claimed": "Iddia edilən hesablar",
+            "policy": "Məxfilik siyasətinə baxın",
+            "help": "Kömək al"
+        },
+        "editProfile": {
+            "header": "Profilə düzəliş et",
+            "heading_p": "Şəxsi məlumatlarınızı gizli saxlayın. Bura əlavə etdiyiniz məlumatı profilinizə baxa bilən hər kəs görə bilər.",
+            "photo": "Şəkil",
+            "change": "Dəyişdir",
+            "modal": {
+                "p": "Profile şəklini dəyişdir",
+                "save": "Yadda saxla",
+                "close": "Bağla",
+                "upload": "Yüklə"
+            },
+            "firstname": "Ad",
+            "addFirstname": "Ad əlavə edin",
+            "lastname": "Soyad",
+            "addLastname": "Soyad əlavə edin",
+            "about": "Haqqında",
+            "addAbout": "Hekayəni danış",
+            "gender": "Cinsinizi əlavə edin",
+            "male": "Kişi",
+            "female": "Qadın",
+            "genderDesc": "Başqalarının sizə necə müraciət edəcəyini bilməsi üçün profilinizdə görünmək üçün 2-ə qədər əvəzlik dəsti seçin. Bunları istənilən vaxt redaktə edə və ya silə bilərsiniz.",
+            "username": "İstifadəçi adı",
+            "save": "Yadda saxla"
+        },
+        "privacy": {
+            "header": "Məxfilik və Məlumat",
+            "header_p": "Pinterestin reklamçılarla paylaşdığı və sizə göstərdiyimiz reklamları və tövsiyələri təkmilləşdirmək üçün istifadə etdiyi məlumatları idarə edin.",
+            "ads": "Reklamların fərdiləşdirilməsi",
+            "check1": "Ziyarət etdiyiniz saytların məlumatlarından istifadə edin: Pinterest-də reklamları təkmilləşdirmək üçün ziyarət etdiyiniz saytların məlumatlarından istifadə etməyə icazə verin.",
+            "check2": "Tərəfdaş məlumatından istifadə: Pinterest-də gördüyünüz reklamları təkmilləşdirmək üçün Pinterest-ə tərəfdaşlarımızın məlumatlarından istifadə etməyə icazə verin.",
+            "check3": "Pinterest haqqında reklamlar: Pinterest-ə digər saytlarda və ya tətbiqlərdə göstərildiyiniz Pinterest reklamlarını təkmilləşdirmək üçün fəaliyyətinizdən istifadə etməyə icazə verin.",
+            "check4": "Reklam hesabatı üçün fəaliyyət: Pinterest-ə reklam performansı hesabatı üçün fəaliyyətinizi paylaşmağa icazə verin.",
+            "check5": "Partnyorlarla məlumatın paylaşılması: Pinterest-də göstərdiyiniz üçüncü tərəf reklamlarını təkmilləşdirmək üçün Pinterest-ə məlumatınızı və Pinterest fəaliyyətinizi tərəfdaşlarla paylaşmasına icazə verin."
+        },
+        "claimed": {
+            "header": "İddia edilən hesablar",
+            "p1": "Hesaba iddia etdiyiniz zaman siz analitikaya nəzarət edə və adınızın və ya brendinizin saytlarınızdan yaradılmış hər Pin-də görünməsini təmin edə bilərsiniz.",
+            "web": "Veb saytlar",
+            "p2": "Pinterest-də veb saytınızı birləşdirən bütün Pinlər üçün atribut əldə edin."
+        },
+        "management": {
+            "header": "Hesabın İdarə Edilməsi",
+            "p": "Şəxsi məlumatlarınıza və ya hesab tipinizə dəyişikliklər edin.",
+            "account": "Sizin hesabınız",
+            "email": "E-poçt - şəxsi",
+            "password": "Parol",
+            "birthdate": "Doğum tarixi",
+            "country": "Ölkə/Region",
+            "amerika": "Amerika",
+            "turkey": "Türkiyə",
+            "azerb": "Azərbaycan",
+            "germany": "Almaniya",
+            "save": "Yadda saxla",
+            "lang": "Dili dəyişdirin"
+        }
     }
 }

@@ -13,7 +13,6 @@ import Created from "../../Pages/Profile/CreatedComponent/created";
 import Saved from "../../Pages/Profile/SavedComponent/saved";
 import PrivacyData from "../../Pages/Settings/PrivacyAndData/index";
 import Claimed from "../../Pages/Settings/ClaimedAccounts/index";
-import Visibility from "../../Pages/Settings/Visibility/index";
 import PrivacyLayout from "../../Pages/Privacy/Layout/index"
 import Terms from '../../Pages/Privacy/TermsOfServices/index'
 import PrivacyPolicy from '../../Pages/Privacy/PrivacyPolicy/index'
@@ -46,7 +45,6 @@ const Index = () => {
             <Route path="/settings/accountManagement" element={<AccountManagement />}/>
             <Route path="/settings/privacy" element={<PrivacyData />}/>
             <Route path="/settings/claimedAccounts" element={<Claimed />}/>
-            <Route path="/settings/visibility" element={<Visibility />}/>
         </Route>
       </Route>
       <Route path="/privacy" element={<PrivacyLayout />}>

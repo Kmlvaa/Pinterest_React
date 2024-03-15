@@ -9,10 +9,7 @@ import { Message } from '@mui/icons-material';
 import { useTranslation } from 'react-i18next';
 
 const Home = () => {
-    const { t, i18n } = useTranslation();
-    const clickHandler = async (lang) => {
-        await i18n.changeLanguage(lang);
-    }
+    const { t } = useTranslation();
 
     return (
         <>
@@ -45,11 +42,6 @@ const Home = () => {
                     <input placeholder={t("layout.search")} className={Styles.input} />
                 </div>
                 <div className={Styles.right_icons}>
-                    <div className={Styles.lang}>
-                        <button onClick={() => clickHandler('az')}>Az</button>
-                        <span> / </span>
-                        <button onClick={() => clickHandler('en')}>En</button>
-                    </div>
                     <div className={Styles.icon}><Message /></div>
                     <div className={Styles.icon}><NavLink to='/profile/created'><img src={user} width={25} height={25} /></NavLink></div>
                     <div className={Styles.dropdown}><DropDown /></div>

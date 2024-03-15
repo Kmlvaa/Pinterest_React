@@ -1,36 +1,34 @@
 import React from 'react';
 import Styles from './layout.module.scss'
 import { NavLink, Outlet } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
 const Layout = () => {
+    const { t } = useTranslation();
     const menuItem = [
         {
             path: '/settings/editProfile',
-            name: 'Edit Profile'
+            name: `${t("settings.layout.edit")}`
         },
         {
             path: '/settings/accountManagement',
-            name: 'Account Management'
-        },
-        {
-            path: '/settings/visibility',
-            name: 'Profile visibility'
+            name: `${t("settings.layout.manage")}`
         },
         {
             path: '/settings/privacy',
-            name: 'Privacy and data'
+            name: `${t("settings.layout.privacy")}`
         },
         {
             path: '/settings/claimedAccounts',
-            name: 'Claimed accounts'
+            name: `${t("settings.layout.claimed")}`
         },
         {
             path: '/privacy/privacy',
-            name: 'See privacy policy',
+            name: `${t("settings.layout.policy")}`
         },
         {
             path: '/privacy/help',
-            name: 'Get help',
+            name: `${t("settings.layout.help")}`
         },
     ]
     return (

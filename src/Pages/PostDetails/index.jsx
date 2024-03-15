@@ -3,7 +3,7 @@ import Styles from './index.module.scss'
 import User from '../../Images/user.png';
 import Heart from '../../Images/heart.png'
 import Like from '../../Images/like.png'
-import Kaonashi from '../../Images/Kaonashi4.jpg'
+import Kaonashi from '../../Images/Kaonashi8.jpg'
 import { ExternalLinkIcon, TriangleDownIcon } from '@chakra-ui/icons'
 import { useTranslation } from 'react-i18next';
 

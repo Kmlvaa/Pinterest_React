@@ -10,7 +10,7 @@ import Uploader from '../../Components/Uploader/uploader';
 import { useTranslation } from 'react-i18next';
 
 const Index = () => {
-    const {t, i18n} = useTranslation(); 
+    const { t } = useTranslation(); 
 
     return (
         <>

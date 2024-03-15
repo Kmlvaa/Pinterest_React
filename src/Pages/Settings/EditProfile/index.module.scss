@@ -48,6 +48,24 @@
     background-color: rgb(204, 38, 38);
     color: white;
 }
+
+.modal_input{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #f02c2c;
+    color: white;
+    height: 50px;
+    width: 100px;
+    cursor: pointer;
+    border-radius: 8px;
+    position: relative;
+    margin: auto;
+    p{
+        font-weight: bold;
+    }
+}
 @media (max-width: 535px) {
     .main{
         width: auto;

@@ -70,7 +70,7 @@
         "signUp": "Sign up"
     },
     "register": {
-        "header":"Welcome to Pinterest",
+        "header": "Welcome to Pinterest",
         "p1": "Find new ideas to try",
         "username": "Username",
         "password": "Password",
@@ -85,5 +85,70 @@
         "create": "Create account",
         "p2": "Already have an account?",
         "login": "Login"
+    },
+    "settings": {
+        "layout": {
+            "edit": "Edit profile",
+            "manage": "Account management",
+            "privacy": "Privacy and data",
+            "claimed": "Claimed accounts",
+            "policy": "See privacy policy",
+            "help": "Get help"
+        },
+        "editProfile": {
+            "header": "Edit profile",
+            "heading_p": "Keep your personal details private. Information you add here is visible to anyone who can view your profile.",
+            "photo": "Photo",
+            "change": "Change",
+            "modal": {
+                "p": "Change your picture",
+                "save": "Save",
+                "close": "Close",
+                "upload": "Upload"
+            },
+            "firstname": "Firstname",
+            "addFirstname":"Add firstname",
+            "lastname": "Lastname",
+            "addLastname":"Add lastname",
+            "about": "About",
+            "addAbout": "Tell your story",
+            "gender": "Add your gender",
+            "male": "Male",
+            "female": "Female",
+            "genderDesc": "Choose up to 2 sets of pronouns to appear on your profile so others know how to refer to you. You can edit or remove these any time.",
+            "username": "Username",
+            "save": "Save"
+        },
+        "privacy": {
+            "header": "Privacy and Data",
+            "header_p": "Manage the data Pinterest shares with advertisers and uses to improve the ads and recommendations we show you.",
+            "ads": "Ads personalization",
+            "check1": "Use info from sites you visit: Allow Pinterest to use data from sites you visit to improve ads on Pinterest.",
+            "check2": "Use of partner info: Allow Pinterest to use information from our partners to improve ads you see on Pinterest.",
+            "check3": "Ads about Pinterest: Allow Pinterest to use your activity to improve the ads about Pinterest you’re shown on other sites or apps.",
+            "check4": "Activity for ads reporting: Allow Pinterest to share your activity for ads performance reporting.",
+            "check5": "Sharing info with partners: Allow Pinterest to share your information and Pinterest activity with partners to improve the third-party ads you’re shown on Pinterest."
+        },
+        "claimed": {
+            "header": "Claimed accounts",
+            "p1": "When you claim an account, you can monitor analytics and ensure your name or brand name appears on every Pin created from your sites.",
+            "web": "Websites",
+            "p2": "Get attribution for all Pins linking to your website on Pinterest."
+        },
+        "management": {
+            "header": "Account Management",
+            "p": "Make changes to your personal information or account type.",
+            "account": "Your account",
+            "email": "Email - private",
+            "password": "Password",
+            "birthdate": "Birthdate",
+            "country": "Country/Region",
+            "amerika": "Amerika",
+            "turkey": "Turkey",
+            "azerb": "Azerbaijan",
+            "germany": "Germany",
+            "save": "Save",
+            "lang": "Change language"
+        }
     }
 }

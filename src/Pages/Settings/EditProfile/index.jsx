@@ -19,32 +19,37 @@ import {
     Textarea,
     Select
 } from '@chakra-ui/react'
+import { useTranslation } from 'react-i18next';
 
 const Index = () => {
+    const { t } = useTranslation();
     const { isOpen, onOpen, onClose } = useDisclosure()
     return (
         <div className={Styles.main}>
             <div className={Styles.header}>
-                <h1>Edit Profile</h1>
-                <p>Keep your personal details private. Information you add here is visible to anyone who can view your profile.</p>
+                <h1>{t("settings.editProfile.header")}</h1>
+                <p>{t("settings.editProfile.heading_p")}</p>
             </div>
             <div className={Styles.photo}>
-                <p>Photo</p>
+                <p>{t("settings.editProfile.photo")}</p>
                 <div>
                     <img src={user} width={70} height={70} />
-                    <Button onClick={onOpen}>Change</Button>
+                    <Button onClick={onOpen}>{t("settings.editProfile.change")}</Button>
                 </div>
                 <Modal onClose={onClose} isOpen={isOpen} isCentered>
                     <ModalOverlay />
                     <ModalContent>
-                        <ModalHeader>Change your picture</ModalHeader>
+                        <ModalHeader>{t("settings.editProfile.modal.p")}</ModalHeader>
                         <ModalCloseButton />
-                        <ModalBody>
-                            <Input type='file' placeholder='Choose' />
+                        <ModalBody >
+                            <div className={Styles.modal_input} onClick={() => { document.querySelector('.input_field').click() }}>
+                                <Input type='file' className='input_field' hidden />
+                                <p>{t("settings.editProfile.modal.upload")}</p>
+                            </div>
                         </ModalBody>
                         <ModalFooter>
-                            <Button className={Styles.modalFooterbtn}>Save</Button>
-                            <Button onClick={onClose}>Close</Button>
+                            <Button className={Styles.modalFooterbtn}>{t("settings.editProfile.modal.save")}</Button>
+                            <Button onClick={onClose}>{t("settings.editProfile.modal.close")}</Button>
                         </ModalFooter>
                     </ModalContent>
                 </Modal>
@@ -53,27 +58,26 @@ const Index = () => {
                 <FormControl className={Styles.formControl}>
                     <div className={Styles.form_name}>
                         <div>
-                            <FormLabel>First name</FormLabel>
+                            <FormLabel>{t("settings.editProfile.firstname")}</FormLabel>
                             <Input type='text' />
                         </div>
                         <div>
-                            <FormLabel>Last name</FormLabel>
+                            <FormLabel>{t("settings.editProfile.lastname")}</FormLabel>
                             <Input type='text' />
                         </div>
                     </div>
-                    <FormLabel>About</FormLabel>
-                    <Textarea placeholder='Tell your story' />
-                    <FormLabel>Pronouns</FormLabel>
+                    <FormLabel>{t("settings.editProfile.about")}</FormLabel>
+                    <Textarea placeholder={t("settings.editProfile.addAbout")} />
+                    <FormLabel>{t("settings.editProfile.gender")}</FormLabel>
                     <Select placeholder='Add your pronouns'>
-                        <option value='option1'>Male</option>
-                        <option value='option2'>Female</option>
+                        <option value='option1'>{t("settings.editProfile.male")}</option>
+                        <option value='option2'>{t("settings.editProfile.female")}</option>
                     </Select>
-                    <p>Choose up to 2 sets of pronouns to appear on your profile so
-                        others know how to refer to you. You can edit or remove these any time.</p>
-                    <FormLabel>Username</FormLabel>
+                    <p>{t("settings.editProfile.genderDesc")}</p>
+                    <FormLabel>{t("settings.editProfile.username")}</FormLabel>
                     <Input type='text' />
                 </FormControl>
-                <Button className={Styles.saveBtn}>Save</Button>
+                <Button className={Styles.saveBtn}>{t("settings.editProfile.save")}</Button>
             </div>
         </div>
     );
