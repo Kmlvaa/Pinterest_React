@@ -20,10 +20,32 @@ import {
     Select
 } from '@chakra-ui/react'
 import { useTranslation } from 'react-i18next';
+import { useFormik } from 'formik';
+import { UserDetailsPut } from '../../../services/Profile';
 
 const Index = () => {
     const { t } = useTranslation();
-    const { isOpen, onOpen, onClose } = useDisclosure()
+    const { isOpen, onOpen, onClose } = useDisclosure();
+
+    const formik = useFormik({
+        initialValues: {
+            firstname: '',
+            lastname: '',
+            username: '',
+            gender: '',
+            about: '',
+            image: ''
+        },
+        onSubmit: (values) => {
+            try {
+                let id = localStorage.getItem("token");
+                UserDetailsPut(id, values);
+            }
+            catch (err) {
+                console.log(err);
+            }
+        }
+    })
     return (
         <div className={Styles.main}>
             <div className={Styles.header}>
@@ -43,7 +65,12 @@ const Index = () => {
                         <ModalCloseButton />
                         <ModalBody >
                             <div className={Styles.modal_input} onClick={() => { document.querySelector('.input_field').click() }}>
-                                <Input type='file' className='input_field' hidden />
+                                <Input type='file' className='input_field' hidden
+                                    name='image'
+                                    value={formik.image}
+                                    onChange={formik.handleChange}
+                                    onBlur={formik.handleBlur}
+                                />
                                 <p>{t("settings.editProfile.modal.upload")}</p>
                             </div>
                         </ModalBody>
@@ -59,23 +86,44 @@ const Index = () => {
                     <div className={Styles.form_name}>
                         <div>
                             <FormLabel>{t("settings.editProfile.firstname")}</FormLabel>
-                            <Input type='text' />
+                            <Input type='text'
+                                name='firstname'
+                                value={formik.values.firstname}
+                                onChange={formik.handleChange}
+                                onBlur={formik.handleBlur} />
                         </div>
                         <div>
                             <FormLabel>{t("settings.editProfile.lastname")}</FormLabel>
-                            <Input type='text' />
+                            <Input type='text'
+                                name='lastname'
+                                value={formik.values.lastname}
+                                onChange={formik.handleChange}
+                                onBlur={formik.handleBlur} />
                         </div>
                     </div>
                     <FormLabel>{t("settings.editProfile.about")}</FormLabel>
-                    <Textarea placeholder={t("settings.editProfile.addAbout")} />
+                    <Textarea placeholder={t("settings.editProfile.addAbout")} 
+                        name='about'
+                        value={formik.values.about}
+                        onChange={formik.handleChange}
+                        onBlur={formik.handleBlur}
+                        />
                     <FormLabel>{t("settings.editProfile.gender")}</FormLabel>
-                    <Select placeholder='Add your pronouns'>
-                        <option value='option1'>{t("settings.editProfile.male")}</option>
-                        <option value='option2'>{t("settings.editProfile.female")}</option>
+                    <Select placeholder='Add your pronouns'
+                        onChange={formik.handleChange}
+                        name="gender"
+                        value={formik.values.gender}
+                    >
+                        <option value='male'>{t("settings.editProfile.male")}</option>
+                        <option value='female'>{t("settings.editProfile.female")}</option>
                     </Select>
                     <p>{t("settings.editProfile.genderDesc")}</p>
                     <FormLabel>{t("settings.editProfile.username")}</FormLabel>
-                    <Input type='text' />
+                    <Input type='text'
+                        name='username'
+                        value={formik.values.username}
+                        onChange={formik.handleChange}
+                        onBlur={formik.handleBlur} />
                 </FormControl>
                 <Button className={Styles.saveBtn}>{t("settings.editProfile.save")}</Button>
             </div>

@@ -1,7 +1,7 @@
 import React from 'react';
 import Styles from './login.module.scss'
 import logo from '../../Images/Pinterest-logo.png'
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import {
     FormControl,
     FormLabel,
@@ -19,19 +19,24 @@ const Login = () => {
     const {t} = useTranslation(); 
     const [show, setShow] = React.useState(false);
     const handleClick = () => setShow(!show);
+    const navigate = useNavigate();
 
     const formik = useFormik({
         initialValues: {
             username: '',
             password: '',
         },
-        onSubmit: (values, actions) => {
+        onSubmit: async (values, actions) => {
             try {
-                loginPost(values)
+                const res = await loginPost(values);
+                localStorage.setItem('token', res.data);
+                console.log(res.data)
                 actions.resetForm();
+                navigate('/');
             }
             catch (error) {
                 console.log(error);
+                navigate('/login');
             }
         },
         validationSchema: loginSchema

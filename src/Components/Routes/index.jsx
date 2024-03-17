@@ -23,10 +23,12 @@ import PostDetails from '../../Pages/PostDetails/index'
 import UserProfile from '../../Pages/UsersProfile/Layout/index'
 import UserCreated from '../../Pages/UsersProfile/CreatedComponent/created'
 import UserSaved from '../../Pages/UsersProfile/SavedComponent/saved'
+import PrivateRoutes from "../../utils/PrivateRoutes";
 
 const Index = () => {
     return (
         <Routes>
+      <Route element={<PrivateRoutes />}>
       <Route path="/" element={<Layout />}>
         <Route index element={<Home />}/>
         <Route path="/create" element={<Create />}/>
@@ -53,6 +55,7 @@ const Index = () => {
           <Route path="/privacy/community" element={<Community />}/>
           <Route path="/privacy/advertising" element={<Advertising />}/>
           <Route path="/privacy/developers" element={<Developers />}/>
+      </Route>
       </Route>
         <Route path="/login" element={<Login />}/>
         <Route path="/register" element={<Register />}/>
