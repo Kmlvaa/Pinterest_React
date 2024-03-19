@@ -38,8 +38,8 @@ const Index = () => {
         },
         onSubmit: (values) => {
             try {
-                let id = localStorage.getItem("token");
-                UserDetailsPut(id, values);
+                let token = localStorage.getItem("token");
+                // UserDetailsPut(token, values);
             }
             catch (err) {
                 console.log(err);
@@ -102,12 +102,12 @@ const Index = () => {
                         </div>
                     </div>
                     <FormLabel>{t("settings.editProfile.about")}</FormLabel>
-                    <Textarea placeholder={t("settings.editProfile.addAbout")} 
+                    <Textarea placeholder={t("settings.editProfile.addAbout")}
                         name='about'
                         value={formik.values.about}
                         onChange={formik.handleChange}
                         onBlur={formik.handleBlur}
-                        />
+                    />
                     <FormLabel>{t("settings.editProfile.gender")}</FormLabel>
                     <Select placeholder='Add your pronouns'
                         onChange={formik.handleChange}

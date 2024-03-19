@@ -107,9 +107,9 @@
                 "upload": "Upload"
             },
             "firstname": "Firstname",
-            "addFirstname":"Add firstname",
+            "addFirstname": "Add firstname",
             "lastname": "Lastname",
-            "addLastname":"Add lastname",
+            "addLastname": "Add lastname",
             "about": "About",
             "addAbout": "Tell your story",
             "gender": "Add your gender",
@@ -149,6 +149,44 @@
             "germany": "Germany",
             "save": "Save",
             "lang": "Change language"
+        }
+    },
+    "policy": {
+        "layout": {
+            "header": {
+                "policy": "Policy",
+                "terms": "Terms",
+                "privacy": "Privacy",
+                "community": "Community",
+                "advertising": "Advertising",
+                "developers": "Developers"
+            },
+            "footer": {
+                "ul1": {
+                    "h3": "About us",
+                    "li1": "What's Pinterest",
+                    "li2": "Our Pinterest page",
+                    "li3": "Engineering blog",
+                    "li4": "Brand guidelines",
+                    "li5": "Careers",
+                    "li6": "Help Center",
+                    "li7": "Pinterest labs"
+                },
+                "ul2": {
+                    "h3": "Our policies",
+                    "li1": "Terms of service",
+                    "li2": "Advertising",
+                    "li3": "Privacy",
+                    "li4": "Careers"
+                },
+                "ul3": {
+                    "h3": "More info",
+                    "li1": "For businesses",
+                    "li2": "For developers",
+                    "li3": "For press",
+                    "li4": "For investors"
+                }
+            }
         }
     }
 }

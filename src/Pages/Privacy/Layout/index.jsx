@@ -2,28 +2,30 @@ import React, { useState } from 'react';
 import Styles from './index.module.scss'
 import logo from '../../../Images/Pinterest-logo.png'
 import { Outlet, NavLink } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
 const Index = () => {
+    const {t} = useTranslation(); 
     const menuItem = [
         {
             path: "/privacy/terms",
-            name: "Terms"
+            name: `${t("policy.layout.header.terms")}`
         },
         {
             path: '/privacy/privacy',
-            name: 'Privacy'
+            name: `${t("policy.layout.header.privacy")}`
         },
         {
             path: '/privacy/community',
-            name: 'Community'
+            name: `${t("policy.layout.header.community")}`
         },
         {
             path: '/privacy/advertising',
-            name: 'Advertising'
+            name: `${t("policy.layout.header.advertising")}`
         },
         {
             path: '/privacy/developers',
-            name: 'Developers'
+            name: `${t("policy.layout.header.developers")}`
         },
     ]
     const [isOpen, setIsOpen] = useState(false)
@@ -32,7 +34,7 @@ const Index = () => {
             <div className={Styles.header}>
                 <div className={Styles.logo}>
                     <img src={logo} width={30} height={30} />
-                    <p>Policy</p>
+                    <p>{t("policy.layout.header.privacy")}</p>
                 </div>
                 <div className={Styles.hamburger} onClick={() => {
                     setIsOpen(!isOpen);
@@ -66,33 +68,33 @@ const Index = () => {
                 <div><h1>𝓟𝓲𝓷𝓽𝓮𝓻𝓮𝓼𝓽</h1></div>
                 <div className={Styles.section}>
                     <div>
-                        <h3>About us</h3>
+                        <h3>{t("policy.layout.footer.ul1.h3")}</h3>
                         <ul>
-                            <li>What's Pinterest</li>
-                            <li>Our Pinterest page</li>
-                            <li>Engineering blog</li>
-                            <li>Brand guidelines</li>
-                            <li>Careers</li>
-                            <li>Help Center</li>
-                            <li>Pinterest labs</li>
+                            <li>{t("policy.layout.footer.ul1.li1")}</li>
+                            <li>{t("policy.layout.footer.ul1.li2")}</li>
+                            <li>{t("policy.layout.footer.ul1.li3")}</li>
+                            <li>{t("policy.layout.footer.ul1.li4")}</li>
+                            <li>{t("policy.layout.footer.ul1.li5")}</li>
+                            <li>{t("policy.layout.footer.ul1.li6")}</li>
+                            <li>{t("policy.layout.footer.ul1.li7")}</li>
                         </ul>
                     </div>
                     <div>
-                        <h3>Our policies</h3>
+                        <h3>{t("policy.layout.footer.ul2.h3")}</h3>
                         <ul>
-                            <li>Terms of service</li>
-                            <li>Advertising</li>
-                            <li>Privacy</li>
-                            <li>Careers</li>
+                            <li>{t("policy.layout.footer.ul2.li1")}</li>
+                            <li>{t("policy.layout.footer.ul2.li2")}</li>
+                            <li>{t("policy.layout.footer.ul2.li3")}</li>
+                            <li>{t("policy.layout.footer.ul2.li4")}</li>
                         </ul>
                     </div>
                     <div>
-                        <h3>More info</h3>
+                        <h3>{t("policy.layout.footer.ul3.h3")}</h3>
                         <ul>
-                            <li>For businesses</li>
-                            <li>For developers</li>
-                            <li>For press</li>
-                            <li>For investors</li>
+                            <li>{t("policy.layout.footer.ul3.li1")}</li>
+                            <li>{t("policy.layout.footer.ul3.li2")}</li>
+                            <li>{t("policy.layout.footer.ul3.li3")}</li>
+                            <li>{t("policy.layout.footer.ul3.li4")}</li>
                         </ul>
                     </div>
                 </div>

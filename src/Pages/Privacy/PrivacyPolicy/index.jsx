@@ -1,7 +1,9 @@
 import React from 'react';
 import Styles from './index.module.scss'
+import { useTranslation } from 'react-i18next';
 
 const Index = () => {
+    const {t} = useTranslation();
     return (
         <>
             <div className={Styles.main}>

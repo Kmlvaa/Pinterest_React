@@ -150,5 +150,43 @@
             "save": "Yadda saxla",
             "lang": "Dili dəyişdirin"
         }
+    },
+    "policy": {
+        "layout": {
+            "header": {
+                "policy": "Siyasət",
+                "terms": "Şərtlər",
+                "privacy": "Məxfilik",
+                "community": "İcma",
+                "advertising": "Reklam",
+                "developers": "Developers"
+            },
+            "footer": {
+                "ul1": {
+                    "h3": "Haqqımızda",
+                    "li1": "Pinterest nədir",
+                    "li2": "Pinterest səhifəmiz",
+                    "li3": "Mühəndislik bloqu",
+                    "li4": "Brend təlimatları",
+                    "li5": "Karyera",
+                    "li6": "Yardım Mərkəzi",
+                    "li7": "Pinterest laboratoriyaları"
+                },
+                "ul2": {
+                    "h3": "Siyasətlərimiz",
+                    "li1": "Xidmət şərtləri",
+                    "li2": "Reklam",
+                    "li3": "Məxfilik",
+                    "li4": "Karyera"
+                },
+                "ul3": {
+                    "h3": "Ətraflı məlumat",
+                    "li1": "Biznes üçün",
+                    "li2": "Tərtibatçılar üçün",
+                    "li3": "Mətbuat üçün",
+                    "li4": "İnvestorlar üçün"
+                }
+            }
+        }
     }
 }

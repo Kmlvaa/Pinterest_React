@@ -8,7 +8,7 @@ import { ExternalLinkIcon, TriangleDownIcon } from '@chakra-ui/icons'
 import { useTranslation } from 'react-i18next';
 
 const Index = () => {
-    const {t, i18n} = useTranslation(); 
+    const {t} = useTranslation(); 
     return (
         <>
             <div className={Styles.main}>
