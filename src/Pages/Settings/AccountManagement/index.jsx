@@ -31,10 +31,11 @@ const Index = () => {
                     <div className={Styles.form_name}>
                         <h1>{t("settings.management.account")}</h1>
                         <FormLabel>{t("settings.management.email")}</FormLabel>
-                        <Input type='text' />
+                        <Input type='text' id='email'/>
                         <FormLabel>{t("settings.management.password")}</FormLabel>
                         <InputGroup size='md'>
                             <Input
+                                id='password'
                                 pr='4.5rem'
                                 type={show ? 'text' : 'password'}
                                 placeholder='Enter password'
@@ -51,6 +52,7 @@ const Index = () => {
                         placeholder="Select Date and Time"
                         size="md"
                         type="datetime-local"
+                        id='birthdate'
                     />
                     <FormLabel>{t("settings.management.country")}</FormLabel>
                     <Select>

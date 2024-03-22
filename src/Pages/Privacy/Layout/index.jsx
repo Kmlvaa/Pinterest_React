@@ -46,9 +46,9 @@ const Index = () => {
                 <nav className={isOpen ? "nav_open" : ""}>
                     <ul>
                     {
-                        menuItem.map((item) => (
+                        menuItem.map((item, index) => (
                             <li>
-                                <NavLink to={item.path} className={({ isActive }) => {
+                                <NavLink to={item.path} key={index} className={({ isActive }) => {
                                     return (
                                         (isActive
                                             ? Styles.active

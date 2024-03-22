@@ -8,12 +8,11 @@ import { useTranslation } from 'react-i18next';
 
 const SideModal = () => {
     const [open, setOpen] = useState(false);
-    const {t, i18n} = useTranslation(); 
+    const {t} = useTranslation(); 
 
     let menuRef = useRef();
     useEffect(() => {
         let handler = (e) => {
-            console.log(menuRef)
             if(menuRef.current != null){
                 if (!menuRef.current.contains(e.target)) {
                     setOpen(false);
@@ -49,7 +48,11 @@ const SideModal = () => {
                             <DropdownItem text={t("sideModal.links.privacy")} link={'privacy/privacy'}/>
                             <DropdownItem text={t("sideModal.links.community")} link={'privacy/community'}/>
                             <DropdownItem text={t("sideModal.links.advertising")} link={'privacy/advertising'}/>
-                            <DropdownItem text={t("sideModal.links.logOut")} />
+                            <DropdownItem text={t("sideModal.links.logOut")} 
+                            onClick={() => {
+                                console.log("hi")
+                                localStorage.removeItem("token");
+                            }}></DropdownItem>
                         </ul>
                     </div>
                 </div>

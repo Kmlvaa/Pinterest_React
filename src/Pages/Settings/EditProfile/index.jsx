@@ -1,4 +1,4 @@
-import React from 'react';
+import {React, useEffect, useState} from 'react';
 import Styles from './index.module.scss'
 import user from '../../../Images/user.png'
 import {
@@ -26,6 +26,21 @@ import { UserDetailsPut } from '../../../services/Profile';
 const Index = () => {
     const { t } = useTranslation();
     const { isOpen, onOpen, onClose } = useDisclosure();
+    const [detail, setDetail] = useState(null);
+
+  const getDetails = async () => {
+    try {
+      let resp = await fetch('http://localhost:5174/api/Profile/getUserDetails');
+      let data = await resp.json();
+      setDetail(data);
+    } catch (error) {
+      console.log(error);
+      setDetail(null);
+    }
+  };
+  useEffect(() => {
+    getDetails();
+  }, [])
 
     const formik = useFormik({
         initialValues: {
@@ -38,8 +53,7 @@ const Index = () => {
         },
         onSubmit: (values) => {
             try {
-                let token = localStorage.getItem("token");
-                // UserDetailsPut(token, values);
+                UserDetailsPut(values);
             }
             catch (err) {
                 console.log(err);
@@ -66,6 +80,7 @@ const Index = () => {
                         <ModalBody >
                             <div className={Styles.modal_input} onClick={() => { document.querySelector('.input_field').click() }}>
                                 <Input type='file' className='input_field' hidden
+                                    defaultValue={detail?.image}
                                     name='image'
                                     value={formik.image}
                                     onChange={formik.handleChange}
@@ -87,6 +102,7 @@ const Index = () => {
                         <div>
                             <FormLabel>{t("settings.editProfile.firstname")}</FormLabel>
                             <Input type='text'
+                                defaultValue={detail?.firstname}
                                 name='firstname'
                                 value={formik.values.firstname}
                                 onChange={formik.handleChange}
@@ -95,6 +111,7 @@ const Index = () => {
                         <div>
                             <FormLabel>{t("settings.editProfile.lastname")}</FormLabel>
                             <Input type='text'
+                                defaultValue={detail?.lastname}
                                 name='lastname'
                                 value={formik.values.lastname}
                                 onChange={formik.handleChange}
@@ -103,6 +120,7 @@ const Index = () => {
                     </div>
                     <FormLabel>{t("settings.editProfile.about")}</FormLabel>
                     <Textarea placeholder={t("settings.editProfile.addAbout")}
+                        defaultValue={detail?.about}
                         name='about'
                         value={formik.values.about}
                         onChange={formik.handleChange}
@@ -121,11 +139,12 @@ const Index = () => {
                     <FormLabel>{t("settings.editProfile.username")}</FormLabel>
                     <Input type='text'
                         name='username'
+                        defaultValue={detail?.username}
                         value={formik.values.username}
                         onChange={formik.handleChange}
                         onBlur={formik.handleBlur} />
                 </FormControl>
-                <Button className={Styles.saveBtn}>{t("settings.editProfile.save")}</Button>
+                <Button className={Styles.saveBtn} onClick={formik.handleSubmit}>{t("settings.editProfile.save")}</Button>
             </div>
         </div>
     );
