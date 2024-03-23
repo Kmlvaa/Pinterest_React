@@ -34,6 +34,16 @@ const Index = () => {
                     </div>
                     <div className={Styles.section4}>
                         <p>{t("pin.comment")}  <span><TriangleDownIcon /></span></p>
+                        <div className={Styles.commentSec}>
+                            <div><img src={User} width={30} height={30}/></div>
+                            <div>
+                                <div className={Styles.comment_about}>
+                                    <p>Username</p>
+                                    <p>Comment</p>
+                                </div>
+                                <div>datetime</div>
+                            </div>
+                        </div>
                     </div>
                     <div className={Styles.section5}>
                         <div className={Styles.likes_sec}>

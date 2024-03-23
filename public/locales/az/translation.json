@@ -320,6 +320,66 @@
                      "p2": "Bu Şərtləri pozaraq Pinterest IP-dən istifadə etsəniz, Pinterest-dən istifadə hüququnuz dərhal dayandırılacaq və siz bizim seçimimizə uyğun olaraq hazırladığınız Pinterest IP-nin hər hansı nüsxəsini qaytarmalı və ya məhv etməlisiniz. Hüquq, başlıq və ya heç bir hüquq yoxdur. Pinterest-ə və ya hər hansı Pinterest IP-yə olan maraq bu Şərtlərə əsasən sizə ötürülür və biz açıq şəkildə verilməyən bütün hüquqları qoruyuruq."
                  }
             }
-        }
+        },
+        "community": {
+            "header": "İcma Qaydaları",
+             "section1": {
+                 "header": "Bizim missiyamız",
+                 "p": "Pinterest-in missiyası hər kəsə sevdiyi bir həyat yaratmaq üçün ilham verməkdir. Bununla yanaşı, bütün məzmunlar ilhamverici deyil - buna görə də Pinterest-də nə etdiyimizi və icazə vermədiyimizi təsvir etmək üçün icma təlimatlarımız var. Bunlar təlimatlar bizim məqbul istifadə siyasətimizdir, ona görə də Pinterest-də olmamalı məzmun tapsanız, lütfən, bu barədə bizə məlumat verin. Rəyinizi qiymətləndiririk və hesabatınızı nəzərdən keçirmək və vaxtında müvafiq tədbirlər görmək üçün çox çalışırıq. Hesabatlarınızdan istifadə edirik. standartlarımızı öyrənmək və təkmilləşdirmək və təlimatlarımızı məlumatlandırmaq və yeniləmək üçün mövzu ekspertləri ilə işləmək. Siz iki ildə bir olan şəffaflıq hesabatımızda bu təlimatları necə tətbiq etdiyimiz haqqında ətraflı öyrənə bilərsiniz."
+             },
+             "section2": {
+                 "header": "Məzmun təhlükəsizliyi",
+                 "p1": "Pinterest antaqonist, açıq, yalan və ya aldadıcı, zərərli, nifrət dolu və ya zorakı məzmun və ya davranış üçün yer deyil. Biz bu cür məzmunun və hesabların, fərdlərin, qrupların yayılmasını silə, məhdudlaşdıra və ya bloklaya bilərik. və onu yaradan və ya yayan domenlər onun nə qədər zərər verdiyinə əsaslanaraq. Siz burada İcma Təlimatlarımızı necə tətbiq etdiyimiz haqqında ətraflı oxuya bilərsiniz.",
+                 "p2": "Biz sizə başa düşmək və izləmək asan olan aydın və şəffaf gözləntiləri təqdim etməyə sadiqik. Əgər Pinterest-də suallarınız və ya probleminiz varsa, lütfən bizimlə əlaqə saxlayın ."
+             },
+             "section3": {
+                "header": "Nifrət dolu fəaliyyətlər",
+                "p": "Pinterest nifrət dolu məzmun və ya nifrət dolu fəaliyyətləri təbliğ edən insanlar və qruplar üçün yer deyil. Biz belə məzmunun və hesabların yayılmasını məhdudlaşdırırıq və ya silirik, o cümlədən:",
+                "li1": "Şöhrət və ya mənfi stereotiplər, karikaturalar və ümumiləşdirmələr",
+                "li2": "Nifrət qruplarına və nifrət dolu fəaliyyətləri, qərəz və sui-qəsd nəzəriyyələrini təbliğ edən insanlara dəstək",
+                "li3": "Qurbanın həssas və ya qorunan qrupa üzvlüyünə görə zorakılığa göz yummaq və ya əhəmiyyətsizləşdirmək",
+                "li4": "Ağ üstünlüyünə dəstək, qadınların hüquqlarının məhdudlaşdırılması və digər ayrı-seçkilik ideyaları",
+                "li5": "Holokostun inkarı kimi nifrətə əsaslanan sui-qəsd nəzəriyyələri və dezinformasiya",
+                "li6": "Fərdin gender şəxsiyyətinin və ya cinsi oriyentasiyasının inkarı və konversiya terapiyası və əlaqəli proqramlara dəstək",
+                "li7": "Həssas və ya qorunan qrupa üzvlüyü əsasında ictimai xadimlər də daxil olmaqla şəxslərə hücumlar",
+                "li8": "Aşağıda müəyyən edilmiş qorunan və ya həssas qrupların inanclarına, müqəddəs simvollarına, hərəkətlərinə və ya təsisatlarına istehza və ya hücum"
+            },
+            "section4": {
+                "header": "Yanlış məlumat",
+                "p": "Pinterest dezinformasiya, dezinformasiya, yanlış məlumat və ya onu yayan və ya yaradan şəxslər və ya qruplar üçün yer deyil. Biz Pinnerlərin və ya ictimaiyyətin rifahına xələl gətirə biləcək yalan və ya aldadıcı məzmunun yayılmasını ləğv edirik və ya məhdudlaşdırırıq. , təhlükəsizlik və ya etibar, o cümlədən:",
+                "li1": "Şöhrət və ya mənfi stereotiplər, karikaturalar və ümumiləşdirmələr",
+                "li2": "Nifrət qruplarına və nifrət dolu fəaliyyətləri, qərəz və sui-qəsd nəzəriyyələrini təbliğ edən insanlara dəstək",
+                "li3": "Qurbanın həssas və ya qorunan qrupa üzvlüyünə görə zorakılığa göz yummaq və ya əhəmiyyətsizləşdirmək",
+                "li4": "Ağ üstünlüyünə dəstək, qadınların hüquqlarının məhdudlaşdırılması və digər ayrı-seçkilik ideyaları",
+                "li5": "Holokostun inkarı kimi nifrətə əsaslanan sui-qəsd nəzəriyyələri və dezinformasiya",
+                "li6": "Fərdin gender şəxsiyyətinin və ya cinsi oriyentasiyasının inkarı və konversiya terapiyası və əlaqəli proqramlara dəstək",
+                "li7": "Həssas və ya qorunan qrupa üzvlüyü əsasında ictimai xadimlər də daxil olmaqla şəxslərə hücumlar",
+                "li8": "Aşağıda müəyyən edilmiş qorunan və ya həssas qrupların inanclarına, müqəddəs simvollarına, hərəkətlərinə və ya təsisatlarına istehza və ya hücum"
+            },
+            "section5": {
+                "header": "Vətəndaş iştirakının dezinformasiyası",
+                "p": "Pinterest nifrət dolu məzmun və ya nifrət dolu fəaliyyətləri təbliğ edən insanlar və qruplar üçün yer deyil. Biz belə məzmunun və hesabların yayılmasını məhdudlaşdırırıq və ya silirik, o cümlədən:",
+                "li1": "Seçki üçün qeydiyyatdan keçmə, səsvermə və siyahıyaalmada sayma daxil olmaqla, seçkinin bütövlüyünə və ya fərdin və ya qrupun vətəndaş iştirakına mane olan yanlış və ya aldadıcı məzmun.",
+                "li2": "Səsvermə və ya siyahıyaalmada iştirakın tarixləri, vaxtı, yerləri və proseduru haqqında yanlış və ya yanlış məlumat.",
+                "li3": "Qurbanın həssas və ya qorunan qrupa üzvlüyünə görə zorakılığa göz yummaq və ya əhəmiyyətsizləşdirmək",
+                "li4": "Ağ üstünlüyünə dəstək, qadınların hüquqlarının məhdudlaşdırılması və digər ayrı-seçkilik ideyaları",
+                "li5": "Seçiciləri səsin (poçtla səsvermə daxil olmaqla) və ya siyahıyaalma formasının düzgün doldurulması və təqdim edilməsi ilə bağlı çaşdıran məzmun.",
+                "li6": "Holokostun inkarı kimi nifrətə əsaslanan sui-qəsd nəzəriyyələri və dezinformasiya",
+                "li7": "İnformasiyanı kimin topladığı və/və ya ondan necə istifadə ediləcəyi ilə bağlı yanlış və ya çaşdırıcı ifadələr.",
+                "li8": "Uydurma və ya manipulyasiya edilmiş məzmun (məsələn, süni intellekt alətləri ilə yaradılan məzmun) siyasi xadim və/və ya seçki ilə bağlı ictimai rəyə təsir etmək məqsədi ilə kimisə etmədiyi bir şeyi edir və ya deyirmiş kimi görünür.",
+                "li9": "Siyasətlərimiz həmçinin səsvermə yerləri, siyahıyaalma və ya səsvermə işçiləri, yaxud seçicilər və ya siyahıyaalma iştirakçılarına qarşı təhdidləri, o cümlədən həssas və ya qorunan qrup seçicilərinin və ya iştirakçılarının hədələnməsi və təhqir edilməsini qadağan edir.",
+                "li10": "Fərdin cinsi kimliyinin və ya cinsi oriyentasiyasının inkarı və konversiya terapiyası və əlaqəli proqramlara dəstək"
+            },
+            "section6": {
+                "header": "Təqib və tənqid",
+                "p": "Pinterest ayrı-ayrı şəxsləri və ya qrupları təhqir etmək, incitmək və ya düşmənçilik etmək üçün yer deyil. Tənqid bildirmək üçün yaxşı səbəblər var, lakin biz Pinterest-i müsbət, ruhlandırıcı məkan olaraq saxlamaq üçün təhqiredici məzmunun yayılmasını məhdudlaşdıra və ya silə bilərik. ; bura daxildir:",
+                "li1": "İqlim dəyişikliyi həlləri haqqında əsaslandırılmış elmi konsensusa zidd olan yanlış və ya çaşdırıcı məzmun.",
+                "li2": "Səsvermə və ya siyahıyaalmada iştirakın tarixləri, vaxtı, yerləri və proseduru haqqında yanlış və ya yanlış məlumat.",
+                "li3": "İqlim elminə və ekspertlərə inamı sarsıtmaq üçün elmi məlumatları təhrif edən məzmun, o cümlədən buraxılma və ya albalı toplama yolu ilə.",
+                "li4": "Fərdin cinsi şəxsiyyətinin və ya cinsi oriyentasiyasının inkarı və konversiya terapiyası və əlaqəli proqramlara dəstək"
+            }
+        },
+        "developer": "Tərtibatçı təlimatları",
+        "advertising":"Reklam təlimatı"
     }
 }

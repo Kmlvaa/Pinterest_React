@@ -317,6 +317,66 @@
                     "p2": "If you use Pinterest IP in breach of these Terms, your right to use Pinterest will terminate immediately and you must, at our option, return or destroy any copies of the Pinterest IP you have made. No right, title or interest in or to Pinterest or any Pinterest IP is transferred to you under these Terms, and we reserve all rights not expressly granted."
                 }
             }
-        }
+        },
+        "community": {
+            "header": "Community Guidelines",
+            "section1": {
+                "header": "Our mission",
+                "p": "Pinterest's mission is to provide everyone with the inspiration to  create a life they love. Having said that, not all content is inspiring – so we have community guidelines  to outline what we do and don’t allow on Pinterest. These guidelines are our acceptable use policy, so if you  find content that shouldn’t be on Pinterest, please report it to us . We appreciate your feedback and work hard to  review your report and take appropriate action in a timely fashion. We use your reports to learn and evolve our standards, and work with subject matter experts to inform and update our guidelines. You can learn more about how we enforce these guidelines in our biannual transparency report ."
+            },
+            "section2": {
+                "header": "Content safety",
+                "p1": "Pinterest isn’t a place for antagonistic, explicit, false or misleading, harmful, hateful, or violent content or behavior. We may remove, limit, or block the distribution of such content and the accounts, individuals, groups and domains that create or spread it based on how much harm it poses. You can read more about how we put our Community Guidelines into practice on our Enforcement page here .",
+                "p2": "We’re committed to presenting you with clear and transparent expectations that are easy to understand and follow. If you have questions or encounter problems on Pinterest, please contact us ."
+            },
+            "section3": {
+                "header": "Hateful activities",
+                "p": "Pinterest isn’t a place for hateful content or the people and groups that promote hateful activities. We limit the distribution of or remove such content and accounts, including:",
+                "li1": "Slurs or negative stereotypes, caricatures and generalisations",
+                "li2": "Support for hate groups and people promoting hateful activities, prejudice and conspiracy theories",
+                "li3": "Condoning or trivialising violence because of a victim’s membership in a vulnerable or protected group",
+                "li4": "Support for white supremacy, limiting women’s rights and other discriminatory ideas",
+                "li5": "Hate-based conspiracy theories and misinformation, such as Holocaust denial",
+                "li6": "Denial of an individual’s gender identity or sexual orientation, and support for conversion therapy and related programmes",
+                "li7": "Attacks on individuals including public figures based on their membership in a vulnerable or protected group",
+                "li8": "Mocking or attacking the beliefs, sacred symbols, movements or institutions of the protected or vulnerable groups identified below"
+            },
+            "section4": {
+                "header": "Misinformation",
+                "p": "Pinterest isn’t a place for misinformation, disinformation, mal-information or the individuals or groups spreading or creating it. We remove or limit distribution of false or misleading content that may harm Pinners’ or the public’s well-being, safety or trust, including:",
+                "li1": "Slurs or negative stereotypes, caricatures and generalisations",
+                "li2": "Support for hate groups and people promoting hateful activities, prejudice and conspiracy theories",
+                "li3": "Condoning or trivialising violence because of a victim’s membership in a vulnerable or protected group",
+                "li4": "Support for white supremacy, limiting women’s rights and other discriminatory ideas",
+                "li5": "Hate-based conspiracy theories and misinformation, such as Holocaust denial",
+                "li6": "Denial of an individual’s gender identity or sexual orientation, and support for conversion therapy and related programmes",
+                "li7": "Attacks on individuals including public figures based on their membership in a vulnerable or protected group",
+                "li8": "Mocking or attacking the beliefs, sacred symbols, movements or institutions of the protected or vulnerable groups identified below"
+            },
+            "section5": {
+                "header": "Civic participation misinformation",
+                "p": "Pinterest isn’t a place for hateful content or the people and groups that promote hateful activities. We limit the distribution of or remove such content and accounts, including:",
+                "li1": "False or misleading content that impedes an election’s integrity or an individual's or group's civic participation, including registering to vote, voting and being counted in a census.",
+                "li2": "False or misleading information about the dates, times, locations and procedure for voting or census participation.",
+                "li3": "Condoning or trivialising violence because of a victim’s membership in a vulnerable or protected group",
+                "li4": "Support for white supremacy, limiting women’s rights and other discriminatory ideas",
+                "li5": "Content that misleads voters about how to correctly fill in and submit a vote (including a postal vote) or census form.",
+                "li6": "Hate-based conspiracy theories and misinformation, such as Holocaust denial",
+                "li7": "False or misleading statements about who is collecting information and/or how it will be used.",
+                "li8": "Fabricated or manipulated content (e.g. content generated with AI tools) making someone appear to do or say something they didn't with the clear intent of influencing public sentiment about a political figure and/or election.",
+                "li9": "Our policies also prohibit threats against voting locations, census or voting personnel, or voters or census participants, including intimidation and doxxing of vulnerable or protected group voters or participants.",
+                "li10": "Denial of an individual’s gender identity or sexual orientation, and support for conversion therapy and related programmes"
+            },
+            "section6": {
+                "header": "Harassment and criticism",
+                "p": "Pinterest isn’t a place to insult, hurt or antagonise individuals or groups of people. There are good reasons to express criticism, but we may limit the distribution of or remove insulting content to keep Pinterest a positive, inspiring place; this includes:",
+                "li1": "False or misleading content about climate change solutions that contradict well-established scientific consensus.",
+                "li2": "False or misleading information about the dates, times, locations and procedure for voting or census participation.",
+                "li3": "Content that misrepresents scientific data, including by omission or cherry-picking, in order to erode trust in climate science and experts.",
+                "li4": "Denial of an individual’s gender identity or sexual orientation, and support for conversion therapy and related programmes"
+            }
+        },
+        "developer": "Developer guidelines",
+        "advertising":"Advertising guideness"
     }
 }

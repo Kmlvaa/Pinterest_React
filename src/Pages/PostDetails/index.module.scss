@@ -147,6 +147,17 @@
         }
     }
 }
+.commentSec{
+    margin-top: 10px;
+    display: flex;
+    flex-direction: row;
+    column-gap: 10px;
+    .comment_about{
+        display: flex;
+        flex-direction: row;
+        column-gap: 10px;
+    }
+}
 
 @media (max-width: 1025px) {
     .main {
