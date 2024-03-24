@@ -1,4 +1,4 @@
-import {React, useEffect, useState} from 'react';
+import { React, useEffect, useState } from 'react';
 import Styles from './index.module.scss'
 import user from '../../../Images/user.png'
 import {
@@ -21,26 +21,28 @@ import {
 } from '@chakra-ui/react'
 import { useTranslation } from 'react-i18next';
 import { useFormik } from 'formik';
-import { UserDetailsPut } from '../../../services/Profile';
+import { UserDetailsPut, UserDetailsGet } from '../../../services/Profile';
 
 const Index = () => {
     const { t } = useTranslation();
     const { isOpen, onOpen, onClose } = useDisclosure();
-    const [detail, setDetail] = useState(null);
+    const [detail, setDetail] = useState([]);
+    const [image, setImage] = useState(null);
+    const [fileName, setFileName] = useState("No selected file");
 
-  const getDetails = async () => {
-    try {
-      let resp = await fetch('http://localhost:5174/api/Profile/getUserDetails');
-      let data = await resp.json();
-      setDetail(data);
-    } catch (error) {
-      console.log(error);
-      setDetail(null);
-    }
-  };
-  useEffect(() => {
-    getDetails();
-  }, [])
+    const getDetails = async () => {
+        try {
+            let resp = UserDetailsGet();
+            setDetail((await resp).data);
+        }
+        catch (error) {
+            console.log(error);
+            setDetail([]);
+        }
+    };
+    //   useEffect(() => {
+    //     getDetails();
+    //   }, [])
 
     const formik = useFormik({
         initialValues: {
@@ -69,10 +71,26 @@ const Index = () => {
             <div className={Styles.photo}>
                 <p>{t("settings.editProfile.photo")}</p>
                 <div>
-                    <img src={user} width={70} height={70} />
-                    <Button onClick={onOpen}>{t("settings.editProfile.change")}</Button>
+                    <div>
+                        {image ? <img src={image} width={70} height={70} /> : <img src={user} width={70} height={70} />}
+                    </div>
+                    <Button className={Styles.modal_input} onClick={() => { document.querySelector('.input_field').click() }}>
+                        <Input type='file' className='input_field' hidden
+                            defaultValue={detail?.image}
+                            name='image'
+                            value={formik.image}
+                            onBlur={formik.handleBlur}
+                            onChange={({ target: { files } }) => {
+                                files[0] && setFileName(files[0].name)
+                                if (files) {
+                                    setImage(URL.createObjectURL(files[0]))
+                                }
+                            }}
+                        />
+                        <p>{t("settings.editProfile.change")}</p>
+                    </Button>
                 </div>
-                <Modal onClose={onClose} isOpen={isOpen} isCentered>
+                {/* <Modal onClose={onClose} isOpen={isOpen} isCentered>
                     <ModalOverlay />
                     <ModalContent>
                         <ModalHeader>{t("settings.editProfile.modal.p")}</ModalHeader>
@@ -94,7 +112,7 @@ const Index = () => {
                             <Button onClick={onClose}>{t("settings.editProfile.modal.close")}</Button>
                         </ModalFooter>
                     </ModalContent>
-                </Modal>
+                </Modal> */}
             </div>
             <div>
                 <FormControl className={Styles.formControl}>

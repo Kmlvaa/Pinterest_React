@@ -10,6 +10,8 @@ import {
     InputRightElement
 } from '@chakra-ui/react'
 import { useTranslation } from 'react-i18next';
+import { useFormik } from 'formik';
+import { accountDetailsPut } from '../../../services/AccountDetails'
 
 const Index = () => {
     const [show, setShow] = React.useState(false)
@@ -19,6 +21,22 @@ const Index = () => {
     const clickHandler = async (lang) => {
         await i18n.changeLanguage(lang);
     }
+    const formik = useFormik({
+        initialValues: {
+            email: '',
+            username: '',
+            birthdate: '',
+            country: '',
+        },
+        onSubmit: (values) => {
+            try {
+                accountDetailsPut(values);
+            }
+            catch (err) {
+                console.log(err);
+            }
+        }
+    })
 
     return (
         <div className={Styles.main}>
@@ -31,9 +49,22 @@ const Index = () => {
                     <div className={Styles.form_name}>
                         <h1>{t("settings.management.account")}</h1>
                         <FormLabel>{t("settings.management.email")}</FormLabel>
-                        <Input type='text' id='email'/>
+                        <Input type='text' id='email'
+                            placeholder='Enter email'
+                            value={formik.email}
+                            name='email'
+                            onBlur={formik.handleBlur}
+                            onChange={formik.handleChange}
+                        />
                         <FormLabel>{t("settings.management.password")}</FormLabel>
-                        <InputGroup size='md'>
+                        <Input type='text' id='username'
+                            placeholder='Enter username'
+                            value={formik.username}
+                            name='username'
+                            onBlur={formik.handleBlur}
+                            onChange={formik.handleChange}
+                        />
+                        {/* <InputGroup size='md'>
                             <Input
                                 id='password'
                                 pr='4.5rem'
@@ -45,7 +76,7 @@ const Index = () => {
                                     {show ? 'Hide' : 'Show'}
                                 </Button>
                             </InputRightElement>
-                        </InputGroup>
+                        </InputGroup> */}
                     </div>
                     <FormLabel>{t("settings.management.birthdate")}</FormLabel>
                     <Input
@@ -53,16 +84,24 @@ const Index = () => {
                         size="md"
                         type="datetime-local"
                         id='birthdate'
+                        value={formik.birthdate}
+                        name='birthdate'
+                        onBlur={formik.handleBlur}
+                        onChange={formik.handleChange}
                     />
                     <FormLabel>{t("settings.management.country")}</FormLabel>
-                    <Select>
-                        <option value='option1'>{t("settings.management.amerika")}</option>
-                        <option value='option2'>{t("settings.management.azerb")}</option>
-                        <option value='option2'>{t("settings.management.turkey")}</option>
-                        <option value='option2'>{t("settings.management.germany")}</option>
+                    <Select
+                        value={formik.values.country}
+                        name='country'
+                        onBlur={formik.handleBlur}
+                        onChange={formik.handleChange}>
+                        <option value="Amerika">{t("settings.management.amerika")}</option>
+                        <option value="Azerbaijan">{t("settings.management.azerb")}</option>
+                        <option value="Turkey">{t("settings.management.turkey")}</option>
+                        <option value="Germany">{t("settings.management.germany")}</option>
                     </Select>
                 </FormControl>
-                <Button className={Styles.saveBtn}>{t("settings.management.save")}</Button>
+                <Button className={Styles.saveBtn} onClick={formik.handleSubmit}>{t("settings.management.save")}</Button>
             </div>
             <div className={Styles.lang_sec}>
                 <h1>{t("settings.management.lang")}</h1>

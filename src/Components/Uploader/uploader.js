@@ -6,7 +6,7 @@ import { useTranslation } from 'react-i18next';
 const Uploader = () => {
     const [image, setImage] = useState(null);
     const [fileName, setFileName] = useState("No selected file");
-    const {t, i18n} = useTranslation(); 
+    const {t} = useTranslation(); 
     return (
         <>
         <div className='main'>

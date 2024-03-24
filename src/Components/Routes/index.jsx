@@ -26,41 +26,41 @@ import UserSaved from '../../Pages/UsersProfile/SavedComponent/saved'
 import PrivateRoutes from "../../utils/PrivateRoutes";
 
 const Index = () => {
-    return (
-        <Routes>
+  return (
+    <Routes>
+      <Route path="/register" index element={<Register />} />
+      <Route path="/login" element={<Login />} />
       <Route element={<PrivateRoutes />}>
-      <Route path="/" element={<Layout />}>
-        <Route index element={<Home />}/>
-        <Route path="/create" element={<Create />}/>
-        <Route path="/postDetails" element={<PostDetails />}/>
-        <Route path="/profile" element={<Profile />}>
-          <Route path="/profile/created" element={<Created />}/>
-          <Route path="/profile/saved" element={<Saved />}/>
+        <Route path="/" element={<Layout />}>
+          <Route index element={<Home />} />
+          <Route path="/create" element={<Create />} />
+          <Route path="/postDetails" element={<PostDetails />} />
+          <Route path="/profile" element={<Profile />}>
+            <Route path="/profile/created" element={<Created />} />
+            <Route path="/profile/saved" element={<Saved />} />
+          </Route>
+          <Route path="/userProfile" element={<UserProfile />}>
+            <Route path="/userProfile/created" element={<UserCreated />} />
+            <Route path="/userProfile/saved" element={<UserSaved />} />
+          </Route>
+          <Route path="/addAccount" element={<AddAccount />} />
+          <Route path="/settings" element={<SettingLayout />}>
+            <Route path="/settings/editProfile" element={<EditProfile />} />
+            <Route path="/settings/accountManagement" element={<AccountManagement />} />
+            <Route path="/settings/privacy" element={<PrivacyData />} />
+            <Route path="/settings/claimedAccounts" element={<Claimed />} />
+          </Route>
         </Route>
-        <Route path="/userProfile" element={<UserProfile />}>
-          <Route path="/userProfile/created" element={<UserCreated />}/>
-          <Route path="/userProfile/saved" element={<UserSaved />}/>
-        </Route>
-        <Route path="/addAccount" element={<AddAccount />}/>
-        <Route path="/settings" element={<SettingLayout />}>
-            <Route path="/settings/editProfile" element={<EditProfile />}/>
-            <Route path="/settings/accountManagement" element={<AccountManagement />}/>
-            <Route path="/settings/privacy" element={<PrivacyData />}/>
-            <Route path="/settings/claimedAccounts" element={<Claimed />}/>
+        <Route path="/privacy" element={<PrivacyLayout />}>
+          <Route path="/privacy/terms" element={<Terms />} />
+          <Route path="/privacy/privacy" element={<PrivacyPolicy />} />
+          <Route path="/privacy/community" element={<Community />} />
+          <Route path="/privacy/advertising" element={<Advertising />} />
+          <Route path="/privacy/developers" element={<Developers />} />
         </Route>
       </Route>
-      <Route path="/privacy" element={<PrivacyLayout />}>
-          <Route path="/privacy/terms" element={<Terms />}/>
-          <Route path="/privacy/privacy" element={<PrivacyPolicy />}/>
-          <Route path="/privacy/community" element={<Community />}/>
-          <Route path="/privacy/advertising" element={<Advertising />}/>
-          <Route path="/privacy/developers" element={<Developers />}/>
-      </Route>
-      </Route>
-        <Route path="/login" element={<Login />}/>
-        <Route path="/register" element={<Register />}/>
     </Routes>
-    );
+  );
 }
 
 export default Index;
