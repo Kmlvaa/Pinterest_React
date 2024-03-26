@@ -21,7 +21,7 @@ import {
 } from '@chakra-ui/react'
 import { useTranslation } from 'react-i18next';
 import { useFormik } from 'formik';
-import { UserDetailsPut, UserDetailsGet } from '../../../services/Profile';
+import { UserDetailsPut, UserDetailsGet } from '../../../services/UserService';
 
 const Index = () => {
     const { t } = useTranslation();
@@ -32,17 +32,18 @@ const Index = () => {
 
     const getDetails = async () => {
         try {
-            let resp = UserDetailsGet();
-            setDetail((await resp).data);
+            let resp = await UserDetailsGet();
+            console.log(resp.data)
+            setDetail(resp.data);
         }
         catch (error) {
             console.log(error);
             setDetail([]);
         }
     };
-    //   useEffect(() => {
-    //     getDetails();
-    //   }, [])
+      useEffect(() => {
+        getDetails();
+      }, [])
 
     const formik = useFormik({
         initialValues: {
@@ -58,9 +59,9 @@ const Index = () => {
                 UserDetailsPut(values);
             }
             catch (err) {
-                console.log(err);
+                console.log(err.response.data);
             }
-        }
+        },
     })
     return (
         <div className={Styles.main}>
@@ -76,9 +77,9 @@ const Index = () => {
                     </div>
                     <Button className={Styles.modal_input} onClick={() => { document.querySelector('.input_field').click() }}>
                         <Input type='file' className='input_field' hidden
-                            defaultValue={detail?.image}
+                            defaultValue={detail?.profileUrl}
                             name='image'
-                            value={formik.image}
+                            value={formik.values.image}
                             onBlur={formik.handleBlur}
                             onChange={({ target: { files } }) => {
                                 files[0] && setFileName(files[0].name)
@@ -149,6 +150,7 @@ const Index = () => {
                         onChange={formik.handleChange}
                         name="gender"
                         value={formik.values.gender}
+                        defaultValue={detail.gender}
                     >
                         <option value='male'>{t("settings.editProfile.male")}</option>
                         <option value='female'>{t("settings.editProfile.female")}</option>

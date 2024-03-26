@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Styles from './register.module.scss'
 import logo from '../../Images/Pinterest-logo.png'
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import {
     FormControl,
     FormLabel,
@@ -22,6 +22,7 @@ const Register = () => {
     const handleClick = () => setShow(!show);
     const [err, setErr] = useState(null);
     const toast = useToast();
+    const navigate = useNavigate();
 
     const formik = useFormik({
         initialValues: {
@@ -33,7 +34,8 @@ const Register = () => {
         },
         onSubmit: (values, actions) => {
             try {
-                registerPost(values)
+                registerPost(values);
+                navigate("/login");
 
                 toast({
                     title: "Account created!",

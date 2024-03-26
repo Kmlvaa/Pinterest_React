@@ -11,7 +11,7 @@ import {
 } from '@chakra-ui/react'
 import { useTranslation } from 'react-i18next';
 import { useFormik } from 'formik';
-import { accountDetailsPut } from '../../../services/AccountDetails'
+import { accountDetailsPut } from '../../../services/AccountService'
 
 const Index = () => {
     const [show, setShow] = React.useState(false)
@@ -30,10 +30,10 @@ const Index = () => {
         },
         onSubmit: (values) => {
             try {
-                accountDetailsPut(values);
+                accountDetailsPut(values)
             }
             catch (err) {
-                console.log(err);
+                console.log(err.response.data);
             }
         }
     })
@@ -51,7 +51,7 @@ const Index = () => {
                         <FormLabel>{t("settings.management.email")}</FormLabel>
                         <Input type='text' id='email'
                             placeholder='Enter email'
-                            value={formik.email}
+                            value={formik.values.email}
                             name='email'
                             onBlur={formik.handleBlur}
                             onChange={formik.handleChange}
@@ -59,7 +59,7 @@ const Index = () => {
                         <FormLabel>{t("settings.management.password")}</FormLabel>
                         <Input type='text' id='username'
                             placeholder='Enter username'
-                            value={formik.username}
+                            value={formik.values.username}
                             name='username'
                             onBlur={formik.handleBlur}
                             onChange={formik.handleChange}
@@ -84,7 +84,7 @@ const Index = () => {
                         size="md"
                         type="datetime-local"
                         id='birthdate'
-                        value={formik.birthdate}
+                        value={formik.values.birthdate}
                         name='birthdate'
                         onBlur={formik.handleBlur}
                         onChange={formik.handleChange}
