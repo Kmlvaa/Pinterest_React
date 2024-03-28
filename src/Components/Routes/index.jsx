@@ -20,9 +20,9 @@ import Community from '../../Pages/Privacy/Community/index'
 import Advertising from '../../Pages/Privacy/Advertising/index'
 import Developers from '../../Pages/Privacy/Developers/index'
 import PostDetails from '../../Pages/PostDetails/index'
-import UserProfile from '../../Pages/UsersProfile/Layout/index'
-import UserCreated from '../../Pages/UsersProfile/CreatedComponent/created'
-import UserSaved from '../../Pages/UsersProfile/SavedComponent/saved'
+import UserProfile from '../../Pages/UserProfile/Layout/index'
+import UserCreated from '../../Pages/UserProfile/CreatedComponent/created'
+import UserSaved from '../../Pages/UserProfile/SavedComponent/saved'
 import PrivateRoutes from "../../utils/PrivateRoutes";
 
 const Index = () => {
@@ -34,14 +34,14 @@ const Index = () => {
         <Route path="/" element={<Layout />}>
           <Route index element={<Home />} />
           <Route path="/create" element={<Create />} />
-          <Route path="/postDetails" element={<PostDetails />} />
+          <Route path="/postDetails/:id" element={<PostDetails />} />
           <Route path="/profile" element={<Profile />}>
             <Route path="/profile/created" element={<Created />} />
             <Route path="/profile/saved" element={<Saved />} />
           </Route>
-          <Route path="/userProfile" element={<UserProfile />}>
-            <Route path="/userProfile/created" element={<UserCreated />} />
-            <Route path="/userProfile/saved" element={<UserSaved />} />
+          <Route path="/userProfile/:id" element={<UserProfile />}>
+            <Route path="/userProfile/:id/created" element={<UserCreated />} />
+            <Route path="/userProfile/:id/saved" element={<UserSaved />} />
           </Route>
           <Route path="/addAccount" element={<AddAccount />} />
           <Route path="/settings" element={<SettingLayout />}>

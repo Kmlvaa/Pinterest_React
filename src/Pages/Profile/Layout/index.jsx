@@ -17,6 +17,7 @@ const Index = () => {
         try {
             let details = await UserDetailsGet();
             setDetails(details.data);
+            console.log(details.data)
 
             // let token = localStorage.getItem("token");
             // let followers = await getFollowers(token);

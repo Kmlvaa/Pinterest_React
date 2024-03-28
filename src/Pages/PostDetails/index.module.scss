@@ -94,7 +94,9 @@
         }
 
         .section4 {
-            margin-bottom: 50px;
+            height: 160px;
+            overflow-y: scroll;
+
             p:hover {
                 cursor: pointer;
             }
@@ -147,16 +149,42 @@
         }
     }
 }
-.commentSec{
+
+.commentSec {
     margin-top: 10px;
     display: flex;
     flex-direction: row;
     column-gap: 10px;
-    .comment_about{
+
+    .comment_about {
         display: flex;
         flex-direction: row;
         column-gap: 10px;
+        width: 420px;
     }
+}
+
+.date {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin-right: 10px;
+
+    .dateTime {
+        font-size: 10px;
+    }
+}
+
+.commentDateTime {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.commentDate {
+    font-size: 10px;
 }
 
 @media (max-width: 1025px) {
