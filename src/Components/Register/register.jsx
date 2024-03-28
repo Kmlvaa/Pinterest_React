@@ -15,6 +15,7 @@ import { useFormik } from 'formik';
 import { registerPost } from '../../services/AuthService';
 import { registerSchema } from '../../schemas/RegisterSchema';
 import { useTranslation } from 'react-i18next';
+import Background2 from '../../Images/Background2.png'
 
 const Register = () => {
     const {t} = useTranslation(); 
@@ -35,8 +36,6 @@ const Register = () => {
         onSubmit: (values, actions) => {
             try {
                 registerPost(values);
-                navigate("/login");
-
                 toast({
                     title: "Account created!",
                     status: 'success',
@@ -44,9 +43,10 @@ const Register = () => {
                     isClosable: true
                 })
                 actions.resetForm();
+                navigate("/login");
             }
             catch (error) {
-                console.log(error);
+                console.log(error.response.data);
                 setErr(error.response.data);
             }
             console.log(err)
@@ -55,6 +55,9 @@ const Register = () => {
     })
     return (
         <>
+            <div className={Styles.backgroundImage}>
+                <img src={Background2}/>
+            </div>
             <div className={Styles.main}>
                 <div className={Styles.main_section}>
                     <div><img src={logo} width={50} height={50} /></div>
@@ -132,6 +135,10 @@ const Register = () => {
                         <button className={Styles.btn} onClick={formik.handleSubmit} type='submit'>
                         {t("register.create")}
                         </button>
+                        <div style={{
+                            fontSize: "14px",
+                            color: "red",
+                        }}></div>
                         <div className={Styles.link}>{t("register.p2")}<Link to="/login" style={{ color: 'red' }}>{t("register.login")}</Link></div>
                     </div>
                 </div>

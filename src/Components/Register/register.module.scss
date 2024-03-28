@@ -4,7 +4,22 @@
     margin: auto;
     border: 1px solid rgb(198, 198, 198);
     border-radius: 20px;
-    margin-top: 100px;
+    position: relative;
+    background-color: white;
+    top: 50px;
+    box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+}
+.backgroundImage {
+    background-repeat: no-repeat;
+    height: 100vh;
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.5);
+    filter: brightness(40%);
+    img{
+        object-fit: cover;
+        height: 100%;
+        width: 100%;
+    }
 }
 .main_section{
     display: flex;

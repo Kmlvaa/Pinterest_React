@@ -1,6 +1,6 @@
 import React from 'react';
 import Styles from './sideModal.module.scss'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import user from '../../Images/user.png'
 import { useState, useEffect, useRef } from 'react';
 import { ArrowDropDown } from '@mui/icons-material';
@@ -8,19 +8,20 @@ import { useTranslation } from 'react-i18next';
 
 const SideModal = () => {
     const [open, setOpen] = useState(false);
-    const {t} = useTranslation(); 
+    const { t } = useTranslation();
+    const navigate = useNavigate();
 
     let menuRef = useRef();
     useEffect(() => {
         let handler = (e) => {
-            if(menuRef.current != null){
+            if (menuRef.current != null) {
                 if (!menuRef.current.contains(e.target)) {
                     setOpen(false);
                 }
             }
         }
         document.addEventListener('mousedown', handler);
-    },[open])
+    }, [open])
 
     return (
         <>
@@ -43,16 +44,23 @@ const SideModal = () => {
                         </ul>
                         <p>{t("sideModal.moreOptions")}</p>
                         <ul>
-                            <DropdownItem text={t("sideModal.links.settings")} link={'/settings/editProfile'}/>
-                            <DropdownItem text={t("sideModal.links.seeTerms")} link={'/privacy/terms'} />
-                            <DropdownItem text={t("sideModal.links.privacy")} link={'privacy/privacy'}/>
-                            <DropdownItem text={t("sideModal.links.community")} link={'privacy/community'}/>
-                            <DropdownItem text={t("sideModal.links.advertising")} link={'privacy/advertising'}/>
-                            <DropdownItem text={t("sideModal.links.logOut")} 
-                            onClick={() => {
-                                console.log("hi")
-                                localStorage.removeItem("token");
-                            }}></DropdownItem>
+                            <li className={Styles.dropdownItem}>
+                                <Link to='/settings/editProfile'>{t("sideModal.links.settings")}</Link>
+                            </li><li className={Styles.dropdownItem}>
+                                <Link to='/privacy/terms'>{t("sideModal.links.seeTerms")}</Link>
+                            </li><li className={Styles.dropdownItem}>
+                                <Link to='privacy/privacy'>{t("sideModal.links.privacy")}</Link>
+                            </li><li className={Styles.dropdownItem}>
+                                <Link to='privacy/community'>{t("sideModal.links.community")}</Link>
+                            </li><li className={Styles.dropdownItem}>
+                                <Link to='privacy/advertising'>{t("sideModal.links.advertising")}</Link>
+                            </li><li className={Styles.dropdownItem}>
+                                <Link  onClick={() => {
+                                    console.log("hi")
+                                    localStorage.removeItem("token");
+                                    navigate('/login');
+                                }}>{t("sideModal.links.logOut")}</Link>
+                            </li>
                         </ul>
                     </div>
                 </div>

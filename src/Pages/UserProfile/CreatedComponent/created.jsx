@@ -3,7 +3,6 @@ import Styles from './created.module.scss'
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import Pin from '../../../Components/Pin/Pin';
-import image from '../../../Images/Kaonashi4.jpg'
 import { useFormik } from 'formik';
 import { getPosts } from '../../../services/PostService';
 
@@ -30,7 +29,7 @@ const Created = () => {
             {posts ? <div className={Styles.main}>
                 {posts?.map((x) => {
                     return(
-                        <Pin url={x.image} pinSize='medium'
+                        <Pin url={x.image} pinSize={x.id}
                             key={x.id}
                             id={x.id}
                         />

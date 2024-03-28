@@ -10,8 +10,9 @@ import { getPostDetails } from '../../services/PostService';
 import { NavLink, useParams } from 'react-router-dom';
 import { addComment, getComments } from '../../services/CommentService';
 import { useFormik } from 'formik';
-import { getLikes } from '../../services/LikeService';
+import { addLike, getLikes } from '../../services/LikeService';
 import { getFollowers } from '../../services/FollowerService';
+import { addSaved } from '../../services/SavedPosts';
 
 const Index = () => {
     const { t } = useTranslation();
@@ -20,6 +21,7 @@ const Index = () => {
     const [commentCount, setCommentCount] = useState(0);
     const [like, setLike] = useState(0);
     const [follower, setFollower] = useState(null);
+    const [saved, setSaved] = useState(null);
     const { id } = useParams();
 
     const postDetails = async () => {
@@ -37,7 +39,6 @@ const Index = () => {
             //user id required
             let followers = await getFollowers(id);
             setFollower(followers.data);
-
         }
         catch (err) {
             console.log(err);
@@ -54,17 +55,37 @@ const Index = () => {
             description: ''
         },
         onSubmit: async (values, actions) => {
-            try{
+            try {
                 let newComment = await addComment(id, values);
                 actions.resetForm();
                 postDetails();
                 console.log(newComment.data);
             }
-            catch(error){
+            catch (error) {
                 console.log(error.response.data);
             }
         }
     })
+    const addLikes = async() => {
+        try {
+            let newLike = await addLike(id);
+            postDetails();
+            console.log(newLike.data);
+        }
+        catch (err) {
+            console.log(err);
+        }
+    }
+    const addSaveds = async() => {
+        try{
+            let saveds = await addSaved(id);
+            setSaved(saveds.data);
+            console.log(saveds.data);
+        }
+        catch(err){
+            console.log(err);
+        }
+    }
 
     return (
         <>
@@ -73,7 +94,7 @@ const Index = () => {
                 <div className={Styles.content_section}>
                     <div className={Styles.section1}>
                         <div><ExternalLinkIcon style={{ cursor: 'pointer' }} /></div>
-                        <button>{t("pin.save")}</button>
+                        <button onClick={addSaveds}>{t("pin.save")}</button>
                     </div>
                     <div className={Styles.section2}>
                         <h1>{details.title}</h1>
@@ -114,17 +135,17 @@ const Index = () => {
                             <h1>{commentCount} Comments</h1>
                             <div className={Styles.likes_scale}>
                                 <p><span><img src={Heart} width={20} height={20} /></span> {like}</p>
-                                <img src={Like} width={25} height={25} />
+                                <NavLink onClick={addLikes}><img src={Like} width={25} height={25} /></NavLink>
                             </div>
                         </div>
                         <div className={Styles.input}>
                             <img src={User} width={50} height={50} />
-                            <input placeholder={t("pin.addComment")} 
+                            <input placeholder={t("pin.addComment")}
                                 onChange={formik.handleChange}
                                 onBlur={formik.handleBlur}
                                 name='description'
                                 id='comment'
-                                value={formik.values.description}/>
+                                value={formik.values.description} />
                             <button onClick={formik.handleSubmit}>Send</button>
                         </div>
                     </div>

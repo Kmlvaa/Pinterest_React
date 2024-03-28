@@ -13,6 +13,7 @@ const Home = () => {
         try {
             let res = await getAllPosts();
             setPosts(res.data);
+            console.log(res.data)
         }
         catch (err) {
             console.log(err);
@@ -27,7 +28,7 @@ const Home = () => {
             <div className={Styles.main}>
                {posts?.map((data) => {
                     return(
-                        <Pin pinSize={"small"} url={data.url} key={data.id} id={data.id}/>
+                        <Pin pinSize={data.id} url={data.url} key={data.id} id={data.id}/>
                     )
                })}
             </div>

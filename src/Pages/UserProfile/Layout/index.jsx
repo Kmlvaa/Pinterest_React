@@ -19,9 +19,9 @@ const Index = () => {
             setDetails(details.data);
             console.log(details.data)
 
-            // let token = localStorage.getItem("token");
-            // let followers = await getFollowers(token);
-            // setFollower(followers.data);
+            let userId = localStorage.getItem("id");
+            let followers = getFollowers(userId);
+            setFollower(followers);
         }
         catch (error) {
             console.log(error);
@@ -45,9 +45,9 @@ const Index = () => {
                         </div>
                     </div>
                     <div>{details.about}</div>
-                    <div>0{follower} {t("profile.following")}</div>
+                    <div>{follower.length} {t("profile.following")}</div>
                     <div className={Styles.btn}>
-                        <GreyButton text={t("profile.edit")}></GreyButton>
+                        <GreyButton text="Follow"></GreyButton>
                     </div>
                 </div>
                 <div className={Styles.second_section}>

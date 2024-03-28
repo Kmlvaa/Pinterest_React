@@ -12,10 +12,14 @@ const Saved = () => {
 
     const getSavedPosts = async () => {
         try {
-            //get the user id from token
-            let resp = await getSaveds();
-            setSaved(resp.data);
+            const userId = localStorage.getItem("id");
+            let resp = await getSaveds(userId);
             console.log(resp.data);
+            setSaved(resp.data);
+            if(resp.data.length == 0){
+                setSaved(null);
+                console.log("jel")
+            }
         }
         catch (error) {
             console.log(error);
@@ -32,7 +36,7 @@ const Saved = () => {
                 <div className={Styles.main}>
                     {saved?.map((data) => {
                         return(
-                            <Pin id={data.id} pinSize='medium' url={user}/>
+                            <Pin id={data.id} pinSize={data.id} url={user}/>
                         )
                     })}
                 </div>

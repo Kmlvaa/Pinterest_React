@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Styles from './login.module.scss'
 import logo from '../../Images/Pinterest-logo.png'
 import { Link, useNavigate } from "react-router-dom";
@@ -14,10 +14,12 @@ import { useFormik } from 'formik';
 import { loginPost } from '../../services/AuthService';
 import { loginSchema } from '../../schemas/LoginSchema';
 import { useTranslation } from 'react-i18next';
+import Background from '../../Images/background.png'
 
 const Login = () => {
-    const {t} = useTranslation(); 
-    const [show, setShow] = React.useState(false);
+    const { t } = useTranslation();
+    const [show, setShow] = useState(false);
+    const [userId, setUserId] = useState(null)
     const handleClick = () => setShow(!show);
     const navigate = useNavigate();
 
@@ -29,10 +31,11 @@ const Login = () => {
         onSubmit: async (values, actions) => {
             try {
                 const res = await loginPost(values);
-                localStorage.setItem('token', res.data);
-                console.log(res.data)
+                localStorage.setItem('token', res.data.token);
+                localStorage.setItem('id', res.data.id);
+                setUserId(res.data.id);
                 actions.resetForm();
-                navigate('/');
+                navigate('/profile/created');
             }
             catch (error) {
                 console.log(error);
@@ -43,6 +46,9 @@ const Login = () => {
     })
     return (
         <>
+            <div className={Styles.backgroundImage}>
+                <img src={Background}/>
+            </div>
             <div className={Styles.main}>
                 <div className={Styles.main_section}>
                     <div><img src={logo} width={50} height={50} /></div>
@@ -81,10 +87,10 @@ const Login = () => {
                                     </Button>
                                 </InputRightElement>
                             </InputGroup>
-                                {formik.errors.password && formik.touched.password && <div className={Styles.error_msg}>{formik.errors.password}</div>}
+                            {formik.errors.password && formik.touched.password && <div className={Styles.error_msg}>{formik.errors.password}</div>}
                         </FormControl>
                         <button className={Styles.btn} onClick={formik.handleSubmit} type='submit'>
-                        {t("login.login")}
+                            {t("login.login")}
                         </button>
                         <div className={Styles.link}>{t("login.p")}<Link to="/register" style={{ color: 'red' }}>{t("login.signUp")}</Link></div>
                     </div>
