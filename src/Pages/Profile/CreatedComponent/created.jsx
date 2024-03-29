@@ -30,7 +30,7 @@ const Created = () => {
             {posts ? <div className={Styles.main}>
                 {posts?.map((x) => {
                     return(
-                        <Pin url={x.image} pinSize='medium'
+                        <Pin url={x.image} pinSize={x.id}
                             key={x.id}
                             id={x.id}
                         />

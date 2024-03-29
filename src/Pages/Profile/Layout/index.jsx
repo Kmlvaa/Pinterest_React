@@ -19,9 +19,9 @@ const Index = () => {
             setDetails(details.data);
             console.log(details.data)
 
-            // let token = localStorage.getItem("token");
-            // let followers = await getFollowers(token);
-            // setFollower(followers.data);
+            let userId = localStorage.getItem("id");
+            let followers = await getFollowers(userId);
+            setFollower(followers.data);
         }
         catch (error) {
             console.log(error);
@@ -45,9 +45,10 @@ const Index = () => {
                         </div>
                     </div>
                     <div>{details.about}</div>
-                    <div>0{follower} {t("profile.following")}</div>
+                    <div>{follower.length} {t("profile.following")}</div>
                     <div className={Styles.btn}>
-                        <GreyButton text={t("profile.edit")}></GreyButton>
+                        <GreyButton text={t("profile.edit")} link="/settings/editProfile"></GreyButton>
+                        <GreyButton text={t("profile.update")} link='/settings/updatePosts'></GreyButton>
                     </div>
                 </div>
                 <div className={Styles.second_section}>
@@ -64,7 +65,7 @@ const Index = () => {
 function GreyButton(props) {
     return (
         <button className={Styles.greyBtnComponent}>
-            <Link to={'/settings/editProfile'}>{props.text}</Link>
+            <Link to={props.link}>{props.text}</Link>
         </button>
     );
 }

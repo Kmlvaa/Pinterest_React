@@ -36,7 +36,6 @@ const Index = () => {
             let likes = await getLikes(id);
             setLike(likes.data.length);
 
-            //user id required
             let followers = await getFollowers(id);
             setFollower(followers.data);
         }
@@ -107,7 +106,7 @@ const Index = () => {
                         <div className={Styles.profile}>
                             <img src={User} width={50} height={50} />
                             <div>
-                                <h3><NavLink to='/user'>{details.user}</NavLink></h3>
+                                <h3><NavLink to={`/userProfile/created/${id}`}>{details.user}</NavLink></h3>
                                 <p>{follower} followers</p>
                             </div>
                         </div>

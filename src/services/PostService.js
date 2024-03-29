@@ -10,6 +10,9 @@ export const getAllPosts = () => {
 export const getPosts = () => {
     return httpClient.get("getPosts");
 }
+export const getUserPosts = (id) => {
+    return httpClient.get(`getUserPosts/${id}`);
+}
 export const addPost = (data) => {
     return httpClient.post("addPost",data, {
         headers: {
@@ -21,4 +24,7 @@ export const addPost = (data) => {
 }
 export const deletePost = (id) => {
     return httpClient.delete(`deletePost/${id}`);
+}
+export const editPost = (id, data) => {
+    return httpClient.delete(`editPost/${id}`, data);
 }

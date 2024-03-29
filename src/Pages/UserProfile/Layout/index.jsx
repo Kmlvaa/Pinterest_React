@@ -2,25 +2,25 @@ import React, { useEffect, useState } from 'react';
 import Styles from './index.module.scss'
 import user from '../../../Images/user.png'
 import logo from '../../../Images/logo-pinterest-gris.png'
-import { Link, Outlet } from 'react-router-dom';
+import { Link, Outlet, useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { useFormik } from 'formik';
-import { UserDetailsGet } from '../../../services/UserService'
+import { OtherUserDetailsGet } from '../../../services/UserService'
 import { getFollowers } from '../../../services/FollowerService';
 
 const Index = () => {
     const { t } = useTranslation();
     const [details, setDetails] = useState([]);
     const [follower, setFollower] = useState([]);
+    const { id } = useParams();
 
     const getProfileDetails = async () => {
         try {
-            let details = await UserDetailsGet();
+            let details = await OtherUserDetailsGet(id);
             setDetails(details.data);
             console.log(details.data)
 
-            let userId = localStorage.getItem("id");
-            let followers = getFollowers(userId);
+            let followers = getFollowers(id);
             setFollower(followers);
         }
         catch (error) {

@@ -12,8 +12,8 @@ const Saved = () => {
 
     const getSavedPosts = async () => {
         try {
-            //get the user id from token
-            let resp = await getSaveds();
+            let userId = localStorage.getItem("id");
+            let resp = await getSaveds(userId);
             setSaved(resp.data);
             console.log(resp.data);
         }
@@ -32,7 +32,7 @@ const Saved = () => {
                 <div className={Styles.main}>
                     {saved?.map((data) => {
                         return(
-                            <Pin id={data.id} pinSize='medium' url={user}/>
+                            <Pin id={data.id} pinSize={data.id} url={user}/>
                         )
                     })}
                 </div>

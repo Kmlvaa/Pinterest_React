@@ -1,18 +1,18 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import Styles from './created.module.scss'
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import Pin from '../../../Components/Pin/Pin';
-import { useFormik } from 'formik';
-import { getPosts } from '../../../services/PostService';
+import { getUserPosts } from '../../../services/PostService';
 
 const Created = () => {
     const { t } = useTranslation();
     const [posts, setPosts] = useState(null);
+    const {id} = useParams();
 
-    const getUserPosts = async () => {
+    const UserPosts = async () => {
         try {
-            let res = await getPosts();
+            let res = await getUserPosts(id);
             setPosts(res.data);
             console.log(res.data);
         }
@@ -22,7 +22,7 @@ const Created = () => {
         }
     }
     useEffect(() => {
-        getUserPosts();
+        UserPosts();
     }, [])
     return (
         <>

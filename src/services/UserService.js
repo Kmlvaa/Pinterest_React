@@ -7,3 +7,6 @@ export const UserDetailsGet = () => {
 export const UserDetailsPut = (data) => {
     return httpClient.put("putUserDetails",data);
 }
+export const OtherUserDetailsGet = (id) => {
+    return httpClient.put(`getOtherUserDetails/${id}`)
+}

@@ -29,6 +29,8 @@
     },
     "create": {
         "create": "Create pin",
+        "editPost": "Edit Post",
+        "edit": "Edit",
         "post": "Post",
         "title": "Title",
         "desc": "Description",
@@ -41,6 +43,7 @@
     },
     "profile": {
         "edit": "Edit profile",
+        "update": "Update posts",
         "created": "Created",
         "saved": "Saved",
         "createPin": "Create pin",
