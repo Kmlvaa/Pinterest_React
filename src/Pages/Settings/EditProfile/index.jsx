@@ -4,7 +4,11 @@ import user from '../../../Images/user.png'
 import {
     Button,
     useDisclosure,
-    Input
+    Input,
+    FormControl,
+    FormLabel,
+    Textarea,
+    Select
 } from '@chakra-ui/react'
 import { useTranslation } from 'react-i18next';
 import { useFormik } from 'formik';
@@ -12,7 +16,6 @@ import { UserDetailsPut, UserDetailsGet } from '../../../services/UserService';
 
 const Index = () => {
     const { t } = useTranslation();
-    const { isOpen, onOpen, onClose } = useDisclosure();
     const [detail, setDetail] = useState([]);
     const [image, setImage] = useState(null);
     const [fileName, setFileName] = useState("No selected file");
@@ -20,7 +23,6 @@ const Index = () => {
     const getDetails = async () => {
         try {
             let resp = await UserDetailsGet();
-            console.log(resp.data)
             setDetail(resp.data);
         }
         catch (error) {
@@ -43,7 +45,15 @@ const Index = () => {
         },
         onSubmit: (values) => {
             try {
-                UserDetailsPut(values);
+                var formdata = new FormData();
+                formdata.append("firstname", values.firstname);
+                formdata.append("lastname", values.lastname);
+                formdata.append("username", values.username);
+                formdata.append("gender", values.gender);
+                formdata.append("about", values.about);
+                formdata.append("image", values.image);
+                UserDetailsPut(formdata);
+                console.log(values)
             }
             catch (err) {
                 console.log(err.response.data);
@@ -66,41 +76,14 @@ const Index = () => {
                         <Input type='file' className='input_field' hidden
                             defaultValue={detail?.profileUrl}
                             name='image'
-                            value={formik.values.image}
                             onBlur={formik.handleBlur}
                             onChange={(e) => {
-                                e.target.files[0] && setFileName(e.target.files[0].name)
-                                if (e.target.files) {
-                                    setImage(URL.createObjectURL(e.target.files[0]))
-                                }
+                                formik.setFieldValue('image', e.target.files[0])
                             }}
                         />
                         <p>{t("settings.editProfile.change")}</p>
                     </Button>
                 </div>
-                {/* <Modal onClose={onClose} isOpen={isOpen} isCentered>
-                    <ModalOverlay />
-                    <ModalContent>
-                        <ModalHeader>{t("settings.editProfile.modal.p")}</ModalHeader>
-                        <ModalCloseButton />
-                        <ModalBody >
-                            <div className={Styles.modal_input} onClick={() => { document.querySelector('.input_field').click() }}>
-                                <Input type='file' className='input_field' hidden
-                                    defaultValue={detail?.image}
-                                    name='image'
-                                    value={formik.image}
-                                    onChange={formik.handleChange}
-                                    onBlur={formik.handleBlur}
-                                />
-                                <p>{t("settings.editProfile.modal.upload")}</p>
-                            </div>
-                        </ModalBody>
-                        <ModalFooter>
-                            <Button className={Styles.modalFooterbtn}>{t("settings.editProfile.modal.save")}</Button>
-                            <Button onClick={onClose}>{t("settings.editProfile.modal.close")}</Button>
-                        </ModalFooter>
-                    </ModalContent>
-                </Modal> */}
             </div>
             <div>
                 <FormControl className={Styles.formControl}>

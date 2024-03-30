@@ -6,7 +6,7 @@ import { Link, Outlet, useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { useFormik } from 'formik';
 import { OtherUserDetailsGet } from '../../../services/UserService'
-import { getFollowers } from '../../../services/FollowerService';
+import { addFollower, getFollowers } from '../../../services/FollowerService';
 
 const Index = () => {
     const { t } = useTranslation();
@@ -16,9 +16,8 @@ const Index = () => {
 
     const getProfileDetails = async () => {
         try {
-            let details = await OtherUserDetailsGet(id);
-            setDetails(details.data);
-            console.log(details.data)
+            let detail = await OtherUserDetailsGet(id);
+            setDetails(detail.data);
 
             let followers = getFollowers(id);
             setFollower(followers);
@@ -31,6 +30,11 @@ const Index = () => {
     useEffect(() => {
         getProfileDetails();
     }, [])
+
+    const addFollow = () => {
+        addFollower(id);
+        getProfileDetails();
+    }
 
     return (
         <>
@@ -47,25 +51,20 @@ const Index = () => {
                     <div>{details.about}</div>
                     <div>{follower.length} {t("profile.following")}</div>
                     <div className={Styles.btn}>
-                        <GreyButton text="Follow"></GreyButton>
+                        <button className={Styles.greyBtnComponent}>
+                            <Link onClick={addFollow}>Follow</Link>
+                        </button>
                     </div>
                 </div>
                 <div className={Styles.second_section}>
                     <div>
-                        <button><Link to='/profile/created'>{t("profile.created")}</Link></button>
-                        <button><Link to='/profile/saved'>{t("profile.saved")}</Link></button>
+                        <button><Link to={`/userProfile/${id}/created`}>{t("profile.created")}</Link></button>
+                        <button><Link to={`/userProfile/${id}/saved`}>{t("profile.saved")}</Link></button>
                     </div>
                 </div>
                 <div style={{ marginTop: 50 }}><Outlet /></div>
             </div>
         </>
-    );
-}
-function GreyButton(props) {
-    return (
-        <button className={Styles.greyBtnComponent}>
-            <Link to={'/settings/editProfile'}>{props.text}</Link>
-        </button>
     );
 }
 export default Index;

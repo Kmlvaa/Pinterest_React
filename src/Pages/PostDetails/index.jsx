@@ -11,7 +11,7 @@ import { NavLink, useParams } from 'react-router-dom';
 import { addComment, getComments } from '../../services/CommentService';
 import { useFormik } from 'formik';
 import { addLike, getLikes } from '../../services/LikeService';
-import { getFollowers } from '../../services/FollowerService';
+import { addFollower, getFollowers } from '../../services/FollowerService';
 import { addSaved } from '../../services/SavedPosts';
 
 const Index = () => {
@@ -21,7 +21,6 @@ const Index = () => {
     const [commentCount, setCommentCount] = useState(0);
     const [like, setLike] = useState(0);
     const [follower, setFollower] = useState(null);
-    const [saved, setSaved] = useState(null);
     const { id } = useParams();
 
     const postDetails = async () => {
@@ -78,11 +77,20 @@ const Index = () => {
     const addSaveds = async() => {
         try{
             let saveds = await addSaved(id);
-            setSaved(saveds.data);
             console.log(saveds.data);
         }
         catch(err){
             console.log(err);
+        }
+    }
+    const addFollow = async() => {
+        try{
+            let follow = await addFollower(id);
+            console.log(follow.data)
+            postDetails();
+        }
+        catch(err){
+           console.log(err);
         }
     }
 
@@ -106,11 +114,12 @@ const Index = () => {
                         <div className={Styles.profile}>
                             <img src={User} width={50} height={50} />
                             <div>
-                                <h3><NavLink to={`/userProfile/created/${id}`}>{details.user}</NavLink></h3>
+                                <h3><NavLink to={`/userProfile/${id}/created`}>{details.user}</NavLink></h3>
                                 <p>{follower} followers</p>
                             </div>
                         </div>
-                        <div><button type='text' key='follow'>{t("pin.follow")}</button></div>
+                        <div><button type='text' key='follow'
+                        onClick={addFollow}>{t("pin.follow")}</button></div>
                     </div>
                     <div className={Styles.section4}>
                         <p>{t("pin.comment")}  <span><TriangleDownIcon /></span></p>

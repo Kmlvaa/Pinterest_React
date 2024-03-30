@@ -12,14 +12,9 @@ const Saved = () => {
 
     const getSavedPosts = async () => {
         try {
-            const userId = localStorage.getItem("id");
-            let resp = await getSaveds(userId);
+            let resp = await getSaveds();
             console.log(resp.data);
             setSaved(resp.data);
-            if(resp.data.length == 0){
-                setSaved(null);
-                console.log("jel")
-            }
         }
         catch (error) {
             console.log(error);

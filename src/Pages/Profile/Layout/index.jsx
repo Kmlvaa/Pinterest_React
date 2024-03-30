@@ -6,7 +6,7 @@ import { Link, Outlet } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { useFormik } from 'formik';
 import { UserDetailsGet } from '../../../services/UserService'
-import { getFollowers } from '../../../services/FollowerService';
+import { GetYourFollowers } from '../../../services/FollowerService';
 
 const Index = () => {
     const { t } = useTranslation();
@@ -17,10 +17,8 @@ const Index = () => {
         try {
             let details = await UserDetailsGet();
             setDetails(details.data);
-            console.log(details.data)
 
-            let userId = localStorage.getItem("id");
-            let followers = await getFollowers(userId);
+            let followers = await GetYourFollowers();
             setFollower(followers.data);
         }
         catch (error) {
@@ -48,7 +46,7 @@ const Index = () => {
                     <div>{follower.length} {t("profile.following")}</div>
                     <div className={Styles.btn}>
                         <GreyButton text={t("profile.edit")} link="/settings/editProfile"></GreyButton>
-                        <GreyButton text={t("profile.update")} link='/settings/updatePosts'></GreyButton>
+                        <GreyButton text={t("profile.update")} link='/updatePosts'></GreyButton>
                     </div>
                 </div>
                 <div className={Styles.second_section}>

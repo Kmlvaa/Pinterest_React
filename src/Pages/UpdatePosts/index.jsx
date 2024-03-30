@@ -5,19 +5,22 @@ import Pin from '../../Components/Pin/Pin';
 import { NavLink, useParams } from 'react-router-dom';
 
 const Index = () => {
-    const [posts, setPosts] = useState({});
     const {id} = useParams();
-    const handlePosts = async () => {
+    const [posts, setPosts] = useState(null);
+
+    const getUserPosts = async () => {
         try {
-            let receivedPosts = await getPosts();
-            setPosts(receivedPosts.data);
+            let res = await getPosts();
+            setPosts(res.data);
+            console.log(res.data);
         }
         catch (err) {
             console.log(err);
+            setPosts(null);
         }
     }
     useEffect(() => {
-        handlePosts();
+        getUserPosts();
     }, [])
 
     const handleDelete = () => {
