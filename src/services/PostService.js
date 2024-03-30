@@ -26,5 +26,5 @@ export const deletePost = (id) => {
     return httpClient.delete(`deletePost/${id}`);
 }
 export const editPost = (id, data) => {
-    return httpClient.delete(`editPost/${id}`, data);
+    return httpClient.put(`editPost/${id}`, data);
 }

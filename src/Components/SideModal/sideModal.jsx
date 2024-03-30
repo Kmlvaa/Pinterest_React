@@ -23,6 +23,12 @@ const SideModal = () => {
         document.addEventListener('mousedown', handler);
     }, [open])
 
+    const handleLogOut = () => {
+        localStorage.removeItem("token");
+        navigate('/login');
+        setOpen(false);
+    }
+
     return (
         <>
             <div className='menu_container' ref={menuRef}>
@@ -55,11 +61,7 @@ const SideModal = () => {
                             </li><li className={Styles.dropdownItem}>
                                 <Link to='privacy/advertising'>{t("sideModal.links.advertising")}</Link>
                             </li><li className={Styles.dropdownItem}>
-                                <Link  onClick={() => {
-                                    console.log("hi")
-                                    localStorage.removeItem("token");
-                                    navigate('/login');
-                                }}>{t("sideModal.links.logOut")}</Link>
+                                <Link onClick={handleLogOut}>{t("sideModal.links.logOut")}</Link>
                             </li>
                         </ul>
                     </div>

@@ -3,6 +3,7 @@ import Styles from './index.module.scss'
 import User from '../../Images/user.png';
 import Heart from '../../Images/heart.png'
 import Like from '../../Images/like.png'
+import Liked from '../../Images/heart.png'
 import Kaonashi from '../../Images/Kaonashi8.jpg'
 import { ExternalLinkIcon, TriangleDownIcon } from '@chakra-ui/icons'
 import { useTranslation } from 'react-i18next';
@@ -93,6 +94,15 @@ const Index = () => {
            console.log(err);
         }
     }
+    function changeImage() {
+        let isFirstImage = true;
+        if (isFirstImage){
+            document.getElementById("imgClickAndChange").src = Liked;
+            isFirstImage = !isFirstImage;
+        } else {
+            document.getElementById("imgClickAndChange").src = like;
+        }
+    }
 
     return (
         <>
@@ -142,8 +152,11 @@ const Index = () => {
                         <div className={Styles.likes_sec}>
                             <h1>{commentCount} Comments</h1>
                             <div className={Styles.likes_scale}>
-                                <p><span><img src={Heart} width={20} height={20} /></span> {like}</p>
-                                <NavLink onClick={addLikes}><img src={Like} width={25} height={25} /></NavLink>
+                                <p><span><img src={Heart} width={15} height={15} /></span> {like}</p>
+                                <NavLink onClick={() => {
+                                    addLikes()
+                                    changeImage()
+                                }}><img src={Like} width={25} height={25}  id='imgClickAndChange'/></NavLink>
                             </div>
                         </div>
                         <div className={Styles.input}>

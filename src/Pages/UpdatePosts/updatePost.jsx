@@ -14,6 +14,8 @@ import { useParams } from 'react-router-dom';
 const UpdatePost = () => {
     const { t } = useTranslation();
     const {id} = useParams();
+    const [title, setTitle] = useState('heyeyeyey');
+    const [desc, setDesc] = useState();
 
     const formik = useFormik({
         initialValues: {
@@ -42,6 +44,7 @@ const UpdatePost = () => {
                         <FormControl>
                             <FormLabel>{t("create.title")}</FormLabel>
                             <Input type='text'
+                                defaultValue={title}
                                 placeholder={t("create.addtitle")}
                                 value={formik.values.title}
                                 name='title'

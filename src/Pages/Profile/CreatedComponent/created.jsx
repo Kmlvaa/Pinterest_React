@@ -33,6 +33,7 @@ const Created = () => {
                         <Pin url={x.image} pinSize={x.id}
                             key={x.id}
                             id={x.id}
+                            userId={x.userId}
                         />
                     )
                 })}

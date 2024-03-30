@@ -2,11 +2,12 @@ import React, { useEffect, useState } from 'react';
 import Styles from './index.module.scss'
 import user from '../../../Images/user.png'
 import logo from '../../../Images/logo-pinterest-gris.png'
-import { Link, Outlet } from 'react-router-dom';
+import { Link, NavLink, Outlet } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { useFormik } from 'formik';
 import { UserDetailsGet } from '../../../services/UserService'
 import { GetYourFollowers } from '../../../services/FollowerService';
+import { Nav } from 'react-bootstrap';
 
 const Index = () => {
     const { t } = useTranslation();
@@ -43,7 +44,7 @@ const Index = () => {
                         </div>
                     </div>
                     <div>{details.about}</div>
-                    <div>{follower.length} {t("profile.following")}</div>
+                    <div>{follower} {t("profile.following")}</div>
                     <div className={Styles.btn}>
                         <GreyButton text={t("profile.edit")} link="/settings/editProfile"></GreyButton>
                         <GreyButton text={t("profile.update")} link='/updatePosts'></GreyButton>
@@ -51,8 +52,20 @@ const Index = () => {
                 </div>
                 <div className={Styles.second_section}>
                     <div>
-                        <button><Link to='/profile/created'>{t("profile.created")}</Link></button>
-                        <button><Link to='/profile/saved'>{t("profile.saved")}</Link></button>
+                        <button><NavLink to='/profile/created' className={({ isActive }) => {
+                            return (
+                                (isActive
+                                    ? Styles.active
+                                    : '')
+                            )
+                        }}>{t("profile.created")}</NavLink></button>
+                        <button><NavLink to='/profile/saved' className={({ isActive }) => {
+                            return (
+                                (isActive
+                                    ? Styles.active
+                                    : '')
+                            )
+                        }}>{t("profile.saved")}</NavLink></button>
                     </div>
                 </div>
                 <div style={{ marginTop: 50 }}><Outlet /></div>

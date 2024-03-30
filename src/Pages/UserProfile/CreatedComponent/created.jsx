@@ -6,9 +6,8 @@ import Pin from '../../../Components/Pin/Pin';
 import { getUserPosts } from '../../../services/PostService';
 
 const Created = () => {
-    const { t } = useTranslation();
     const [posts, setPosts] = useState(null);
-    const {id} = useParams();
+    const { id } = useParams();
 
     const UserPosts = async () => {
         try {
@@ -26,9 +25,9 @@ const Created = () => {
     }, [])
     return (
         <>
-            {posts ? <div className={Styles.main}>
+            <div className={Styles.main}>
                 {posts?.map((x) => {
-                    return(
+                    return (
                         <Pin url={x.image} pinSize={x.id}
                             key={x.id}
                             id={x.id}
@@ -36,12 +35,6 @@ const Created = () => {
                     )
                 })}
             </div>
-                : <>
-                    <div className={Styles.context}>{t("profile.p1")}</div>
-                    <div className={Styles.btn}>
-                        <button><Link to='/create'>{t("profile.createPin")}</Link></button>
-                    </div>
-                </>}
         </>
     );
 }
