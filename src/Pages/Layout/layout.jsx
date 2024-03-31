@@ -7,11 +7,13 @@ import DropDown from '../../Components/SideModal/sideModal'
 import user from '../../Images/user.png'
 import { Message } from '@mui/icons-material';
 import { useTranslation } from 'react-i18next';
+import { GetUsers, SearchResult } from '../../services/UserService';
 
 const Home = () => {
     const { t } = useTranslation();
     const [open, setOpen] = useState(false);
     const [page, setPage] = useState(`${t("layout.home")}`);
+    const [users, setUsers] = useState([]);
 
     let menuRef = useRef();
     useEffect(() => {
@@ -25,12 +27,25 @@ const Home = () => {
         document.addEventListener('mousedown', handler);
     }, [open])
 
+    let cachedSearchValue;
+
+    async function renderSearchResult(searchValue) {
+        try {
+            let result = await SearchResult(searchValue);
+            setUsers(result.data);
+        }
+        catch (err) {
+            console.log(err);
+        }
+
+    }
+
     return (
         <>
             <div className={Styles.header}>
                 <div className={`${open ? Styles.activePage : Styles.inactivePage}`} ref={menuRef}>
                     <div className={Styles.menu}>
-                        <button className={Styles.resp_btn} onClick={() => { setPage(`${t("layout.home")}`)}}>
+                        <button className={Styles.resp_btn} onClick={() => { setPage(`${t("layout.home")}`) }}>
                             <NavLink to='/'>{t("layout.home")}</NavLink>
                         </button>
                         <button className={Styles.resp_btn} onClick={() => { setPage(`${t("layout.create")}`) }}>
@@ -60,14 +75,33 @@ const Home = () => {
                         }} to='/create'>{t("layout.create")}</NavLink></button>
                     </div>
                 </div>
-                <div className={Styles.input_field}>
-                    <span className={Styles.search_icon}><SearchIcon /></span>
-                    <input placeholder={t("layout.search")} className={Styles.input} />
+                <div className={Styles.input_container}>
+                    <div className={Styles.input_field}>
+                        <span className={Styles.search_icon}><SearchIcon /></span>
+                        <input placeholder={t("layout.search")} className={Styles.search_input} id='search_input'
+                            onKeyUp={(e) => {
+                                const value = e.target.value.trim();
+                                if (value.length < 3) {
+                                    cachedSearchValue = null
+                                    return
+                                }
+                                if (value == cachedSearchValue) return
+                                cachedSearchValue = value
+                                renderSearchResult(value)
+                            }} />
+                    </div>
+                    <div className={Styles.search_result} id='search_result'>
+                        <ul>
+                            {users?.map((data) => {
+                                <li key={data.id}>{data.username}</li>
+                            })}
+                        </ul>
+                    </div>
                 </div>
                 <div className={Styles.right_icons}>
                     <div className={Styles.icon}><Message /></div>
                     <div className={Styles.icon}><NavLink to='/profile/created'><img src={user} width={25} height={25} /></NavLink></div>
-                    <div className={Styles.dropdown}><DropDown/></div>
+                    <div className={Styles.dropdown}><DropDown /></div>
                 </div>
             </div>
             <Outlet />

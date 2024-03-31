@@ -17,3 +17,9 @@ export const UserDetailsPut = (data) => {
 export const OtherUserDetailsGet = (id) => {
     return httpClient.get(`getOtherUserDetails/${id}`)
 }
+export const GetUsers = () => {
+    return httpClient.get("getUsers");
+}
+export const SearchResult = (data) => {
+    return httpClient.get("searchUsers", data)
+}

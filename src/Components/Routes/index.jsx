@@ -24,7 +24,6 @@ import UserProfile from '../../Pages/UserProfile/Layout/index'
 import UserCreated from '../../Pages/UserProfile/CreatedComponent/created'
 import UserSaved from '../../Pages/UserProfile/SavedComponent/saved'
 import PrivateRoutes from "../../utils/PrivateRoutes";
-import EditPost from '../../Pages/UpdatePosts/updatePost';
 import UpdatePosts from '../../Pages/UpdatePosts/index'
 
 const Index = () => {
@@ -37,8 +36,6 @@ const Index = () => {
           <Route index element={<Home />} />
           <Route path="/create" element={<Create />} />
           <Route path="/postDetails/:id" element={<PostDetails />} />
-          <Route path="/editPost/:id" element={<EditPost />} />
-          <Route path="/deletePost/:id" element={<EditPost />} />
           <Route path="/updatePosts" element={<UpdatePosts />} />
           <Route path="/profile" element={<Profile />}>
             <Route path="/profile/created" element={<Created />} />
