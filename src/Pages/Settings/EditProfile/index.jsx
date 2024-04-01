@@ -8,7 +8,8 @@ import {
     FormControl,
     FormLabel,
     Textarea,
-    Select
+    Select,
+    useToast
 } from '@chakra-ui/react'
 import { useTranslation } from 'react-i18next';
 import { useFormik } from 'formik';
@@ -16,14 +17,15 @@ import { UserDetailsPut, UserDetailsGet } from '../../../services/UserService';
 
 const Index = () => {
     const { t } = useTranslation();
-    const [detail, setDetail] = useState([]);
-    const [image, setImage] = useState(null);
-    const [fileName, setFileName] = useState("No selected file");
+    const [detail, setDetail] = useState(null);
+    const [error, setError] = useState(null);
+    const toast = useToast();
 
     const getDetails = async () => {
         try {
-            let resp = await UserDetailsGet();
+            const resp = await UserDetailsGet();
             setDetail(resp.data);
+            console.log(resp.data)
         }
         catch (error) {
             console.log(error);
@@ -34,6 +36,9 @@ const Index = () => {
         getDetails();
     }, [])
 
+    let src = detail?.profileUrl ? "http://localhost:5174/Images/" + detail?.profileUrl : user;
+    const [image, setImage] = useState(src);
+
     const formik = useFormik({
         initialValues: {
             firstname: '',
@@ -41,10 +46,28 @@ const Index = () => {
             username: '',
             gender: '',
             about: '',
-            image: ''
+            image: null
         },
         onSubmit: (values) => {
             try {
+                if (values.firstname == '') {
+                    values.firstname = detail?.firstname
+                }
+                if (values.lastname == '') {
+                    values.lastname = detail?.lastname
+                }
+                if (values.username == '') {
+                    values.username = detail?.username
+                }
+                if (values.about == '') {
+                    values.about = detail?.about
+                }
+                if (values.gender == '') {
+                    values.gender = detail?.gender
+                }
+                if (values.image == '') {
+                    values.image = detail?.image
+                }
                 var formdata = new FormData();
                 formdata.append("firstname", values.firstname);
                 formdata.append("lastname", values.lastname);
@@ -52,11 +75,21 @@ const Index = () => {
                 formdata.append("gender", values.gender);
                 formdata.append("about", values.about);
                 formdata.append("image", values.image);
+
                 UserDetailsPut(formdata);
+                setImage(values.image);
                 console.log(values)
+
+                toast({
+                    title: "Profile updated.",
+                    status: "success",
+                    duration: 2000,
+                    isClosable: true,
+                });
             }
             catch (err) {
-                console.log(err.response.data);
+                console.log(err.message);
+                setError(err.response.data);
             }
         },
     })
@@ -70,7 +103,7 @@ const Index = () => {
                 <p>{t("settings.editProfile.photo")}</p>
                 <div>
                     <div>
-                        {image ? <img src={image} width={70} height={70} /> : <img src={user} width={70} height={70} />}
+                        <img src={image} width={70} height={70} />
                     </div>
                     <Button className={Styles.modal_input} onClick={() => { document.querySelector('.input_field').click() }}>
                         <Input type='file' className='input_field' hidden
@@ -78,7 +111,10 @@ const Index = () => {
                             name='image'
                             onBlur={formik.handleBlur}
                             onChange={(e) => {
-                                formik.setFieldValue('image', e.target.files[0])
+                                formik.setFieldValue('image', e.target.files[0]);
+                                if (e.target.files) {
+                                    setImage(URL.createObjectURL(e.target.files[0]))
+                                }
                             }}
                         />
                         <p>{t("settings.editProfile.change")}</p>
@@ -93,7 +129,6 @@ const Index = () => {
                             <Input type='text'
                                 defaultValue={detail?.firstname}
                                 name='firstname'
-                                value={formik.values.firstname}
                                 onChange={formik.handleChange}
                                 onBlur={formik.handleBlur} />
                         </div>
@@ -102,7 +137,6 @@ const Index = () => {
                             <Input type='text'
                                 defaultValue={detail?.lastname}
                                 name='lastname'
-                                value={formik.values.lastname}
                                 onChange={formik.handleChange}
                                 onBlur={formik.handleBlur} />
                         </div>
@@ -111,7 +145,6 @@ const Index = () => {
                     <Textarea placeholder={t("settings.editProfile.addAbout")}
                         defaultValue={detail?.about}
                         name='about'
-                        value={formik.values.about}
                         onChange={formik.handleChange}
                         onBlur={formik.handleBlur}
                     />
@@ -119,8 +152,6 @@ const Index = () => {
                     <Select placeholder='Add your pronouns'
                         onChange={formik.handleChange}
                         name="gender"
-                        value={formik.values.gender}
-                        defaultValue={detail.gender}
                     >
                         <option value='male'>{t("settings.editProfile.male")}</option>
                         <option value='female'>{t("settings.editProfile.female")}</option>
@@ -130,10 +161,10 @@ const Index = () => {
                     <Input type='text'
                         name='username'
                         defaultValue={detail?.username}
-                        value={formik.values.username}
                         onChange={formik.handleChange}
                         onBlur={formik.handleBlur} />
                 </FormControl>
+                {error ? <div style={{ color: "red" }}>{error}</div> : <></>}
                 <Button className={Styles.saveBtn} onClick={formik.handleSubmit}>{t("settings.editProfile.save")}</Button>
             </div>
         </div>

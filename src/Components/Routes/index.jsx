@@ -3,7 +3,7 @@ import Register from '../Register/register'
 import Login from "../Login/login";
 import Layout from "../../Pages/Layout/layout";
 import Home from '../../Pages/Home/home'
-import Create from '../../Pages/Create/index'
+import Create from '../../Pages/Create/create'
 import Profile from '../../Pages/Profile/Layout/index'
 import AddAccount from '../../Pages/AddAccount/index'
 import SettingLayout from '../../Pages/Settings/Layout/layout'

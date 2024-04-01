@@ -5,9 +5,9 @@ import { useTranslation } from 'react-i18next';
 
 const Pin = (props) => {
     const {t} = useTranslation(); 
-    let userId = localStorage.getItem("id");
+    console.log(props.url)
     return (
-        <div style={{ gridRowEnd: props.pinSize >= 2 && props.pinSize <= 3 || props.pinSize >= 6? 'span 26' : props.pinSize >= 4 || props.pinSize < 6 ? 'span 33' : 'span 45' }} className={`${Styles.pin} ${props.pinSize}`}>
+        <div style={{ gridRowEnd: props.pinSize >= 1002 && props.pinSize <= 1003 || props.pinSize >= 1010? 'span 26' : props.pinSize >= 1015 || props.pinSize < 1016 ? 'span 33' : 'span 45' }} className={`${Styles.pin} ${props.pinSize}`}>
             <Link to={`/postDetails/${props.id}`}
                 id={props.id}
             >

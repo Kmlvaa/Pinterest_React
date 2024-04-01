@@ -9,7 +9,7 @@ export const UserDetailsPut = (data) => {
     return httpClient.put("putUserDetails",data, {
         headers: {
             Accept: "multipart/form-data",
-            "Content-Type": "application/json",
+            "Content-Type": "multipart/form-data",
             Authorization: `Bearer ${token}`
         }
     });

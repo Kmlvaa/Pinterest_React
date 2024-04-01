@@ -30,7 +30,7 @@ const Created = () => {
             {posts ? <div className={Styles.main}>
                 {posts?.map((x) => {
                     return(
-                        <Pin url={x.image} pinSize={x.id}
+                        <Pin url={"http://localhost:5174/Images/" + x.url} pinSize={x.id}
                             key={x.id}
                             id={x.id}
                             userId={x.userId}

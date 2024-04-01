@@ -17,7 +17,7 @@ export const addPost = (data) => {
     return httpClient.post("addPost",data, {
         headers: {
             Accept: "multipart/form-data",
-            "Content-Type": "application/json",
+            "Content-Type": "multipart/form-data",
             Authorization: `Bearer ${token}`
         }
     });

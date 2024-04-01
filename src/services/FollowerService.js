@@ -12,3 +12,6 @@ export const addFollower = (id) => {
 export const unFollow = (id) => {
     return httpClient.delete(`unFollow/${id}`);
 }
+export const isUserFollowed = (id) => {
+    return httpClient.get(`isUserFollowed/${id}`)
+}

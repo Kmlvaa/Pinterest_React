@@ -4,14 +4,16 @@ import App from './App';
 import { BrowserRouter } from "react-router-dom";
 import { ChakraProvider } from '@chakra-ui/react';
 import './i18n';
-import { Provider } from 'react-redux';
-import store from './Pages/redux/store';
+// import { Provider } from 'react-redux';
+// import store from './redux/store';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-    <ChakraProvider>
-      <BrowserRouter>
-        <App />
-      </BrowserRouter>
-    </ChakraProvider>
+    // <Provider store={store}>
+      <ChakraProvider>
+        <BrowserRouter>
+          <App />
+        </BrowserRouter>
+      </ChakraProvider>
+    // </Provider>
 );

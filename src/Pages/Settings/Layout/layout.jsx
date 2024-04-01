@@ -31,11 +31,6 @@ const Layout = () => {
             path: '/privacy/privacy',
             name: `${t("settings.layout.policy")}`
         },
-        {
-            id: 5,
-            path: '/privacy/help',
-            name: `${t("settings.layout.help")}`
-        },
     ]
     return (
         <>

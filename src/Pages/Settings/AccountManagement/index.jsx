@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Styles from './index.module.scss'
 import {
     FormControl,
@@ -7,14 +7,17 @@ import {
     Button,
     Input,
     InputGroup,
-    InputRightElement
+    InputRightElement,
+    useToast
 } from '@chakra-ui/react'
 import { useTranslation } from 'react-i18next';
 import { useFormik } from 'formik';
-import { accountDetailsPut } from '../../../services/AccountService'
+import { accountDetailsGet, accountDetailsPut } from '../../../services/AccountService'
 
 const Index = () => {
     const [show, setShow] = React.useState(false)
+    const toast = useToast();
+    const [details, setDetails] = useState(null);
     const handleClick = () => setShow(!show)
 
     const { t, i18n } = useTranslation();
@@ -30,13 +33,41 @@ const Index = () => {
         },
         onSubmit: (values) => {
             try {
-                accountDetailsPut(values)
+                if(values.email == ''){
+                    values.email = details?.email
+                }
+                if(values.username == ''){
+                    values.username = details?.username
+                }
+                if(values.birthdate== ''){
+                    values.birthdate = details?.birthdate
+                }
+                if(values.country == ''){
+                    values.country = details?.country
+                }
+                accountDetailsPut(values);
+                getDetails();
+                toast({
+                    title: "Account updated.",
+                    status: "success",
+                    duration: 2000,
+                    isClosable: true,
+                  });
             }
             catch (err) {
                 console.log(err.response.data);
             }
         }
     })
+    const getDetails = async () => {
+        let resp = await  accountDetailsGet();
+        let datas = await resp.data;
+        setDetails(datas);
+        console.log(datas);
+    }
+    useEffect(() => {
+        getDetails();
+    }, [])
 
     return (
         <div className={Styles.main}>
@@ -51,32 +82,19 @@ const Index = () => {
                         <FormLabel>{t("settings.management.email")}</FormLabel>
                         <Input type='text' id='email'
                             placeholder='Enter email'
-                            value={formik.values.email}
                             name='email'
                             onBlur={formik.handleBlur}
                             onChange={formik.handleChange}
+                            defaultValue={details?.email}
                         />
-                        <FormLabel>{t("settings.management.password")}</FormLabel>
+                        <FormLabel>{t("settings.management.username")}</FormLabel>
                         <Input type='text' id='username'
                             placeholder='Enter username'
-                            value={formik.values.username}
                             name='username'
                             onBlur={formik.handleBlur}
                             onChange={formik.handleChange}
+                            defaultValue={details?.username}
                         />
-                        {/* <InputGroup size='md'>
-                            <Input
-                                id='password'
-                                pr='4.5rem'
-                                type={show ? 'text' : 'password'}
-                                placeholder='Enter password'
-                            />
-                            <InputRightElement width='4.5rem'>
-                                <Button h='1.75rem' size='sm' onClick={handleClick}>
-                                    {show ? 'Hide' : 'Show'}
-                                </Button>
-                            </InputRightElement>
-                        </InputGroup> */}
                     </div>
                     <FormLabel>{t("settings.management.birthdate")}</FormLabel>
                     <Input
@@ -84,14 +102,14 @@ const Index = () => {
                         size="md"
                         type="datetime-local"
                         id='birthdate'
-                        value={formik.values.birthdate}
                         name='birthdate'
                         onBlur={formik.handleBlur}
                         onChange={formik.handleChange}
+                        defaultValue={details?.birthdate}
                     />
                     <FormLabel>{t("settings.management.country")}</FormLabel>
                     <Select
-                        value={formik.values.country}
+                        value={details?.country}
                         name='country'
                         onBlur={formik.handleBlur}
                         onChange={formik.handleChange}>

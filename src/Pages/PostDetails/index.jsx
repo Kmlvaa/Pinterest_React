@@ -8,11 +8,11 @@ import Kaonashi from '../../Images/Kaonashi8.jpg'
 import { ExternalLinkIcon, TriangleDownIcon } from '@chakra-ui/icons'
 import { useTranslation } from 'react-i18next';
 import { getPostDetails } from '../../services/PostService';
-import { NavLink, useParams } from 'react-router-dom';
+import { Link, NavLink, useParams } from 'react-router-dom';
 import { addComment, getComments } from '../../services/CommentService';
 import { useFormik } from 'formik';
-import { addLike, getLikes } from '../../services/LikeService';
-import { addFollower, getFollowers } from '../../services/FollowerService';
+import { addLike, getLikes, isPostLiked, unLike } from '../../services/LikeService';
+import { addFollower, getFollowers, isUserFollowed, unFollow } from '../../services/FollowerService';
 import { addSaved } from '../../services/SavedPosts';
 
 const Index = () => {
@@ -22,12 +22,15 @@ const Index = () => {
     const [commentCount, setCommentCount] = useState(0);
     const [like, setLike] = useState(0);
     const [follower, setFollower] = useState(null);
+    const [isFollowed, setIsFollowed] = useState(false);
+    const [isLiked, setIsLiked] = useState(false);
     const { id } = useParams();
 
     const postDetails = async () => {
         try {
             let resp = await getPostDetails(id);
             setDetails(resp.data);
+            console.log(resp.data)
 
             let comments = await getComments(id);
             setComments(comments.data);
@@ -38,11 +41,15 @@ const Index = () => {
 
             let followers = await getFollowers(id);
             setFollower(followers.data);
+
+            let followed = await isUserFollowed(id);
+            setIsFollowed(followed.data);
+
+            let liked = await isPostLiked(id);
+            setIsLiked(liked.data);
         }
         catch (err) {
             console.log(err);
-            setDetails([]);
-            setComments([]);
         }
     }
     useEffect(() => {
@@ -65,49 +72,84 @@ const Index = () => {
             }
         }
     })
-    const addLikes = async() => {
+    const addLikes = async () => {
         try {
             let newLike = await addLike(id);
             postDetails();
             console.log(newLike.data);
         }
         catch (err) {
-            console.log(err);
+            console.log("Can not like" + err);
         }
     }
-    const addSaveds = async() => {
-        try{
+    const addSaveds = async () => {
+        try {
             let saveds = await addSaved(id);
             console.log(saveds.data);
         }
-        catch(err){
-            console.log(err);
+        catch (err) {
+            console.log("Can not save" + err);
         }
     }
-    const addFollow = async() => {
-        try{
+    const addFollow = async () => {
+        try {
             let follow = await addFollower(id);
             console.log(follow.data)
             postDetails();
+            window.location.reload();
         }
-        catch(err){
-           console.log(err);
+        catch (err) {
+            console.log("Can not follow" + err);
+        }
+    }
+    const UnFollowUser = () => {
+        try {
+            unFollow(id);
+            postDetails();
+            window.location.reload();
+        }
+        catch (err) {
+            console.log("Can not unFollow this user" + err)
+        }
+    }
+    const unLikePost = () => {
+        try {
+            unLike(id);
+            postDetails();
+            window.location.reload();
+        }
+        catch (err) {
+            console.log("Can not unLike this post" + err);
         }
     }
     function changeImage() {
-        let isFirstImage = true;
-        if (isFirstImage){
-            document.getElementById("imgClickAndChange").src = Liked;
-            isFirstImage = !isFirstImage;
+        console.log(isLiked)
+        if (isLiked) {
+            document.getElementById("unLikeImage").style.display = "none";
         } else {
-            document.getElementById("imgClickAndChange").src = like;
+            document.getElementById("likeImage").style.display = "none";
         }
     }
+    function handleFollowed() {
+        if (isFollowed) {
+            document.getElementById('Followed').style.display = "none"
+            document.getElementById('UnFollowed').style.display = "block"
+        }
+        else {
+            document.getElementById('UnFollowed').style.display = "none"
+            document.getElementById('Followed').style.display = "block"
+        }
+    }
+    useEffect(() => {
+        handleFollowed();
+        // changeImage();
+    }, [])
+
 
     return (
         <>
             <div className={Styles.main}>
-                <div className={Styles.img_section}><img src={Kaonashi} /></div>
+                <div className={Styles.img_section}><img src={"http://localhost:5174/Images/" + details?.url} /></div>
                 <div className={Styles.content_section}>
                     <div className={Styles.section1}>
                         <div><ExternalLinkIcon style={{ cursor: 'pointer' }} /></div>
@@ -128,8 +170,19 @@ const Index = () => {
                                 <p>{follower} followers</p>
                             </div>
                         </div>
-                        <div><button type='text' key='follow'
-                        onClick={addFollow}>{t("pin.follow")}</button></div>
+                        <div>
+                            <button className={Styles.greyBtnComponent} id='Followed'>
+                                <Link onClick={() => {
+                                    addFollow();
+                                }}>Follow</Link>
+                            </button>
+                            <button className={Styles.greyBtnComponent} id='UnFollowed' style={{ display: "none" }}>
+                                <Link onClick={() => {
+                                    UnFollowUser();
+                                }}>UnFollow</Link>
+                            </button>
+                        </div>
+
                     </div>
                     <div className={Styles.section4}>
                         <p>{t("pin.comment")}  <span><TriangleDownIcon /></span></p>
@@ -153,10 +206,12 @@ const Index = () => {
                             <h1>{commentCount} Comments</h1>
                             <div className={Styles.likes_scale}>
                                 <p><span><img src={Heart} width={15} height={15} /></span> {like}</p>
-                                <NavLink onClick={() => {
-                                    addLikes()
-                                    changeImage()
-                                }}><img src={Like} width={25} height={25}  id='imgClickAndChange'/></NavLink>
+                                <NavLink onClick={() => { addLikes() }}>
+                                    <img src={Like} width={25} height={25} id='likeImage' />
+                                </NavLink>
+                                {/* <NavLink onClick={() => { unLikePost() }}>
+                                    <img src={Liked} width={25} height={25} id='unLikeImage' />
+                                </NavLink> */}
                             </div>
                         </div>
                         <div className={Styles.input}>
