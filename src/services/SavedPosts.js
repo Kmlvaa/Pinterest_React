@@ -6,6 +6,9 @@ export const getSaveds = (id) => {
 export const getYourSaveds = (id) => {
     return httpClient.get(`getYourSaveds/${id}`)
 }
+export const isPostSaved = (id) => {
+    return httpClient.get(`isPostSaved/${id}`);
+}
 export const addSaved = (id) => {
     return httpClient.post(`addSaved/${id}`);
 }

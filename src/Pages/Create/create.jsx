@@ -22,14 +22,15 @@ const Create = () => {
         initialValues: {
             image: null,
             title: "",
-            desc: "",
+            description: "",
         },
         onSubmit: async (values) => {
             try {
                 const formdata = new FormData()
                 formdata.append('image', values.image)
                 formdata.append('title', values.title)
-                formdata.append('desc', values.desc)
+                formdata.append('description', values.description)
+                console.log(formdata)
                 let add = await addPost(formdata);
                 console.log(add.data)
                 toast({
@@ -40,7 +41,7 @@ const Create = () => {
                 });
             }
             catch (error) {
-                console.log(error);
+                console.log(error.response.data);
             }
         }
     })
@@ -90,11 +91,11 @@ const Create = () => {
                                 onBlur={formik.handleBlur}
                             /><br /><br />
                             <FormLabel>{t("create.desc")}</FormLabel>
-                            <Textarea
+                            <Textarea 
                                 placeholder={t("create.addDesc")}
-                                value={formik.values.desc}
-                                name='desc'
-                                id='desc'
+                                value={formik.values.description}
+                                name='description'
+                                id='description'
                                 onChange={formik.handleChange}
                                 onBlur={formik.handleBlur}
                             />

@@ -7,13 +7,15 @@ import DropDown from '../../Components/SideModal/sideModal'
 import user from '../../Images/user.png'
 import { Message } from '@mui/icons-material';
 import { useTranslation } from 'react-i18next';
-import { GetUsers, SearchResult } from '../../services/UserService';
+import { GetUsers, SearchResult, UserDetailsGet } from '../../services/UserService';
 
 const Home = () => {
     const { t } = useTranslation();
     const [open, setOpen] = useState(false);
     const [page, setPage] = useState(`${t("layout.home")}`);
     const [users, setUsers] = useState([]);
+    const [details, setDetails] = useState([]);
+    const [image, setImage] = useState(null);
 
     let menuRef = useRef();
     useEffect(() => {
@@ -26,6 +28,21 @@ const Home = () => {
         }
         document.addEventListener('mousedown', handler);
     }, [open])
+
+    const getProfileDetails = async () => {
+        try {
+            let detail = await UserDetailsGet();
+            setDetails(detail.data);
+            setImage(detail.data.profileUrl)
+        }
+        catch (error) {
+            console.log(error.response.data);
+            setDetails([]);
+        }
+    }
+    useEffect(() => {
+        getProfileDetails();
+    }, [])
 
     let cachedSearchValue;
 
@@ -100,7 +117,11 @@ const Home = () => {
                 </div>
                 <div className={Styles.right_icons}>
                     <div className={Styles.icon}><Message /></div>
-                    <div className={Styles.icon}><NavLink to='/profile/created'><img src={user} width={25} height={25} /></NavLink></div>
+                    <div className={Styles.icon}>
+                        <NavLink to='/profile/created'>
+                            {image != "user.jpg" ? <img src={"http://localhost:5174/Images/" + details?.profileUrl} />
+                                : <img src={user} width={120} height={120} />}
+                        </NavLink></div>
                     <div className={Styles.dropdown}><DropDown /></div>
                 </div>
             </div>

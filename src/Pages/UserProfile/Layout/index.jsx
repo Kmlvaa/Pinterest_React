@@ -23,15 +23,15 @@ const Index = () => {
             setDetails(detail.data);
             setImage(detail.data.profileUrl)
 
-            // let followed = await isUserFollowed(id);
-            // setIsFollowed(followed.data);
-            // console.log(followed.data)
+            let followed = await isUserFollowed(id);
+            setIsFollowed(followed.data);
+            console.log("user followed? " + followed.data)
 
             let followers = await getFollowers(id);
             setFollower(followers.data);
         }
         catch (error) {
-            console.log(error);
+            console.log(error.response.data);
             setDetails([]);
         }
     }
@@ -39,70 +39,56 @@ const Index = () => {
         getProfileDetails();
     }, [])
 
-    const addFollow = () => {
+    const addFollow = async () => {
         try {
-            addFollower(id);
+            let follow = await addFollower(id);
+            console.log(follow.data)
             getProfileDetails();
         }
         catch (err) {
-            console.log(err)
+            console.log(err.response.data);
         }
     }
     const UnFollowUser = () => {
         try {
             unFollow(id);
             getProfileDetails();
+            setIsFollowed(false)
         }
         catch (err) {
-            console.log(err)
+            console.log(err.response.data)
         }
     }
-    function handleFollowed() {
-        console.log(isFollowed)
-        if (isFollowed) {
-            document.getElementById('Followed').style.display = "none"
-            document.getElementById('UnFollowed').style.display = "block"
-        }
-        else {
-            document.getElementById('UnFollowed').style.display = "none"
-            document.getElementById('Followed').style.display = "block"
-        }
-    }
-    useEffect(() => {
-        handleFollowed();
-    }, [isFollowed])
 
     return (
         <>
             <div className={Styles.main}>
                 <div className={Styles.first_section}>
                     <div className={Styles.profile_pic}>
-                        {image != "user.jpg" ? <img src={"http://localhost:5174/Images/" + details?.profileUrl} width={120} height={120}
-                            style={{ borderRadius: "50%" }} />
+                        {image != "user.jpg" ? <img src={"http://localhost:5174/Images/" + details?.profileUrl} />
                             : <img src={user} width={120} height={120} />}
                     </div>
                     <div className={Styles.PersonalInfo}>
                         <h1>{details.firstname} {details.lastname}</h1>
                         <div className={Styles.info}>
                             <img src={logo} width={17} height={17} />
-                            <p>{details.username} <span>.</span> {details?.gender != 'Gender' ? 
-                            details?.gender : <></>}</p>
+                            <p>{details.username} <span>.</span> {details?.gender != 'Gender' ?
+                                details?.gender : <></>}</p>
                         </div>
                     </div>
-                    <div>{details?.about != 'About' ? 
-                            details?.about : <></>}</div>
+                    <div>{details?.about != 'About' ?
+                        details?.about : <></>}</div>
                     <div>{follower} {t("profile.following")}</div>
                     <div className={Styles.btn}>
-                        <button className={Styles.greyBtnComponent} id='Followed'>
-                            <Link onClick={() => {
-                                addFollow();
-                            }}>Follow</Link>
-                        </button>
-                        <button className={Styles.greyBtnComponent} id='UnFollowed' style={{ display: "none" }}>
+                        {isFollowed ? <button className={Styles.greyBtnComponent} id='UnFollowed' style={{ width: "100px" }}>
                             <Link onClick={() => {
                                 UnFollowUser();
                             }}>UnFollow</Link>
-                        </button>
+                        </button> : <button className={Styles.greyBtnComponent} id='Followed'>
+                            <Link onClick={() => {
+                                addFollow();
+                            }}>Follow</Link>
+                        </button>}
                     </div>
                 </div>
                 <div className={Styles.second_section}>

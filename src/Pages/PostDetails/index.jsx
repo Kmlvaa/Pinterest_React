@@ -4,7 +4,6 @@ import User from '../../Images/user.png';
 import Heart from '../../Images/heart.png'
 import Like from '../../Images/like.png'
 import Liked from '../../Images/heart.png'
-import Kaonashi from '../../Images/Kaonashi8.jpg'
 import { ExternalLinkIcon, TriangleDownIcon } from '@chakra-ui/icons'
 import { useTranslation } from 'react-i18next';
 import { getPostDetails } from '../../services/PostService';
@@ -13,7 +12,9 @@ import { addComment, getComments } from '../../services/CommentService';
 import { useFormik } from 'formik';
 import { addLike, getLikes, isPostLiked, unLike } from '../../services/LikeService';
 import { addFollower, getFollowers, isUserFollowed, unFollow } from '../../services/FollowerService';
-import { addSaved } from '../../services/SavedPosts';
+import { addSaved, deleteSaved, isPostSaved } from '../../services/SavedPosts';
+import { OtherUserDetailsGet, UserDetailsGet } from '../../services/UserService';
+import { useToast } from '@chakra-ui/react';
 
 const Index = () => {
     const { t } = useTranslation();
@@ -21,16 +22,29 @@ const Index = () => {
     const [comments, setComments] = useState([]);
     const [commentCount, setCommentCount] = useState(0);
     const [like, setLike] = useState(0);
+    const [isLiked, setIsLiked] = useState(false);
     const [follower, setFollower] = useState(null);
     const [isFollowed, setIsFollowed] = useState(false);
-    const [isLiked, setIsLiked] = useState(false);
+    const [userDetails, setUserDetails] = useState([]);
+    const [myDetails, setMyDetails] = useState([]);
+    const [userImage, setUserImage] = useState(null);
+    const [myImage, setMyImage] = useState(null);
+    const [isSaved, setIsSaved] = useState(null);
+    const toast = useToast();
     const { id } = useParams();
 
     const postDetails = async () => {
         try {
             let resp = await getPostDetails(id);
             setDetails(resp.data);
-            console.log(resp.data)
+
+            let details = await UserDetailsGet();
+            setMyDetails(details.data);
+            setMyImage(details.data.profileUrl);
+
+            let other = await OtherUserDetailsGet(id);
+            setUserDetails(other.data);
+            setUserImage(other.data.profileUrl);
 
             let comments = await getComments(id);
             setComments(comments.data);
@@ -47,9 +61,12 @@ const Index = () => {
 
             let liked = await isPostLiked(id);
             setIsLiked(liked.data);
+
+            let saved = await isPostSaved(id);
+            setIsSaved(saved.data);
         }
         catch (err) {
-            console.log(err);
+            console.log(err.response.data);
         }
     }
     useEffect(() => {
@@ -79,16 +96,33 @@ const Index = () => {
             console.log(newLike.data);
         }
         catch (err) {
-            console.log("Can not like" + err);
+            console.log(err.response.data);
         }
     }
     const addSaveds = async () => {
         try {
             let saveds = await addSaved(id);
+            postDetails();
             console.log(saveds.data);
+            toast({
+                title: "Post saved",
+                status: "success",
+                duration: 2000,
+                isClosable: true,
+            });
         }
         catch (err) {
-            console.log("Can not save" + err);
+            console.log(err.response.data);
+        }
+    }
+    const UnSave = () => {
+        try {
+            deleteSaved(id);
+            postDetails();
+            setIsSaved(false)
+        }
+        catch (err) {
+            console.log(err.response.data)
         }
     }
     const addFollow = async () => {
@@ -96,54 +130,31 @@ const Index = () => {
             let follow = await addFollower(id);
             console.log(follow.data)
             postDetails();
-            window.location.reload();
         }
         catch (err) {
-            console.log("Can not follow" + err);
+            console.log(err.response.data);
         }
     }
     const UnFollowUser = () => {
         try {
             unFollow(id);
             postDetails();
-            window.location.reload();
+            setIsFollowed(false)
         }
         catch (err) {
-            console.log("Can not unFollow this user" + err)
+            console.log(err.response.data)
         }
     }
     const unLikePost = () => {
         try {
             unLike(id);
             postDetails();
-            window.location.reload();
+            setIsLiked(false)
         }
         catch (err) {
-            console.log("Can not unLike this post" + err);
+            console.log(err.response.data);
         }
     }
-    function changeImage() {
-        console.log(isLiked)
-        if (isLiked) {
-            document.getElementById("unLikeImage").style.display = "none";
-        } else {
-            document.getElementById("likeImage").style.display = "none";
-        }
-    }
-    function handleFollowed() {
-        if (isFollowed) {
-            document.getElementById('Followed').style.display = "none"
-            document.getElementById('UnFollowed').style.display = "block"
-        }
-        else {
-            document.getElementById('UnFollowed').style.display = "none"
-            document.getElementById('Followed').style.display = "block"
-        }
-    }
-    useEffect(() => {
-        handleFollowed();
-        // changeImage();
-    }, [])
 
 
     return (
@@ -153,7 +164,8 @@ const Index = () => {
                 <div className={Styles.content_section}>
                     <div className={Styles.section1}>
                         <div><ExternalLinkIcon style={{ cursor: 'pointer' }} /></div>
-                        <button onClick={addSaveds}>{t("pin.save")}</button>
+                        {isSaved ? <button onClick={() => {UnSave()}} >{t("pin.unsave")}</button>
+                        : <button onClick={() => {addSaveds()}}>{t("pin.save")}</button>}
                     </div>
                     <div className={Styles.section2}>
                         <h1>{details.title}</h1>
@@ -164,23 +176,22 @@ const Index = () => {
                     </div>
                     <div className={Styles.section3}>
                         <div className={Styles.profile}>
-                            <img src={User} width={50} height={50} />
+                            <div className={Styles.input_img}><img src={"http://localhost:5174/Images/" + userDetails?.profileUrl}/></div>
                             <div>
                                 <h3><NavLink to={`/userProfile/${id}/created`}>{details.user}</NavLink></h3>
                                 <p>{follower} followers</p>
                             </div>
                         </div>
                         <div>
-                            <button className={Styles.greyBtnComponent} id='Followed'>
-                                <Link onClick={() => {
-                                    addFollow();
-                                }}>Follow</Link>
-                            </button>
-                            <button className={Styles.greyBtnComponent} id='UnFollowed' style={{ display: "none" }}>
+                            {isFollowed ? <button className={Styles.greyBtnComponent} id='UnFollowed' style={{ width: "100px" }}>
                                 <Link onClick={() => {
                                     UnFollowUser();
                                 }}>UnFollow</Link>
-                            </button>
+                            </button> : <button className={Styles.greyBtnComponent} id='Followed'>
+                                <Link onClick={() => {
+                                    addFollow();
+                                }}>Follow</Link>
+                            </button>}
                         </div>
 
                     </div>
@@ -189,7 +200,10 @@ const Index = () => {
                         {comments?.map((comment) => {
                             return (
                                 <div className={Styles.commentSec}>
-                                    <div><img src={User} width={30} height={30} /></div>
+                                    <div className={Styles.input_img} style={{width: "35px", height: "35px"}}>
+                                        {userImage != "user.jpg" || myImage != "user.jpg" ? <img src={"http://localhost:5174/Images/" + comment.url} />
+                                        : <img src={User}/>}
+                                    </div>
                                     <div>
                                         <div className={Styles.comment_about}>
                                             <p>{comment.username}</p>
@@ -206,16 +220,18 @@ const Index = () => {
                             <h1>{commentCount} Comments</h1>
                             <div className={Styles.likes_scale}>
                                 <p><span><img src={Heart} width={15} height={15} /></span> {like}</p>
-                                <NavLink onClick={() => { addLikes() }}>
-                                    <img src={Like} width={25} height={25} id='likeImage' />
-                                </NavLink>
-                                {/* <NavLink onClick={() => { unLikePost() }}>
+                                {isLiked ? <NavLink onClick={() => { unLikePost() }}>
                                     <img src={Liked} width={25} height={25} id='unLikeImage' />
-                                </NavLink> */}
+                                </NavLink> : <NavLink onClick={() => { addLikes() }}>
+                                    <img src={Like} width={25} height={25} id='likeImage' />
+                                </NavLink>}
                             </div>
                         </div>
                         <div className={Styles.input}>
-                            <img src={User} width={50} height={50} />
+                            <div className={Styles.input_img}>
+                                {myImage != "user.jpg" ? <img src={"http://localhost:5174/Images/" + myDetails?.profileUrl}/>
+                                : <img src={User}/>}
+                            </div>
                             <input placeholder={t("pin.addComment")}
                                 onChange={formik.handleChange}
                                 onBlur={formik.handleBlur}

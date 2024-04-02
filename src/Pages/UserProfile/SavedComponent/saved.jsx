@@ -17,7 +17,7 @@ const Saved = () => {
             setSaved(resp.data);
         }
         catch (error) {
-            console.log(error);
+            console.log(error.response.data);
             setSaved(null)
         }
     }

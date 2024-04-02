@@ -40,11 +40,9 @@ const Index = () => {
                 <div className={Styles.first_section}>
                     <div className={Styles.profile_pic}>
                         {image != "user.jpg" ?
-                            <img src={"http://localhost:5174/Images/" + details?.profileUrl}
-                                width={100} height={100}
-                                style={{ borderRadius: "50%", objectFit: "contain" }} />
+                            <img src={"http://localhost:5174/Images/" + details?.profileUrl}/>
                             : <img src={user}
-                            width={100} height={100} />}
+                            width={120} height={120} />}
                     </div>
                     <div className={Styles.PersonalInfo}>
                         <h1>{details.firstname} {details.lastname}</h1>

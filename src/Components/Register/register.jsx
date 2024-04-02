@@ -33,11 +33,12 @@ const Register = () => {
             username: '',
             password: '',
         },
-        onSubmit: (values, actions) => {
+        onSubmit: async (values, actions) => {
             try {
-                registerPost(values);
+                let resp = await registerPost(values);
+                console.log(resp.data)
                 toast({
-                    title: "Account created!",
+                    title: "Account created succesfully!",
                     status: 'success',
                     duration: 3000,
                     isClosable: true
@@ -49,7 +50,6 @@ const Register = () => {
                 console.log(error.response.data);
                 setErr(error.response.data);
             }
-            console.log(err)
         },
         validationSchema: registerSchema
     })
@@ -132,6 +132,7 @@ const Register = () => {
                             </InputGroup>
                             {formik.errors.password && formik.touched.password && <p className={Styles.error_msg}>{formik.errors.password}</p>}
                         </FormControl>
+                        {err ? <div style={{color: "red"}}>{err}</div> : <></>}
                         <button className={Styles.btn} onClick={formik.handleSubmit} type='submit'>
                         {t("register.create")}
                         </button>

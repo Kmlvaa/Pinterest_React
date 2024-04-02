@@ -39,7 +39,7 @@ const Index = () => {
             {posts?.map((data) => {
                 return (
                     <div className={styles.post}>
-                        <Pin id={data.id} pinSize={data.id} url={data.url} />
+                        <Pin id={data.id} pinSize={data.id} url={"http://localhost:5174/Images/" + data.url} />
                         <div className={styles.buttons}>
                             {isEditOpen && (
                                 <UpdatePost
@@ -51,7 +51,7 @@ const Index = () => {
                             )}
                             {isDeleteOpen && (
                                 <DeletePost
-                                    id={data.id} 
+                                    id={data.id}
                                     getPosts={getUserPosts}
                                     isOpen={isDeleteOpen}
                                     onClose={onDeleteClose}

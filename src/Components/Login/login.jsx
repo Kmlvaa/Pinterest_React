@@ -19,7 +19,7 @@ import Background from '../../Images/background.png'
 const Login = () => {
     const { t } = useTranslation();
     const [show, setShow] = useState(false);
-    const [userId, setUserId] = useState(null)
+    const [err, setError] = useState(null)
     const handleClick = () => setShow(!show);
     const navigate = useNavigate();
 
@@ -33,12 +33,13 @@ const Login = () => {
                 const res = await loginPost(values);
                 localStorage.setItem('token', res.data.token);
                 localStorage.setItem('id', res.data.id);
-                setUserId(res.data.id);
+                setError(res.data);
                 actions.resetForm();
                 navigate('/profile/created');
             }
             catch (error) {
-                console.log(error);
+                console.log(error.response.data);
+                setError(error.response.data);
                 navigate('/login');
             }
         },
@@ -89,6 +90,7 @@ const Login = () => {
                             </InputGroup>
                             {formik.errors.password && formik.touched.password && <div className={Styles.error_msg}>{formik.errors.password}</div>}
                         </FormControl>
+                        {err ? <div style={{color: "red"}}>{err}</div> : <></>}
                         <button className={Styles.btn} onClick={formik.handleSubmit} type='submit'>
                             {t("login.login")}
                         </button>

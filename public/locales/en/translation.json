@@ -25,6 +25,7 @@
         "comment": "Comments",
         "follow": "Follow",
         "save": "Save",
+        "unsave": "Unsave",
         "addComment": "Add comment"
     },
     "create": {
