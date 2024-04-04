@@ -42,7 +42,7 @@ const Index = () => {
             setMyDetails(details.data);
             setMyImage(details.data.profileUrl);
 
-            let other = await OtherUserDetailsGet(id);
+            let other = await OtherUserDetailsGet(resp.data.userId);
             setUserDetails(other.data);
             setUserImage(other.data.profileUrl);
 
@@ -53,10 +53,10 @@ const Index = () => {
             let likes = await getLikes(id);
             setLike(likes.data.length);
 
-            let followers = await getFollowers(id);
+            let followers = await getFollowers(resp.data.userId);
             setFollower(followers.data);
 
-            let followed = await isUserFollowed(id);
+            let followed = await isUserFollowed(resp.data.userId);
             setIsFollowed(followed.data);
 
             let liked = await isPostLiked(id);
@@ -127,7 +127,7 @@ const Index = () => {
     }
     const addFollow = async () => {
         try {
-            let follow = await addFollower(id);
+            let follow = await addFollower(details?.userId);
             console.log(follow.data)
             postDetails();
         }
@@ -137,7 +137,7 @@ const Index = () => {
     }
     const UnFollowUser = () => {
         try {
-            unFollow(id);
+            unFollow(details?.userId);
             postDetails();
             setIsFollowed(false)
         }
@@ -178,7 +178,7 @@ const Index = () => {
                         <div className={Styles.profile}>
                             <div className={Styles.input_img}><img src={"http://localhost:5174/Images/" + userDetails?.profileUrl}/></div>
                             <div>
-                                <h3><NavLink to={`/userProfile/${id}/created`}>{details.user}</NavLink></h3>
+                                <h3><NavLink to={`/userProfile/${details?.userId}/created`}>{details.user}</NavLink></h3>
                                 <p>{follower} followers</p>
                             </div>
                         </div>
@@ -206,7 +206,7 @@ const Index = () => {
                                     </div>
                                     <div>
                                         <div className={Styles.comment_about}>
-                                            <p>{comment.username}</p>
+                                            <p><NavLink to={`/userProfile/${comment?.userId}/created`}>{comment.username}</NavLink></p>
                                             <p>{comment.comment}</p>
                                         </div>
                                         <div className={Styles.commentDate}>{comment.createdAt}</div>

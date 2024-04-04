@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import styles from './index.module.scss';
-import { deletePost, getPosts } from '../../services/PostService';
+import { deletePost, getUserPosts } from '../../services/PostService';
 import Pin from '../../Components/Pin/Pin';
 import DeletePost from '../../Components/DeletePostModal/deletePost';
 import UpdatePost from '../../Components/UpdatePostModal/updatePost';
 import { useDisclosure } from '@chakra-ui/react';
+import { loadLanguages } from 'i18next';
 
 const Index = () => {
     const [posts, setPosts] = useState(null);
@@ -19,9 +20,10 @@ const Index = () => {
         onClose: onDeleteClose,
     } = useDisclosure();
 
-    const getUserPosts = async () => {
+    const getPosts = async () => {
         try {
-            let res = await getPosts();
+            const userId = localStorage.getItem("id")
+            let res = await getUserPosts(userId);
             setPosts(res.data);
             console.log(res.data);
         }
@@ -31,7 +33,7 @@ const Index = () => {
         }
     }
     useEffect(() => {
-        getUserPosts();
+        getPosts();
     }, [])
 
     return (

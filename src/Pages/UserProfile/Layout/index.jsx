@@ -25,7 +25,6 @@ const Index = () => {
 
             let followed = await isUserFollowed(id);
             setIsFollowed(followed.data);
-            console.log("user followed? " + followed.data)
 
             let followers = await getFollowers(id);
             setFollower(followers.data);

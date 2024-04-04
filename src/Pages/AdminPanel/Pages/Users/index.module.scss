@@ -1,0 +1,101 @@
+.container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, 280px);
+    row-gap: 20px;
+    column-gap: 20px;
+    margin-top: 20px;
+    width: auto;
+
+    .userCard {
+        display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
+        align-items: center;
+        width: 280px;
+        height: 320px;
+        border-radius: 10px;
+        border: 1px solid rgb(0, 0, 0, 0.05);
+        box-shadow: 0 1px 7px -2px rgb(0, 0, 0, 0.05), 0 3px 7px 1px rgb(0, 0, 0, 0.05), 0 1px 4px 2px rgb(0, 0, 0, 0.05);
+
+        .userDetails {
+            display: flex;
+            flex-direction: column;
+            column-gap: 10px;
+            width: 280px;
+            margin: auto;
+            text-align: center;
+            align-items: center;
+            justify-content: center;
+            row-gap: 10px;
+
+
+            .profile_pic {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                height: 120px;
+                width: 120px;
+                border-radius: 50%;
+                position: relative;
+
+                img {
+                    width: 100%;
+                    height: 100%;
+                    border-radius: 50%;
+                }
+            }
+
+            .PersonalInfo {
+                font-size: 14px;
+
+                h1 {
+                    font-size: 32px;
+                    font-weight: 600;
+                }
+
+                .info {
+                    font-weight: 400;
+                    color: rgb(118, 118, 118);
+                    display: flex;
+                    flex-direction: row;
+                    align-items: center;
+                    justify-content: center;
+
+                    p {
+                        padding-left: 5px;
+                    }
+                }
+            }
+        }
+
+        .updateBtn {
+            display: flex;
+            flex-direction: row;
+            column-gap: 20px;
+            margin-bottom: 15px;
+
+            button {
+                padding: 8px;
+                border-radius: 10px;
+            }
+
+            .deleteUser {
+                background-color: #e95353;
+                color: white;
+            }
+
+            .deleteUser:hover {
+                background-color: #a94141;
+            }
+
+            .profileDetails {
+                background-color: #b56ac1;
+                color: white;
+            }
+
+            .profileDetails:hover {
+                background-color: #854e8e;
+            }
+        }
+    }
+}

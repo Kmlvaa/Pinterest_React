@@ -13,7 +13,6 @@ const Saved = () => {
     const getSavedPosts = async () => {
         try {
             let resp = await getSaveds(id);
-            console.log(resp.data);
             setSaved(resp.data);
         }
         catch (error) {

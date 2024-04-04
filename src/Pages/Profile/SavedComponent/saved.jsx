@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import Pin from '../../../Components/Pin/Pin';
 import user from '../../../Images/user.png'
-import { getYourSaveds } from '../../../services/SavedPosts';
+import { getSaveds, getYourSaveds } from '../../../services/SavedPosts';
 
 const Saved = () => {
     const { t } = useTranslation();
@@ -13,9 +13,8 @@ const Saved = () => {
     const getSavedPosts = async () => {
         try {
             let userId = localStorage.getItem("id");
-            let resp = await getYourSaveds(userId);
+            let resp = await getSaveds(userId);
             setSaved(resp.data);
-            console.log(resp.data);
         }
         catch (error) {
             console.log(error);

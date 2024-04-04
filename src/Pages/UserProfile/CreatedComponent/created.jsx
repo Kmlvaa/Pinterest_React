@@ -13,7 +13,6 @@ const Created = () => {
         try {
             let res = await getUserPosts(id);
             setPosts(res.data);
-            console.log(res.data);
         }
         catch (err) {
             console.log(err.response.data);

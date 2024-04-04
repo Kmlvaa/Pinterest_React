@@ -20,6 +20,9 @@ export const OtherUserDetailsGet = (id) => {
 export const GetUsers = () => {
     return httpClient.get("getUsers");
 }
+export const DeleteUsers = (id) => {
+    return httpClient.delete(`deleteUser/${id}`)
+}
 export const SearchResult = (data) => {
     return httpClient.get("searchUsers", data)
 }

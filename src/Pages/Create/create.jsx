@@ -30,8 +30,9 @@ const Create = () => {
                 formdata.append('image', values.image)
                 formdata.append('title', values.title)
                 formdata.append('description', values.description)
-                console.log(formdata)
+
                 let add = await addPost(formdata);
+
                 console.log(add.data)
                 toast({
                     title: "Post created.",
@@ -41,7 +42,7 @@ const Create = () => {
                 });
             }
             catch (error) {
-                console.log(error.response.data);
+                console.log(error.response);
             }
         }
     })

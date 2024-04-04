@@ -6,7 +6,7 @@ import { Link, NavLink, Outlet } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { useFormik } from 'formik';
 import { UserDetailsGet } from '../../../services/UserService'
-import { GetYourFollowers } from '../../../services/FollowerService';
+import { getFollowers } from '../../../services/FollowerService';
 import { Nav } from 'react-bootstrap';
 
 const Index = () => {
@@ -20,9 +20,9 @@ const Index = () => {
             let details = await UserDetailsGet();
             setDetails(details.data);
             setImage(details.data.profileUrl)
-            console.log(details.data)
 
-            let followers = await GetYourFollowers();
+            const userId = localStorage.getItem("id");
+            let followers = await getFollowers(userId);
             setFollower(followers.data);
         }
         catch (error) {

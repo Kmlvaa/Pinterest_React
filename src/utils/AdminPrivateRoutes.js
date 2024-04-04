@@ -2,9 +2,9 @@ import React from 'react';
 import { Navigate, Outlet } from 'react-router-dom';
 
 const PrivateRoutes = () => {
-    const token = localStorage.getItem('token');
+    const id = localStorage.getItem('id');
     return (
-       token ? <Outlet/> : <Navigate to='/login'/>
+       id == "5b539870-feb9-494a-bdd1-746832ebbea6" ? <Outlet/> : <Navigate to='/accessDenied'/>
     );
 }
 

@@ -43,7 +43,7 @@ const Index = () => {
                     <span className={Styles.bar}></span>
                     <span className={Styles.bar}></span>
                 </div>
-                <nav className={isOpen ? "nav_open" : ""}>
+                <nav id={Styles.nav} className={isOpen ? Styles.nav_open : ""}>
                     <ul>
                     {
                         menuItem.map((item, index) => (

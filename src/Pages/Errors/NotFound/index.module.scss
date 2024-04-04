@@ -1,0 +1,30 @@
+.container{
+    margin: auto;
+    display: flex;
+    width: 700px;
+    height: 500px;
+    flex-direction: column;
+    row-gap: 30px;
+    align-items: center;
+    justify-content: center;
+    margin-top: 50px;
+
+    .error_msg {
+        text-align: center;
+
+        h1 {
+            font-size: 30px;
+            font-weight: bold;
+            color: #3eb8eb;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+    }
+    button{
+        margin-top: 20px;
+        padding: 10px;
+        border: 1px solid #3eb8eb;
+        border-radius: 30px;
+        color: #3eb8eb;
+        width: 100px;
+    }
+}

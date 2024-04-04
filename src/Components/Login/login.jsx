@@ -35,7 +35,12 @@ const Login = () => {
                 localStorage.setItem('id', res.data.id);
                 setError(res.data);
                 actions.resetForm();
-                navigate('/profile/created');
+                if(localStorage.getItem("id") == "5b539870-feb9-494a-bdd1-746832ebbea6"){
+                    navigate('/admin');
+                }
+                else{
+                    navigate('/profile/created');
+                }
             }
             catch (error) {
                 console.log(error.response.data);

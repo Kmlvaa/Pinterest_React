@@ -24,13 +24,21 @@ import UserProfile from '../../Pages/UserProfile/Layout/index'
 import UserCreated from '../../Pages/UserProfile/CreatedComponent/created'
 import UserSaved from '../../Pages/UserProfile/SavedComponent/saved'
 import PrivateRoutes from "../../utils/PrivateRoutes";
+import AdminPrivateRoutes from '../../utils/AdminPrivateRoutes'
 import UpdatePosts from '../../Pages/UpdatePosts/index'
+import AdminLayout from '../../Pages/AdminPanel/Layout/layout'
+import Users from '../../Pages/AdminPanel/Pages/Users/index'
+import Posts from '../../Pages/AdminPanel/Pages/Posts/index'
+import NotFound from '../../Pages/Errors/NotFound/index'
+import AccessDenied from '../../Pages/Errors/AccessDenied/index'
 
 const Index = () => {
   return (
     <Routes>
       <Route path="/register" index element={<Register />} />
       <Route path="/login" element={<Login />} />
+      <Route path="/accessDenied" element={<AccessDenied />}/>
+      <Route path="*" element={<NotFound />}/>
       <Route element={<PrivateRoutes />}>
         <Route path="/" element={<Layout />}>
           <Route index element={<Home />} />
@@ -60,6 +68,12 @@ const Index = () => {
           <Route path="/privacy/advertising" element={<Advertising />} />
           <Route path="/privacy/developers" element={<Developers />} />
         </Route>
+      </Route>
+      <Route element={<AdminPrivateRoutes />}>
+          <Route path="/admin" element={<AdminLayout />}>
+            <Route index element={<Users />}/>
+            <Route path="/admin/posts" element={<Posts />}/>
+          </Route>
       </Route>
     </Routes>
   );

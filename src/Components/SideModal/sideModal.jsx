@@ -25,6 +25,7 @@ const SideModal = () => {
 
     const handleLogOut = () => {
         localStorage.removeItem("token");
+        localStorage.removeItem("id");
         window.location.reload();
         navigate('/login');
         setOpen(false);

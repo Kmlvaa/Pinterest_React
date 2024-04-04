@@ -7,9 +7,6 @@ export const getPostDetails = (id) => {
 export const getAllPosts = () => {
     return httpClient.get("getAllPosts");
 }
-export const getPosts = () => {
-    return httpClient.get("getPosts");
-}
 export const getUserPosts = (id) => {
     return httpClient.get(`getUserPosts/${id}`);
 }
