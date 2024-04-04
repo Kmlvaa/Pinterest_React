@@ -55,7 +55,6 @@ const Index = () => {
                     <div>{follower} {t("profile.following")}</div>
                     <div className={Styles.btn}>
                         <GreyButton text={t("profile.edit")} link="/settings/editProfile"></GreyButton>
-                        <GreyButton text={t("profile.update")} link='/updatePosts'></GreyButton>
                     </div>
                 </div>
                 <div className={Styles.second_section}>

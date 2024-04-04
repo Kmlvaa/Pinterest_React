@@ -34,7 +34,7 @@ const SideModal = () => {
     return (
         <>
             <div className='menu_container' ref={menuRef}>
-                <div className="menu_trigger" onClick={() => { setOpen(!open) }}>
+                <div className="menu_trigger" onClick={() => { setOpen(!open);}}>
                     <div><ArrowDropDown /></div>
                 </div>
                 <div className={`${open ? Styles.active : Styles.inactive}`}>

@@ -65,7 +65,7 @@ const Index = () => {
         </div >
             <div><Outlet /></div>
             <div className={Styles.footer}>
-                <div><h1>𝓟𝓲𝓷𝓽𝓮𝓻𝓮𝓼𝓽</h1></div>
+                <div><h1>𝓟𝓲𝓷𝓼𝓽𝓪</h1></div>
                 <div className={Styles.section}>
                     <div>
                         <h3>{t("policy.layout.footer.ul1.h3")}</h3>

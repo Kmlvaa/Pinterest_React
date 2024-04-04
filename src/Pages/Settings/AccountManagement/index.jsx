@@ -19,8 +19,8 @@ const Index = () => {
     const toast = useToast();
     const [details, setDetails] = useState(null);
     const handleClick = () => setShow(!show)
-
     const { t, i18n } = useTranslation();
+
     const clickHandler = async (lang) => {
         await i18n.changeLanguage(lang);
     }

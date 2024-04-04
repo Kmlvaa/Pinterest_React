@@ -25,7 +25,6 @@ import UserCreated from '../../Pages/UserProfile/CreatedComponent/created'
 import UserSaved from '../../Pages/UserProfile/SavedComponent/saved'
 import PrivateRoutes from "../../utils/PrivateRoutes";
 import AdminPrivateRoutes from '../../utils/AdminPrivateRoutes'
-import UpdatePosts from '../../Pages/UpdatePosts/index'
 import AdminLayout from '../../Pages/AdminPanel/Layout/layout'
 import Users from '../../Pages/AdminPanel/Pages/Users/index'
 import Posts from '../../Pages/AdminPanel/Pages/Posts/index'
@@ -44,7 +43,6 @@ const Index = () => {
           <Route index element={<Home />} />
           <Route path="/create" element={<Create />} />
           <Route path="/postDetails/:id" element={<PostDetails />} />
-          <Route path="/updatePosts" element={<UpdatePosts />} />
           <Route path="/profile" element={<Profile />}>
             <Route path="/profile/created" element={<Created />} />
             <Route path="/profile/saved" element={<Saved />} />

@@ -19,6 +19,7 @@ const Index = () => {
     const { t } = useTranslation();
     const [detail, setDetail] = useState(null);
     const [error, setError] = useState(null);
+    const [image, setImage] = useState(null);
     const toast = useToast();
 
     const getDetails = async () => {
@@ -36,9 +37,6 @@ const Index = () => {
         getDetails();
     }, [])
 
-    let src = detail?.profileUrl ? "http://localhost:5174/Images/" + detail?.profileUrl : user;
-    const [image, setImage] = useState(src);
-
     const formik = useFormik({
         initialValues: {
             firstname: '',
@@ -46,7 +44,7 @@ const Index = () => {
             username: '',
             gender: '',
             about: '',
-            image: null
+            profileUrl: null
         },
         onSubmit: (values) => {
             try {
@@ -65,20 +63,21 @@ const Index = () => {
                 if (values.gender == '') {
                     values.gender = detail?.gender
                 }
-                if (values.image == '') {
-                    values.image = detail?.image
+                if (values.profileUrl === null) {
+                    values.profileUrl = detail?.profileUrl
                 }
+                console.log(values)
                 var formdata = new FormData();
                 formdata.append("firstname", values.firstname);
                 formdata.append("lastname", values.lastname);
                 formdata.append("username", values.username);
                 formdata.append("gender", values.gender);
                 formdata.append("about", values.about);
-                formdata.append("image", values.image);
+                formdata.append("profileUrl", values.profileUrl);
+                console.log(formdata)
 
                 UserDetailsPut(formdata);
-                setImage(values.image);
-                console.log(values)
+                setImage(values.profileUrl);
 
                 toast({
                     title: "Profile updated.",
@@ -103,15 +102,15 @@ const Index = () => {
                 <p>{t("settings.editProfile.photo")}</p>
                 <div>
                     <div>
-                        <img src={image} width={70} height={70} />
+                        <img src={image ? image : "http://localhost:5174/Images/" + detail?.profileUrl} width={70} height={70} />
                     </div>
                     <Button className={Styles.modal_input} onClick={() => { document.querySelector('.input_field').click() }}>
                         <Input type='file' className='input_field' hidden
                             defaultValue={detail?.profileUrl}
-                            name='image'
+                            name='profileUrl'
                             onBlur={formik.handleBlur}
                             onChange={(e) => {
-                                formik.setFieldValue('image', e.target.files[0]);
+                                formik.setFieldValue('profileUrl', e.target.files[0]);
                                 if (e.target.files) {
                                     setImage(URL.createObjectURL(e.target.files[0]))
                                 }

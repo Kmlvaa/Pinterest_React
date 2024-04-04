@@ -10,7 +10,7 @@ import { useTranslation } from 'react-i18next';
 import { GetUsers, SearchResult, UserDetailsGet } from '../../services/UserService';
 
 const Home = () => {
-    const { t } = useTranslation();
+    const { t, i18n } = useTranslation();
     const [open, setOpen] = useState(false);
     const [page, setPage] = useState(`${t("layout.home")}`);
     const [users, setUsers] = useState([]);
@@ -54,7 +54,9 @@ const Home = () => {
         catch (err) {
             console.log(err);
         }
-
+    }
+    const clickHandler = async (lang) => {
+        await i18n.changeLanguage(lang);
     }
 
     return (
@@ -116,7 +118,11 @@ const Home = () => {
                     </div>
                 </div>
                 <div className={Styles.right_icons}>
-                    <div className={Styles.icon}><Message /></div>
+                    <div className={Styles.lang}>
+                        <button onClick={() => clickHandler('az')}>Az</button>
+                        <span> / </span>
+                        <button onClick={() => clickHandler('en')}>En</button>
+                    </div>
                     <div className={Styles.icon}>
                         <NavLink to='/profile/created'>
                             {image != "user.jpg" ? <img src={"http://localhost:5174/Images/" + details?.profileUrl} />

@@ -26,7 +26,10 @@
         "follow": "Follow",
         "save": "Save",
         "unsave": "Unsave",
-        "addComment": "Add comment"
+        "addComment": "Add comment",
+        "delete": "Delete",
+        "send": "Send",
+        "edit": "Edit"
     },
     "create": {
         "create": "Create pin",

@@ -52,7 +52,7 @@ const Sidebar = () => {
                         </Link>
                     </li>
                     <li id='posts' className={Styles.dropdownItem}>
-                        <Link to={'/admin/posts'}>
+                        <Link>
                             <img src={Posts} width={25} height={25} />
                             <span>Posts</span>
                         </Link>

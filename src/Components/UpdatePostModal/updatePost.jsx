@@ -1,66 +1,97 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
-    Modal,
-    ModalOverlay,
-    ModalContent,
-    ModalHeader,
-    ModalFooter,
-    ModalBody,
-    ModalCloseButton,
-    Text,
-    Button,
-    useToast
+  Modal,
+  ModalOverlay,
+  ModalContent,
+  ModalHeader,
+  ModalFooter,
+  ModalBody,
+  ModalCloseButton,
+  Text,
+  Button,
+  useToast,
+  FormControl,
+  FormLabel
 } from '@chakra-ui/react'
 import { useFormik } from 'formik';
-import { editPost } from '../../services/PostService';
+import { editPost, getPostDetails } from '../../services/PostService';
+import User from '../../Images/user.png'
+import { Input } from 'semantic-ui-react';
 
-export default function UpdatePost({id, getPosts, isOpen, onClose}){
-    const toast = useToast();
+export default function UpdatePost({ id, isOpen, onClose }) {
+  const toast = useToast();
+  const [details, setDetails] = useState([]);
 
-    const formik = useFormik({
-        onSubmit: ({resetForm}) => {
-          try {
-            //   editPost(id);
-              toast({
-                title: "Post deleted.",
-                status: "success",
-                duration: 2000,
-                isClosable: true,
-              });
-              getPosts();
-              resetForm();
-              
-              setTimeout(() => {
-                onClose();
-              }, 1000)
-          } catch (error) {
-            console.log(error);
-          }
-        }
-      })
+  const postDetails = async () => {
+    try {
+      let resp = getPostDetails(id);
+      setDetails(resp.data);
+    }
+    catch (err) {
+      console.log(err.response.data);
+    }
+  }
 
-    return (
-        <>
-            <Modal isOpen={isOpen} onClose={onClose}>
-                <ModalOverlay />
-                <ModalContent>
-                    <ModalHeader>Edit post</ModalHeader>
-                    <ModalCloseButton />
-                    <ModalBody>
-                        <Text fontWeight='bold' mb='1rem'>
-                            Are you sure?
-                        </Text>
-                    </ModalBody>
+  const formik = useFormik({
+    initialValues: {
+      url: null,
+      title: '',
+      description: ''
+    },
+    onSubmit: ({ values, resetForm }) => {
+      try {
+        editPost(id, values);
+        toast({
+          title: "Post deleted.",
+          status: "success",
+          duration: 2000,
+          isClosable: true,
+        });
+        postDetails();
+        resetForm();
 
-                    <ModalFooter>
-                        <Button onClick={formik.handleSubmit} variant='ghost'>yes</Button>
-                        <Button colorScheme='blue' mr={3} onClick={onClose}>
-                            Cancel
-                        </Button>
-                    </ModalFooter>
-                </ModalContent>
-            </Modal>
-        </>
-    )
+        setTimeout(() => {
+          onClose();
+        }, 1000)
+      } catch (error) {
+        console.log(error);
+      }
+    }
+  })
+  return (
+    <>
+
+      <Modal isOpen={isOpen} onClose={onClose}>
+        <ModalOverlay />
+        <ModalContent>
+          <ModalHeader>Create your account</ModalHeader>
+          <ModalCloseButton />
+          <ModalBody pb={6}>
+            <FormControl>
+              <img src={details?.url} width={100} height={100} />
+              <FormLabel>You can not change image</FormLabel>
+            </FormControl>
+
+            <FormControl>
+              <FormLabel>Title</FormLabel>
+              <Input placeholder='Add title' />
+            </FormControl>
+
+            <FormControl mt={4}>
+              <FormLabel>Description</FormLabel>
+              <Input placeholder='Add description' />
+            </FormControl>
+          </ModalBody>
+
+          <ModalFooter>
+            <Button colorScheme='blue' mr={3}>
+              Save
+            </Button>
+            <Button onClick={onClose}>Cancel</Button>
+          </ModalFooter>
+        </ModalContent>
+      </Modal>
+    </>
+  )
 }
 

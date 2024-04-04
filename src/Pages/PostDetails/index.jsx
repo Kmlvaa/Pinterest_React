@@ -4,17 +4,18 @@ import User from '../../Images/user.png';
 import Heart from '../../Images/heart.png'
 import Like from '../../Images/like.png'
 import Liked from '../../Images/heart.png'
+import EditImage from '../../Images/edit.jpg'
 import { ExternalLinkIcon, TriangleDownIcon } from '@chakra-ui/icons'
 import { useTranslation } from 'react-i18next';
-import { getPostDetails } from '../../services/PostService';
-import { Link, NavLink, useParams } from 'react-router-dom';
+import { deletePost, getPostDetails } from '../../services/PostService';
+import { Link, NavLink, useNavigate, useParams } from 'react-router-dom';
 import { addComment, getComments } from '../../services/CommentService';
 import { useFormik } from 'formik';
 import { addLike, getLikes, isPostLiked, unLike } from '../../services/LikeService';
 import { addFollower, getFollowers, isUserFollowed, unFollow } from '../../services/FollowerService';
 import { addSaved, deleteSaved, isPostSaved } from '../../services/SavedPosts';
 import { OtherUserDetailsGet, UserDetailsGet } from '../../services/UserService';
-import { useToast } from '@chakra-ui/react';
+import { useDisclosure, useToast } from '@chakra-ui/react';
 
 const Index = () => {
     const { t } = useTranslation();
@@ -30,8 +31,11 @@ const Index = () => {
     const [userImage, setUserImage] = useState(null);
     const [myImage, setMyImage] = useState(null);
     const [isSaved, setIsSaved] = useState(null);
+    const userID = localStorage.getItem("id");
     const toast = useToast();
     const { id } = useParams();
+    const navigate = useNavigate();
+    const { isOpen, onOpen, onClose } = useDisclosure()
 
     const postDetails = async () => {
         try {
@@ -155,6 +159,22 @@ const Index = () => {
             console.log(err.response.data);
         }
     }
+    const postDelete = async () => {
+        try {
+            deletePost(id);
+            window.location.reload();
+            navigate('/profile/created');
+            toast({
+                title: "Post deleted.",
+                status: "success",
+                duration: 2000,
+                isClosable: true,
+            });
+        }
+        catch (err) {
+            console.log(err.response.data);
+        }
+    }
 
 
     return (
@@ -163,9 +183,18 @@ const Index = () => {
                 <div className={Styles.img_section}><img src={"http://localhost:5174/Images/" + details?.url} /></div>
                 <div className={Styles.content_section}>
                     <div className={Styles.section1}>
-                        <div><ExternalLinkIcon style={{ cursor: 'pointer' }} /></div>
-                        {isSaved ? <button onClick={() => {UnSave()}} >{t("pin.unsave")}</button>
-                        : <button onClick={() => {addSaveds()}}>{t("pin.save")}</button>}
+                        <div className={Styles.update_sec}>
+                            {details?.userId == userID ? <img src={EditImage} width={20} height={20}
+                                onClick={() => {console.log('hi')}} /> : <></>}
+                            {details?.userId == userID ? <button style={{ marginRight: "10px" }}
+                                onClick={() => {
+                                    postDelete();
+                                }}>{t("pin.delete")}</button> : <></>}
+                        </div>
+                        <div>
+                            {isSaved ? <button onClick={() => { UnSave() }} >{t("pin.unsave")}</button>
+                                : <button onClick={() => { addSaveds() }}>{t("pin.save")}</button>}
+                        </div>
                     </div>
                     <div className={Styles.section2}>
                         <h1>{details.title}</h1>
@@ -176,37 +205,39 @@ const Index = () => {
                     </div>
                     <div className={Styles.section3}>
                         <div className={Styles.profile}>
-                            <div className={Styles.input_img}><img src={"http://localhost:5174/Images/" + userDetails?.profileUrl}/></div>
+                            <div className={Styles.input_img}><img src={"http://localhost:5174/Images/" + userDetails?.profileUrl} /></div>
                             <div>
-                                <h3><NavLink to={`/userProfile/${details?.userId}/created`}>{details.user}</NavLink></h3>
+                                <h3><NavLink to={details?.userId != userID ? `/userProfile/${details?.userId}/created` 
+                                            : `/profile/created`}>{details.user}</NavLink></h3>
                                 <p>{follower} followers</p>
                             </div>
                         </div>
                         <div>
-                            {isFollowed ? <button className={Styles.greyBtnComponent} id='UnFollowed' style={{ width: "100px" }}>
-                                <Link onClick={() => {
-                                    UnFollowUser();
-                                }}>UnFollow</Link>
-                            </button> : <button className={Styles.greyBtnComponent} id='Followed'>
-                                <Link onClick={() => {
-                                    addFollow();
-                                }}>Follow</Link>
-                            </button>}
+                            {details?.userId != userID ? <>
+                                {isFollowed ? <button className={Styles.greyBtnComponent} id='UnFollowed' style={{ width: "100px" }}>
+                                    <Link onClick={() => {
+                                        UnFollowUser();
+                                    }}>UnFollow</Link>
+                                </button> : <button className={Styles.greyBtnComponent} id='Followed'>
+                                    <Link onClick={() => {
+                                        addFollow();
+                                    }}>Follow</Link>
+                                </button>}</> : <></>}
                         </div>
-
                     </div>
                     <div className={Styles.section4}>
                         <p>{t("pin.comment")}  <span><TriangleDownIcon /></span></p>
                         {comments?.map((comment) => {
                             return (
                                 <div className={Styles.commentSec}>
-                                    <div className={Styles.input_img} style={{width: "35px", height: "35px"}}>
+                                    <div className={Styles.input_img} style={{ width: "35px", height: "35px" }}>
                                         {userImage != "user.jpg" || myImage != "user.jpg" ? <img src={"http://localhost:5174/Images/" + comment.url} />
-                                        : <img src={User}/>}
+                                            : <img src={User} />}
                                     </div>
                                     <div>
                                         <div className={Styles.comment_about}>
-                                            <p><NavLink to={`/userProfile/${comment?.userId}/created`}>{comment.username}</NavLink></p>
+                                            <p><NavLink to={comment?.userId != userID ? `/userProfile/${comment?.userId}/created` 
+                                            : `/profile/created`}>{comment.username}</NavLink></p>
                                             <p>{comment.comment}</p>
                                         </div>
                                         <div className={Styles.commentDate}>{comment.createdAt}</div>
@@ -217,7 +248,7 @@ const Index = () => {
                     </div>
                     <div className={Styles.section5}>
                         <div className={Styles.likes_sec}>
-                            <h1>{commentCount} Comments</h1>
+                            <h1>{commentCount} {t("pin.comment")}</h1>
                             <div className={Styles.likes_scale}>
                                 <p><span><img src={Heart} width={15} height={15} /></span> {like}</p>
                                 {isLiked ? <NavLink onClick={() => { unLikePost() }}>
@@ -229,8 +260,8 @@ const Index = () => {
                         </div>
                         <div className={Styles.input}>
                             <div className={Styles.input_img}>
-                                {myImage != "user.jpg" ? <img src={"http://localhost:5174/Images/" + myDetails?.profileUrl}/>
-                                : <img src={User}/>}
+                                {myImage != "user.jpg" ? <img src={"http://localhost:5174/Images/" + myDetails?.profileUrl} />
+                                    : <img src={User} />}
                             </div>
                             <input placeholder={t("pin.addComment")}
                                 onChange={formik.handleChange}
@@ -238,7 +269,7 @@ const Index = () => {
                                 name='description'
                                 id='comment'
                                 value={formik.values.description} />
-                            <button onClick={formik.handleSubmit}>Send</button>
+                            <button onClick={formik.handleSubmit}>{t("pin.send")}</button>
                         </div>
                     </div>
                 </div>

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import Styles from './index.module.scss'
 import user from '../../../Images/user.png'
 import logo from '../../../Images/logo-pinterest-gris.png'
-import { Link, NavLink, Outlet, useParams } from 'react-router-dom';
+import { Link, NavLink, Outlet, useNavigate, useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { useFormik } from 'formik';
 import { OtherUserDetailsGet } from '../../../services/UserService'
@@ -15,7 +15,9 @@ const Index = () => {
     const [follower, setFollower] = useState(null);
     const [image, setImage] = useState(null);
     const [isFollowed, setIsFollowed] = useState(false);
+    const userID = localStorage.getItem("id");
     const { id } = useParams();
+    const navigator = useNavigate();
 
     const getProfileDetails = async () => {
         try {
@@ -79,7 +81,7 @@ const Index = () => {
                         details?.about : <></>}</div>
                     <div>{follower} {t("profile.following")}</div>
                     <div className={Styles.btn}>
-                        {isFollowed ? <button className={Styles.greyBtnComponent} id='UnFollowed' style={{ width: "100px" }}>
+                        {details?.userId != userID ? <>{isFollowed ? <button className={Styles.greyBtnComponent} id='UnFollowed' style={{ width: "100px" }}>
                             <Link onClick={() => {
                                 UnFollowUser();
                             }}>UnFollow</Link>
@@ -87,7 +89,7 @@ const Index = () => {
                             <Link onClick={() => {
                                 addFollow();
                             }}>Follow</Link>
-                        </button>}
+                        </button>}</> : <></>}
                     </div>
                 </div>
                 <div className={Styles.second_section}>

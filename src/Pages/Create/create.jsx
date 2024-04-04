@@ -20,16 +20,17 @@ const Create = () => {
 
     const formik = useFormik({
         initialValues: {
-            image: null,
+            url: null,
             title: "",
             description: "",
         },
         onSubmit: async (values) => {
             try {
                 const formdata = new FormData()
-                formdata.append('image', values.image)
+                formdata.append('url', values.url)
                 formdata.append('title', values.title)
                 formdata.append('description', values.description)
+                console.log(values)
 
                 let add = await addPost(formdata);
 
@@ -42,7 +43,7 @@ const Create = () => {
                 });
             }
             catch (error) {
-                console.log(error.response);
+                console.log(error);
             }
         }
     })
@@ -57,10 +58,10 @@ const Create = () => {
                     <div className={Styles.upload_main}>
                         <form onClick={() => { document.querySelector('.input-field').click() }}>
                             <input type='file' className='input-field' hidden
-                                name='image'
+                                name='url'
                                 id='image'
                                 onChange={(e) => {
-                                    formik.setFieldValue('image', e.target.files[0])
+                                    formik.setFieldValue('url', e.target.files[0])
                                     e.target.files[0] && setFileName(e.target.files[0].name)
                                     if (e.target.files) {
                                         setImage(URL.createObjectURL(e.target.files[0]))

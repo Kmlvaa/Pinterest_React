@@ -26,7 +26,10 @@
         "follow": "İzlə",
         "save": "Saxla",
         "unsave": "Unsave",
-        "addComment": "Şərh əlavə et"
+        "addComment": "Şərh əlavə et",
+        "delete": "Sil",
+        "send": "Göndər",
+        "edit": " Düzəliş et"
     },
     "create": {
         "create": "Pin yarat",
