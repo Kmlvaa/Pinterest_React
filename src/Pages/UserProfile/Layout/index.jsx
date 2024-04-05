@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Styles from './index.module.scss'
 import user from '../../../Images/user.png'
-import logo from '../../../Images/logo-pinterest-gris.png'
+import logo from '../../../Images/black_logo.png'
 import { Link, NavLink, Outlet, useNavigate, useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { useFormik } from 'formik';
@@ -66,19 +66,17 @@ const Index = () => {
             <div className={Styles.main}>
                 <div className={Styles.first_section}>
                     <div className={Styles.profile_pic}>
-                        {image != "user.jpg" ? <img src={"http://localhost:5174/Images/" + details?.profileUrl} />
-                            : <img src={user} width={120} height={120} />}
+                        <img src={"http://localhost:5174/Images/" + details?.profileUrl} />
                     </div>
                     <div className={Styles.PersonalInfo}>
-                        <h1>{details.firstname} {details.lastname}</h1>
                         <div className={Styles.info}>
-                            <img src={logo} width={17} height={17} />
-                            <p>{details.username} <span>.</span> {details?.gender != 'Gender' ?
-                                details?.gender : <></>}</p>
+                            <img src={logo} width={25} height={25} />
+                            <h1>{details.username}</h1>
                         </div>
+                        <p>{details.firstname} {details.lastname} / {details?.gender != 'Gender' ? details?.gender : <></>}</p>
+                        <div>{details?.about != 'About' ?
+                            details?.about : <></>}</div>
                     </div>
-                    <div>{details?.about != 'About' ?
-                        details?.about : <></>}</div>
                     <div>{follower} {t("profile.following")}</div>
                     <div className={Styles.btn}>
                         {details?.userId != userID ? <>{isFollowed ? <button className={Styles.greyBtnComponent} id='UnFollowed' style={{ width: "100px" }}>

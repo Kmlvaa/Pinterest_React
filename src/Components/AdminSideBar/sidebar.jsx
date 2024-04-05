@@ -11,7 +11,6 @@ import Posts from '../../Images/postIcon.png'
 const Sidebar = () => {
     const { t } = useTranslation();
     const navigate = useNavigate();
-    const [isActive, setIsActive] = useState(false);
 
     const handleLogOut = () => {
         localStorage.removeItem("token");
@@ -27,34 +26,34 @@ const Sidebar = () => {
                     <li className={Styles.dropdownItem}>
                         <Link to={'/login'}>
                             <img src={LoginImage} width={25} height={25} />
-                            <span>Login</span>
+                            <span>{t("admin.sidebar.login")}</span>
                         </Link>
                     </li>
                     <li className={Styles.dropdownItem}>
                         <Link to={'/register'}>
                             <img src={RegisterImage} width={25} height={25} />
-                            <span>Register</span>
+                            <span>{t("admin.sidebar.register")}</span>
                         </Link>
                     </li>
                     <li className={Styles.dropdownItem}>
                         <Link onClick={handleLogOut}>
                             <img src={LogOutImage} width={25} height={25} />
-                            <span>Logout</span>
+                            <span>{t("admin.sidebar.logout")}</span>
                         </Link>
                     </li>
                 </ul>
                 <p>{t("sideModal.moreOptions")}</p>
                 <ul>
-                    <li id='users' className={Styles.dropdownItem}>
+                    <li id={Styles.users} className={Styles.dropdownItem}>
                         <Link to={'/admin'}>
                             <img src={Users} width={25} height={25} />
-                            <span>Users</span>
+                            <span>{t("admin.sidebar.users")}</span>
                         </Link>
                     </li>
                     <li id='posts' className={Styles.dropdownItem}>
                         <Link>
                             <img src={Posts} width={25} height={25} />
-                            <span>Posts</span>
+                            <span>{t("admin.sidebar.posts")}</span>
                         </Link>
                     </li>
                 </ul>

@@ -4,15 +4,16 @@ import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 
 const Pin = (props) => {
-    const {t} = useTranslation();
+    const { t } = useTranslation();
     return (
-        <div style={{ gridRowEnd: props.pinSize >= 1002 && props.pinSize <= 1003 || props.pinSize >= 1010? 'span 26' : props.pinSize >= 1015 || props.pinSize < 1016 ? 'span 33' : 'span 45' }} className={`${Styles.pin} ${props.pinSize}`}>
-            <Link to={`/postDetails/${props.id}`}
-                id={props.id}
-            >
-                <img src={props.url} />
-                <button>{t("home.details")}</button>
-            </Link>
+        <div style={{ gridRowEnd: props.pinSize >= 1011 && props.pinSize <= 1013 || props.pinSize >= 1021 ? 'span 26' : props.pinSize >= 1014 && props.pinSize <= 1017 ? 'span 33' : 'span 45' }} className={`${Styles.pin} ${props.pinSize}`}>
+            <div>
+                <Link to={`/postDetails/${props.id}`}>
+                    <img src={props.url} />
+                    <button>{t("home.details")}</button>
+                </Link>
+            </div>
+            <div>{props.username}</div>
         </div>
     );
 }

@@ -145,7 +145,7 @@
             "p": "Şəxsi məlumatlarınıza və ya hesab tipinizə dəyişikliklər edin.",
             "account": "Sizin hesabınız",
             "email": "E-poçt - şəxsi",
-            "username": "Parol",
+            "username": "İstifadəçi adı",
             "birthdate": "Doğum tarixi",
             "country": "Ölkə/Region",
             "amerika": "Amerika",
@@ -398,6 +398,15 @@
         "notFound": {
             "header": "SƏHİFƏ TAPILMADI",
             "home": "Geri qayıt"
+        }
+    },
+    "admin": {
+        "sidebar": {
+            "login": "Giriş et",
+            "register": "Qeydiyyatdan keç",
+            "logout": "Çıxış et",
+            "users": "İstifadəçilər",
+            "posts": "Postlar"
         }
     }
 }

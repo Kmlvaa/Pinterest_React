@@ -398,5 +398,14 @@
             "header": "PAGE NOT FOUND",
             "home":"Go back"
         }
+    },
+    "admin": {
+        "sidebar": {
+            "login": "Login",
+            "register": "Register",
+            "logout": "logOut",
+            "users": "Users",
+            "posts": "Posts"
+        }
     }
 }

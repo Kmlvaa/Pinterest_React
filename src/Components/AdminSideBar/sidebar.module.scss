@@ -18,7 +18,7 @@
 }
 
 .dropdown_menu ul li:hover {
-    background-color: #d6c5e3;
+    background-color: #dfdfdf;
 }
 
 .dropdown_menu p {
@@ -31,7 +31,8 @@
     display: flex;
     margin: 10px auto;
     column-gap: 10px;
-    a{
+
+    a {
         display: flex;
         flex-direction: row;
         align-items: center;
@@ -39,17 +40,21 @@
     }
 }
 
+#users {
+    background-color: #989898;
+}
 
-@media (max-width: 700px) {
+
+@media (max-width: 730px) {
     .dropdown_menu {
         width: 100px;
 
         .dropdownItem {
-           a{
-            span{
-                display: none;
+            a {
+                span {
+                    display: none;
+                }
             }
-           }
         }
     }
 }

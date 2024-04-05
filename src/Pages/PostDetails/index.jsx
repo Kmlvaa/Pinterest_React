@@ -36,6 +36,8 @@ const Index = () => {
     const { id } = useParams();
     const navigate = useNavigate();
     const { isOpen, onOpen, onClose } = useDisclosure()
+    const adminId = "5b539870-feb9-494a-bdd1-746832ebbea6";
+    const userId = localStorage.getItem("id");
 
     const postDetails = async () => {
         try {
@@ -162,7 +164,6 @@ const Index = () => {
     const postDelete = async () => {
         try {
             deletePost(id);
-            window.location.reload();
             navigate('/profile/created');
             toast({
                 title: "Post deleted.",
@@ -185,7 +186,7 @@ const Index = () => {
                     <div className={Styles.section1}>
                         <div className={Styles.update_sec}>
                             {details?.userId == userID ? <img src={EditImage} width={20} height={20}
-                                onClick={() => {console.log('hi')}} /> : <></>}
+                                onClick={() => { console.log('hi') }} /> : <></>}
                             {details?.userId == userID ? <button style={{ marginRight: "10px" }}
                                 onClick={() => {
                                     postDelete();
@@ -207,9 +208,9 @@ const Index = () => {
                         <div className={Styles.profile}>
                             <div className={Styles.input_img}><img src={"http://localhost:5174/Images/" + userDetails?.profileUrl} /></div>
                             <div>
-                                <h3><NavLink to={details?.userId != userID ? `/userProfile/${details?.userId}/created` 
-                                            : `/profile/created`}>{details.user}</NavLink></h3>
-                                <p>{follower} followers</p>
+                                <h3><NavLink to={details?.userId != userID ? `/userProfile/${details?.userId}/created`
+                                    : `/profile/created`}>{details.user}</NavLink></h3>
+                                <p>{follower} {t("profile.following")}</p>
                             </div>
                         </div>
                         <div>
@@ -231,13 +232,12 @@ const Index = () => {
                             return (
                                 <div className={Styles.commentSec}>
                                     <div className={Styles.input_img} style={{ width: "35px", height: "35px" }}>
-                                        {userImage != "user.jpg" || myImage != "user.jpg" ? <img src={"http://localhost:5174/Images/" + comment.url} />
-                                            : <img src={User} />}
+                                        <img src={"http://localhost:5174/Images/" + comment.url} />
                                     </div>
                                     <div>
                                         <div className={Styles.comment_about}>
-                                            <p><NavLink to={comment?.userId != userID ? `/userProfile/${comment?.userId}/created` 
-                                            : `/profile/created`}>{comment.username}</NavLink></p>
+                                            <p><NavLink to={comment?.userId != userID ? `/userProfile/${comment?.userId}/created`
+                                                : `/profile/created`}>{comment.username}</NavLink></p>
                                             <p>{comment.comment}</p>
                                         </div>
                                         <div className={Styles.commentDate}>{comment.createdAt}</div>
@@ -260,8 +260,8 @@ const Index = () => {
                         </div>
                         <div className={Styles.input}>
                             <div className={Styles.input_img}>
-                                {myImage != "user.jpg" ? <img src={"http://localhost:5174/Images/" + myDetails?.profileUrl} />
-                                    : <img src={User} />}
+                                {userId != adminId ? <img src={"http://localhost:5174/Images/" + myDetails?.profileUrl} />
+                                : <img src={User} />}
                             </div>
                             <input placeholder={t("pin.addComment")}
                                 onChange={formik.handleChange}

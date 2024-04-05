@@ -4,9 +4,13 @@ import { DeleteUsers, GetUsers } from '../../../../services/UserService';
 import User from '../../../../Images/user.png'
 import { getFollowers } from '../../../../services/FollowerService';
 import { NavLink } from 'react-router-dom';
+import { useToast } from '@chakra-ui/react';
+import { useTranslation } from 'react-i18next';
 
 const Index = () => {
     const [details, setDetails] = useState([]);
+    const toast = useToast();
+    const { t } = useTranslation();
 
     const getDetails = async () => {
         let resp = await GetUsers();
@@ -19,8 +23,15 @@ const Index = () => {
 
     const handleUserDelete = async (id) => {
         try {
-            DeleteUsers(id);
+            const resp = await DeleteUsers(id);
+            console.log(resp.data);
             getDetails();
+            toast({
+                title: "User deleted",
+                status: "success",
+                duration: 2000,
+                isClosable: true,
+            });
         }
         catch (err) {
             console.log(err.response.data);
@@ -37,15 +48,16 @@ const Index = () => {
                                 {data.image != "user.jpg" ?
                                     <img src={"http://localhost:5174/Images/" + data.image} />
                                     : <img src={User}
-                                        width={120} height={120} />}
+                                        width={40} height={40} />}
                             </div>
                             <div className={Styles.PersonalInfo}>
-                                <h1>{data.firstname} {data.lastname}</h1>
+                                <h1>{data.userName}</h1>
                                 <div className={Styles.info}>
-                                    <p>{data.userName} <span>.</span> {data.gender}</p>
+                                    <p>{data.firstname} {data.lastname}
+                                        <div>{data.followerCount} {t("profile.following")}</div>
+                                    </p>
                                 </div>
                             </div>
-                            <div>{data.followerCount} following</div>
                         </div>
                         <div className={Styles.updateBtn}>
                             <button className={Styles.profileDetails}>

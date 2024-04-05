@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Styles from './index.module.scss';
 import {
     FormControl,
@@ -11,12 +11,14 @@ import { useTranslation } from 'react-i18next';
 import { useFormik } from 'formik';
 import { addPost } from '../../services/PostService';
 import { MdCloudUpload } from 'react-icons/md';
+import { useNavigate } from 'react-router-dom';
 
 const Create = () => {
     const { t } = useTranslation();
     const [image, setImage] = useState(null);
     const [fileName, setFileName] = useState("No selected file");
     const toast = useToast();
+    const navigate = useNavigate();
 
     const formik = useFormik({
         initialValues: {
@@ -33,6 +35,9 @@ const Create = () => {
                 console.log(values)
 
                 let add = await addPost(formdata);
+                setTimeout(() => {
+                    navigate('/profile/created');
+                },1000)
 
                 console.log(add.data)
                 toast({

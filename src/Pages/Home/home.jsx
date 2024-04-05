@@ -26,7 +26,7 @@ const Home = () => {
             <div className={Styles.main}>
                {posts?.map((data) => {
                     return(
-                        <Pin pinSize={data.id} url={"http://localhost:5174/Images/" + data.url} key={data.id} id={data.id}/>
+                        <Pin pinSize={data.id} url={"http://localhost:5174/Images/" + data.url} key={data.id} id={data.id} username={data.user}/>
                     )
                })}
             </div>

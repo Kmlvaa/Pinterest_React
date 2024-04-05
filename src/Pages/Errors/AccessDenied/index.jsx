@@ -1,6 +1,6 @@
 import React from 'react';
 import Styles from './index.module.scss'
-import err from '../../../Images/acess.png'
+import err from '../../../Images/denied.jpg'
 import { NavLink } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 

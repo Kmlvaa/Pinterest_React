@@ -54,22 +54,22 @@
         .PersonalInfo {
             font-size: 14px;
 
-            h1 {
-                font-size: 32px;
-                font-weight: 600;
-            }
-
             .info {
+                color: black;
                 font-weight: 400;
-                color: rgb(118, 118, 118);
                 display: flex;
                 flex-direction: row;
                 align-items: center;
                 justify-content: center;
 
-                p {
-                    padding-left: 5px;
+                h1 {
+                    font-size: 32px;
+                    font-weight: 600;
                 }
+            }
+
+            p {
+                color: rgb(118, 118, 118);
             }
         }
 

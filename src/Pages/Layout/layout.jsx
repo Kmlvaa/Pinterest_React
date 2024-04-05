@@ -15,7 +15,8 @@ const Home = () => {
     const [page, setPage] = useState(`${t("layout.home")}`);
     const [users, setUsers] = useState([]);
     const [details, setDetails] = useState([]);
-    const [image, setImage] = useState(null);
+    const adminId = "5b539870-feb9-494a-bdd1-746832ebbea6";
+    const userId = localStorage.getItem("id");
 
     let menuRef = useRef();
     useEffect(() => {
@@ -33,7 +34,6 @@ const Home = () => {
         try {
             let detail = await UserDetailsGet();
             setDetails(detail.data);
-            setImage(detail.data.profileUrl)
         }
         catch (error) {
             console.log(error.response.data);
@@ -125,8 +125,8 @@ const Home = () => {
                     </div>
                     <div className={Styles.icon}>
                         <NavLink to='/profile/created'>
-                            {image != "user.jpg" ? <img src={"http://localhost:5174/Images/" + details?.profileUrl} />
-                                : <img src={user} width={120} height={120} />}
+                            {userId != adminId ? <img src={"http://localhost:5174/Images/" + details?.profileUrl}/>
+                            : <img src={user}/>}
                         </NavLink></div>
                     <div className={Styles.dropdown}><DropDown /></div>
                 </div>

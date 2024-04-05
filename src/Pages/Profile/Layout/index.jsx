@@ -13,13 +13,13 @@ const Index = () => {
     const { t } = useTranslation();
     const [details, setDetails] = useState([]);
     const [follower, setFollower] = useState([]);
-    const [image, setImage] = useState(`http://localhost:5174/Images/${details?.profileUrl}`);
+    const adminId = "5b539870-feb9-494a-bdd1-746832ebbea6";
+    const userId = localStorage.getItem("id");
 
     const getProfileDetails = async () => {
         try {
             let details = await UserDetailsGet();
             setDetails(details.data);
-            setImage(details.data.profileUrl)
 
             const userId = localStorage.getItem("id");
             let followers = await getFollowers(userId);
@@ -39,43 +39,47 @@ const Index = () => {
             <div className={Styles.main}>
                 <div className={Styles.first_section}>
                     <div className={Styles.profile_pic}>
-                        {image != "user.jpg" ?
-                            <img src={"http://localhost:5174/Images/" + details?.profileUrl}/>
-                            : <img src={user}
-                            width={120} height={120} />}
+                        {userId == adminId ? <img src={user} />
+                            : <img src={"http://localhost:5174/Images/" + details?.profileUrl} />}
                     </div>
-                    <div className={Styles.PersonalInfo}>
-                        <h1>{details.firstname} {details.lastname}</h1>
-                        <div className={Styles.info}>
-                            <img src={logo} width={17} height={17} />
-                            <p>{details.username} <span>.</span> {details.gender}</p>
+                    {userId != adminId ?
+                        <>
+                            <div className={Styles.PersonalInfo}>
+                                <div className={Styles.info}>
+                                    <img src={logo} width={25} height={25} />
+                                    <h1>{details.username}</h1>
+                                </div>
+                                <p>{details.firstname} {details.lastname} / {details?.gender != 'Gender' ? details?.gender : <></>}</p>
+                                <div>{details?.about != 'About' ?
+                                    details?.about : <></>}</div>
+                            </div>
+                            <div>{follower} {t("profile.following")}</div>
+                            <div className={Styles.btn}>
+                                <GreyButton text={t("profile.edit")} link="/settings/editProfile"></GreyButton>
+                            </div></> : <div>ADMIN</div>}
+                </div>
+                {userId != adminId ?
+                    <>
+                        <div className={Styles.second_section}>
+                            <div>
+                                <button><NavLink to='/profile/created' className={({ isActive }) => {
+                                    return (
+                                        (isActive
+                                            ? Styles.active
+                                            : '')
+                                    )
+                                }}>{t("profile.created")}</NavLink></button>
+                                <button><NavLink to='/profile/saved' className={({ isActive }) => {
+                                    return (
+                                        (isActive
+                                            ? Styles.active
+                                            : '')
+                                    )
+                                }}>{t("profile.saved")}</NavLink></button>
+                            </div>
                         </div>
-                    </div>
-                    <div>{details.about}</div>
-                    <div>{follower} {t("profile.following")}</div>
-                    <div className={Styles.btn}>
-                        <GreyButton text={t("profile.edit")} link="/settings/editProfile"></GreyButton>
-                    </div>
-                </div>
-                <div className={Styles.second_section}>
-                    <div>
-                        <button><NavLink to='/profile/created' className={({ isActive }) => {
-                            return (
-                                (isActive
-                                    ? Styles.active
-                                    : '')
-                            )
-                        }}>{t("profile.created")}</NavLink></button>
-                        <button><NavLink to='/profile/saved' className={({ isActive }) => {
-                            return (
-                                (isActive
-                                    ? Styles.active
-                                    : '')
-                            )
-                        }}>{t("profile.saved")}</NavLink></button>
-                    </div>
-                </div>
-                <div style={{ marginTop: 50 }}><Outlet /></div>
+                        <div style={{ marginTop: 50 }}><Outlet /></div></>
+                    : <></>}
             </div>
         </>
     );

@@ -11,13 +11,14 @@ const Layout = () => {
             <div className={Styles.main_container}>
                 <div className={Styles.sidebar}><Sidebar /></div>
                 <div className={Styles.mainSection}>
-                    <div className={Styles.header}>
-                        <div className={Styles.left}>
-                            <input placeholder='type something'/>
-                        </div>
-                        <div className={Styles.right}>
-                            <div>modes</div>
-                            <img src={User} width={40} height={40}/>
+                    <div className={Styles.cover}>
+                        <div className={Styles.header}>
+                            <div className={Styles.left}>
+                                <input placeholder='Type something' />
+                            </div>
+                            <div className={Styles.right}>
+                                <img src={User} width={40} height={40} />
+                            </div>
                         </div>
                     </div>
                     <Outlet />

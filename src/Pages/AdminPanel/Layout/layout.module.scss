@@ -5,13 +5,24 @@
 
     .sidebar {
         height: 100vh;
+        width: 250px;
+        position: fixed;
     }
 
     .mainSection {
+        position: relative;
+        top: 0;
+        left: 270px;
         right: 20px;
-        width: 100%;
+        width: calc(100% - 270px);
         margin-right: 10px;
-        margin-top: 10px;
+
+        .cover{
+            position: fixed;
+            z-index: 100;
+            width: calc(100% - 270px);
+            background-color: white;
+        }
 
         .header {
             display: flex;
@@ -21,11 +32,14 @@
             border-radius: 10px;
             column-gap: 20px;
             padding: 10px 20px;
+            margin-top: 10px;
+            width: auto;
+            background-color: white;
             border: 1px solid rgb(0, 0, 0, 0.05);
             box-shadow: 0 1px 7px -2px rgb(0, 0, 0, 0.05), 0 3px 7px 1px rgb(0, 0, 0, 0.05), 0 1px 4px 2px rgb(0, 0, 0, 0.05);
 
             input {
-                width: auto;
+                width: 100%;
                 padding: 10px;
                 border-radius: 15px;
             }
@@ -36,6 +50,21 @@
                 column-gap: 15px;
                 align-items: center;
             }
+        }
+    }
+}
+
+@media (max-width: 730px) {
+    .sidebar {
+        width: 100px !important;
+    }
+
+    .mainSection {
+        left: 120px !important;
+        width: calc(100% - 120px) !important;
+
+        .cover {
+            width: calc(100% - 120px) !important;
         }
     }
 }
