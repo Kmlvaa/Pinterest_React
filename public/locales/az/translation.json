@@ -59,23 +59,23 @@
         "p1": "Problemsiz hesab keçidi üçün yeni hesab əlavə edin və ya mövcud hesabı birləşdirin",
         "card1Header": "Mövcud hesaba keçid et",
         "card2Header": "Yeni hesab yarat",
-        "card1p": "Problemsiz hesab keçidi üçün Pinterest hesablarını müxtəlif e-poçtlarla birləşdirin",
+        "card1p": "Problemsiz hesab keçidi üçün Pinsta hesablarını müxtəlif e-poçtlarla birləşdirin",
         "card2p": "Başqa bir e-poçt ünvanı ilə ayrı hesab yaradın",
         "card1btn": "Hesaba keçid et",
         "card2btn": "Hesab yarat"
     },
     "login": {
-        "header": "Pinterest'ə xoş gəldiniz",
+        "header": "Pinsta'ya xoş gəldiniz",
         "username": "İstifadəçi adı",
         "password": "Şifrə",
         "addUsername": "İstifadəçi adını daxil edin",
         "addPassword": "Şifrəni daxil edin",
         "login": "Daxil ol",
-        "p": "Hələ Pinterest-də deyilsən?",
+        "p": "Hələ Pinsta-da deyilsən?",
         "signUp": "Qeydiyyatdan keç"
     },
     "register": {
-        "header": "Pinterest'ə xoş gəldiniz",
+        "header": "Pinsta'ya xoş gəldiniz",
         "p1": "Sınamaq üçün yeni ideyalar tapın",
         "username": "İstifadəçi adı",
         "password": "Şifrə",

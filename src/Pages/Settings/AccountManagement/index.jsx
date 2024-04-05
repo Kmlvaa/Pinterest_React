@@ -20,10 +20,26 @@ const Index = () => {
     const [details, setDetails] = useState(null);
     const handleClick = () => setShow(!show)
     const { t, i18n } = useTranslation();
+    const adminId = "5b539870-feb9-494a-bdd1-746832ebbea6";
+    const userId = localStorage.getItem("id");
 
     const clickHandler = async (lang) => {
         await i18n.changeLanguage(lang);
     }
+    const getDetails = async () => {
+        try {
+            let resp = await accountDetailsGet();
+            setDetails(resp.data);
+            console.log(resp.data);
+        }
+        catch (err) {
+            console.log(err.response.data);
+        }
+    }
+    useEffect(() => {
+        getDetails();
+    }, [])
+
     const formik = useFormik({
         initialValues: {
             email: '',
@@ -33,16 +49,16 @@ const Index = () => {
         },
         onSubmit: (values) => {
             try {
-                if(values.email == ''){
+                if (values.email == '') {
                     values.email = details?.email
                 }
-                if(values.username == ''){
+                if (values.username == '') {
                     values.username = details?.username
                 }
-                if(values.birthdate== ''){
+                if (values.birthdate == '') {
                     values.birthdate = details?.birthdate
                 }
-                if(values.country == ''){
+                if (values.country == '') {
                     values.country = details?.country
                 }
                 accountDetailsPut(values);
@@ -52,22 +68,13 @@ const Index = () => {
                     status: "success",
                     duration: 2000,
                     isClosable: true,
-                  });
+                });
             }
             catch (err) {
                 console.log(err.response.data);
             }
         }
     })
-    const getDetails = async () => {
-        let resp = await  accountDetailsGet();
-        let datas = await resp.data;
-        setDetails(datas);
-        console.log(datas);
-    }
-    useEffect(() => {
-        getDetails();
-    }, [])
 
     return (
         <div className={Styles.main}>
@@ -86,6 +93,7 @@ const Index = () => {
                             onBlur={formik.handleBlur}
                             onChange={formik.handleChange}
                             defaultValue={details?.email}
+                            disabled = {userId == adminId ? true : false}
                         />
                         <FormLabel>{t("settings.management.username")}</FormLabel>
                         <Input type='text' id='username'
@@ -94,6 +102,7 @@ const Index = () => {
                             onBlur={formik.handleBlur}
                             onChange={formik.handleChange}
                             defaultValue={details?.username}
+                            disabled = {userId == adminId ? true : false}
                         />
                     </div>
                     <FormLabel>{t("settings.management.birthdate")}</FormLabel>
@@ -106,9 +115,11 @@ const Index = () => {
                         onBlur={formik.handleBlur}
                         onChange={formik.handleChange}
                         defaultValue={details?.birthdate}
+                        disabled = {userId == adminId ? true : false}
                     />
                     <FormLabel>{t("settings.management.country")}</FormLabel>
                     <Select
+                        disabled = {userId == adminId ? true : false}
                         value={details?.country}
                         name='country'
                         onBlur={formik.handleBlur}
@@ -119,7 +130,7 @@ const Index = () => {
                         <option value="Germany">{t("settings.management.germany")}</option>
                     </Select>
                 </FormControl>
-                <Button className={Styles.saveBtn} onClick={formik.handleSubmit}>{t("settings.management.save")}</Button>
+                <button disabled={userId == adminId ? true : false} className={Styles.saveBtn} onClick={formik.handleSubmit}>{t("settings.management.save")}</button>
             </div>
             <div className={Styles.lang_sec}>
                 <h1>{t("settings.management.lang")}</h1>

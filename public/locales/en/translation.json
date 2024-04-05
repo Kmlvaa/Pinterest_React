@@ -61,23 +61,23 @@
         "p1": "Add a new account or connect an existing account for seamless account switching",
         "card1Header": "Connect existing account",
         "card2Header": "Create a new personal account",
-        "card1p": "Connect Pinterest accounts with different emails for seamless account switching",
+        "card1p": "Connect Pinsta accounts with different emails for seamless account switching",
         "card2p": "Create a separate account with another email address",
         "card1btn": "Connect account",
         "card2btn": "Create"
     },
     "login": {
-        "header": "Welcome to Pinterest",
+        "header": "Welcome to Pinsta",
         "username": "Username",
         "password": "Password",
         "addUsername": "Add username",
         "addPassword": "Add Password",
         "login": "Login",
-        "p": "Not on Pinterest yet?",
+        "p": "Not on Pinsta yet?",
         "signUp": "Sign up"
     },
     "register": {
-        "header": "Welcome to Pinterest",
+        "header": "Welcome to Pinsta",
         "p1": "Find new ideas to try",
         "username": "Username",
         "password": "Password",

@@ -31,7 +31,7 @@ const Index = () => {
 }
 function CardLayout(props) {
     return (
-        <SimpleGrid width={300} spacing={4} templateColumns='repeat(auto-fill, minmax(200px, 1fr))'>
+        <SimpleGrid width={300} height={350} spacing={4} templateColumns='repeat(auto-fill, minmax(200px, 1fr))'>
             <Card>
                 <CardHeader className={Styles.cardHeader}>
                     <div className={Styles.pic_cover}>
