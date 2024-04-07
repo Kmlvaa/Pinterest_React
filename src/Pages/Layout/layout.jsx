@@ -45,12 +45,15 @@ const Home = () => {
         getProfileDetails();
     }, [])
 
-    let cachedSearchValue;
-
-    const renderSearchResult = async (searchValue) => {
+    const renderSearchResult = async (input) => {
         try {
-            let result = await SearchResult(searchValue);
-            console.log(result)
+            if (!input) {
+                console.error('Input is empty');
+                return;
+            }
+
+            let result = await SearchResult(input);
+            console.log(result.data)
             setUsers(result.data);
         }
         catch (err) {
@@ -101,9 +104,14 @@ const Home = () => {
                         <span className={Styles.search_icon}><SearchIcon /></span>
                         <input placeholder={t("layout.search")} className={Styles.search_input} id='search_input'
                             onChange={(e) => {
-                                const value = e.target.value.trim();
-                                renderSearchResult(value);
-                                // document.getElementById('search_result').style.display = "flex";
+                                const searchValue = e.target.value.trim();
+                                console.log("Search value:", searchValue);
+                                if (searchValue !== "") {
+                                    renderSearchResult(searchValue);
+                                    document.getElementById('search_result').style.display = "flex";
+                                } else {
+                                    console.log("value is null");
+                                }
                             }} />
                     </div>
                     <div className={Styles.search_result} id='search_result'>
@@ -122,8 +130,8 @@ const Home = () => {
                     </div>
                     <div className={Styles.icon}>
                         <NavLink to='/profile/created'>
-                            {userId != adminId ? <img src={"http://localhost:5174/Images/" + details?.profileUrl}/>
-                            : <img src={user}/>}
+                            {userId != adminId ? <img src={"http://localhost:5174/Images/" + details?.profileUrl} />
+                                : <img src={user} />}
                         </NavLink></div>
                     <div className={Styles.dropdown}><DropDown /></div>
                 </div>
