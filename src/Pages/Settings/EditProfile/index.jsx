@@ -65,7 +65,7 @@ const Index = () => {
                     values.gender = detail?.gender
                 }
                 if (values.profileUrl == null) {
-                    values.profileUrl = detail?.profileUrl
+                    values.profileUrl = new File([], detail?.profileUrl)
                 }
                 var formdata = new FormData();
                 formdata.append("firstname", values.firstname);
@@ -165,9 +165,9 @@ const Index = () => {
                     <Input type='text'
                         name='username'
                         defaultValue={detail?.username}
-                        disabled = {userId == adminId ? true : false}
+                        disabled = {true}
                         onChange={formik.handleChange}
-                        onBlur={formik.handleBlur} />
+                        onBlur={formik.handleBlur}/>
                 </FormControl>
                 {error ? <div style={{ color: "red" }}>{error}</div> : <></>}
                 <button disabled={userId == adminId ? true : false} className={Styles.saveBtn} onClick={formik.handleSubmit}>{t("settings.editProfile.save")}</button>

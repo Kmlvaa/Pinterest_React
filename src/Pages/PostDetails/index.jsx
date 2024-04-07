@@ -165,6 +165,7 @@ const Index = () => {
         try {
             deletePost(id);
             navigate('/profile/created');
+            window.location.reload();
             toast({
                 title: "Post deleted.",
                 status: "success",
@@ -185,15 +186,13 @@ const Index = () => {
                 <div className={Styles.content_section}>
                     <div className={Styles.section1}>
                         <div className={Styles.update_sec}>
-                            {details?.userId == userID ? <img src={EditImage} width={20} height={20}
-                                onClick={() => { console.log('hi') }} /> : <></>}
                             {details?.userId == userID ? <button style={{ marginRight: "10px" }}
                                 onClick={() => {
                                     postDelete();
                                 }}>{t("pin.delete")}</button> : <></>}
                         </div>
                         <div>
-                            {isSaved ? <button onClick={() => { UnSave() }} >{t("pin.unsave")}</button>
+                            {isSaved ? <button onClick={() => { UnSave() }} style={{backgroundColor: "black", color: "white"}}>{t("pin.unsave")}</button>
                                 : <button onClick={() => { addSaveds() }}>{t("pin.save")}</button>}
                         </div>
                     </div>

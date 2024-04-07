@@ -13,10 +13,11 @@ const Sidebar = () => {
     const navigate = useNavigate();
 
     const handleLogOut = () => {
+        console.log(localStorage.getItem('id'));
         localStorage.removeItem("token");
         localStorage.removeItem("id");
+        navigate('/login')
         window.location.reload();
-        navigate('/login');
     }
     return (
         <>

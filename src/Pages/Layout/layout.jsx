@@ -15,6 +15,7 @@ const Home = () => {
     const [page, setPage] = useState(`${t("layout.home")}`);
     const [users, setUsers] = useState([]);
     const [details, setDetails] = useState([]);
+    const [search, setSearch] = useState('');
     const adminId = "5b539870-feb9-494a-bdd1-746832ebbea6";
     const userId = localStorage.getItem("id");
 
@@ -46,13 +47,14 @@ const Home = () => {
 
     let cachedSearchValue;
 
-    async function renderSearchResult(searchValue) {
+    const renderSearchResult = async (searchValue) => {
         try {
             let result = await SearchResult(searchValue);
+            console.log(result)
             setUsers(result.data);
         }
         catch (err) {
-            console.log(err);
+            console.log(err.response.data);
         }
     }
     const clickHandler = async (lang) => {
@@ -98,15 +100,10 @@ const Home = () => {
                     <div className={Styles.input_field}>
                         <span className={Styles.search_icon}><SearchIcon /></span>
                         <input placeholder={t("layout.search")} className={Styles.search_input} id='search_input'
-                            onKeyUp={(e) => {
+                            onChange={(e) => {
                                 const value = e.target.value.trim();
-                                if (value.length < 3) {
-                                    cachedSearchValue = null
-                                    return
-                                }
-                                if (value == cachedSearchValue) return
-                                cachedSearchValue = value
-                                renderSearchResult(value)
+                                renderSearchResult(value);
+                                // document.getElementById('search_result').style.display = "flex";
                             }} />
                     </div>
                     <div className={Styles.search_result} id='search_result'>
