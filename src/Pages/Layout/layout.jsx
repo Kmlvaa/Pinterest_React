@@ -108,7 +108,7 @@ const Home = () => {
                                 console.log("Search value:", searchValue);
                                 if (searchValue !== "") {
                                     renderSearchResult(searchValue);
-                                    document.getElementById('search_result').style.display = "flex";
+                                    // document.getElementById('search_result').style.display = "flex";
                                 } else {
                                     console.log("value is null");
                                 }

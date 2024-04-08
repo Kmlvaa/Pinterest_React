@@ -6,8 +6,8 @@ import { useTranslation } from 'react-i18next';
 const Pin = (props) => {
     const { t } = useTranslation();
     return (
-        <div style={{ gridRowEnd: props.pinSize >= 1011 && props.pinSize <= 1013 || props.pinSize >= 1021 && props.pinSize <= 1025 ? 'span 26' 
-        : props.pinSize >= 1014 && props.pinSize <= 1020 ? 'span 33' 
+        <div style={{ gridRowEnd: props.pinSize >= 1011 && props.pinSize <= 1013 || props.pinSize >= 1023 && props.pinSize <= 1027 ? 'span 26' 
+        : props.pinSize >= 1014 && props.pinSize <= 1022 ? 'span 33' 
         : 'span 45' }} className={`${Styles.pin} ${props.pinSize}`}>
             <div>
                 <Link to={`/postDetails/${props.id}`}>

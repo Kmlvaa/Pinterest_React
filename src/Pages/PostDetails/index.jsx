@@ -192,7 +192,7 @@ const Index = () => {
                                 }}>{t("pin.delete")}</button> : <></>}
                         </div>
                         <div>
-                            {isSaved ? <button onClick={() => { UnSave() }} style={{backgroundColor: "black", color: "white"}}>{t("pin.unsave")}</button>
+                            {isSaved ? <button onClick={() => { UnSave() }} style={{ backgroundColor: "black", color: "white" }}>{t("pin.unsave")}</button>
                                 : <button onClick={() => { addSaveds() }}>{t("pin.save")}</button>}
                         </div>
                     </div>
@@ -227,23 +227,25 @@ const Index = () => {
                     </div>
                     <div className={Styles.section4}>
                         <p>{t("pin.comment")}  <span><TriangleDownIcon /></span></p>
-                        {comments?.map((comment) => {
-                            return (
-                                <div className={Styles.commentSec}>
-                                    <div className={Styles.input_img} style={{ width: "35px", height: "35px" }}>
-                                        <img src={"http://localhost:5174/Images/" + comment.url} />
-                                    </div>
-                                    <div>
-                                        <div className={Styles.comment_about}>
-                                            <p><NavLink to={comment?.userId != userID ? `/userProfile/${comment?.userId}/created`
-                                                : `/profile/created`}>{comment.username}</NavLink></p>
-                                            <p>{comment.comment}</p>
+                        <div className={Styles.overflow}>
+                            {comments?.map((comment) => {
+                                return (
+                                    <div className={Styles.commentSec}>
+                                        <div className={Styles.input_img} style={{ width: "35px", height: "35px" }}>
+                                            <img src={"http://localhost:5174/Images/" + comment.url} />
                                         </div>
-                                        <div className={Styles.commentDate}>{comment.createdAt}</div>
+                                        <div>
+                                            <div className={Styles.comment_about}>
+                                                <p><NavLink to={comment?.userId != userID ? `/userProfile/${comment?.userId}/created`
+                                                    : `/profile/created`}>{comment.username}</NavLink></p>
+                                                <p>{comment.comment}</p>
+                                            </div>
+                                            <div className={Styles.commentDate}>{comment.createdAt}</div>
+                                        </div>
                                     </div>
-                                </div>
-                            )
-                        })}
+                                )
+                            })}
+                        </div>
                     </div>
                     <div className={Styles.section5}>
                         <div className={Styles.likes_sec}>
@@ -260,7 +262,7 @@ const Index = () => {
                         <div className={Styles.input}>
                             <div className={Styles.input_img}>
                                 {userId != adminId ? <img src={"http://localhost:5174/Images/" + myDetails?.profileUrl} />
-                                : <img src={User} />}
+                                    : <img src={User} />}
                             </div>
                             <input placeholder={t("pin.addComment")}
                                 onChange={formik.handleChange}

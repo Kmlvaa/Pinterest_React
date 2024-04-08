@@ -110,7 +110,10 @@
 
         .section4 {
             height: 160px;
-            overflow-y: scroll;
+            .overflow{
+                height: 150px;
+                overflow-y: scroll;
+            }
         }
 
         .section5 {
