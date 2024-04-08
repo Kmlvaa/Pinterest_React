@@ -5,9 +5,13 @@ import user from '../../Images/user.png'
 import { useState, useEffect, useRef } from 'react';
 import { ArrowDropDown } from '@mui/icons-material';
 import { useTranslation } from 'react-i18next';
+import { UserDetailsGet } from '../../services/UserService';
+import { accountDetailsGet } from '../../services/AccountService';
 
 const SideModal = () => {
     const [open, setOpen] = useState(false);
+    const [userDetails, setUserDetails] = useState(null);
+    const [accountDetails, setAccountDetails] = useState(null);
     const { t } = useTranslation();
     const navigate = useNavigate();
 
@@ -31,10 +35,27 @@ const SideModal = () => {
         setOpen(false);
     }
 
+    const getDetails = async () => {
+        try {
+            let resp = await UserDetailsGet();
+            setUserDetails(resp.data);
+            console.log(resp.data);
+
+            let account = await accountDetailsGet();
+            setAccountDetails(account.data);
+            console.log(account.data);
+        }
+        catch (err) {
+            console.log(err.response.data);
+        }
+    }
+    useEffect(() => {
+        getDetails();
+    }, [])
     return (
         <>
             <div className='menu_container' ref={menuRef}>
-                <div className="menu_trigger" onClick={() => { setOpen(!open);}}>
+                <div className="menu_trigger" onClick={() => { setOpen(!open); }}>
                     <div><ArrowDropDown /></div>
                 </div>
                 <div className={`${open ? Styles.active : Styles.inactive}`}>
@@ -42,8 +63,10 @@ const SideModal = () => {
                         <p>{t("sideModal.currentProfile")}</p>
                         <Link to='/profile/created'>
                             <div className={Styles.profile}>
-                                <img src={user} width={50} height={50} />
-                                <h3>My Profile <br /><span>Samiraak</span></h3>
+                                <div className={Styles.imageCover}>
+                                    <img src={"http://localhost:5174/Images/" + userDetails?.profileUrl} width={50} height={50} />
+                                </div>
+                                <h3>{userDetails?.username} <br /><span style={{fontSize: "14px"}}>{accountDetails?.email}</span></h3>
                             </div>
                         </Link>
                         <p>{t("sideModal.yourAccounts")}</p>
