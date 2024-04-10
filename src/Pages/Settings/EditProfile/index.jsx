@@ -20,8 +20,6 @@ const Index = () => {
     const [detail, setDetail] = useState(null);
     const [error, setError] = useState(null);
     const [image, setImage] = useState(null);
-    const adminId = "5b539870-feb9-494a-bdd1-746832ebbea6";
-    const userId = localStorage.getItem("id");
     const toast = useToast();
 
     const getDetails = async () => {
@@ -36,7 +34,7 @@ const Index = () => {
     };
     useEffect(() => {
         getDetails();
-    }, [])
+    }, [detail])
 
     const formik = useFormik({
         initialValues: {
@@ -107,7 +105,6 @@ const Index = () => {
                     <Button className={Styles.modal_input} onClick={() => { document.querySelector('.input_field').click() }}>
                         <Input type='file' className='input_field' hidden
                             defaultValue={detail?.profileUrl}
-                            disabled = {userId == adminId ? true : false}
                             name='profileUrl'
                             onBlur={formik.handleBlur}
                             onChange={(e) => {
@@ -128,7 +125,6 @@ const Index = () => {
                             <FormLabel>{t("settings.editProfile.firstname")}</FormLabel>
                             <Input type='text'
                                 defaultValue={detail?.firstname}
-                                disabled = {userId == adminId ? true : false}
                                 name='firstname'
                                 onChange={formik.handleChange}
                                 onBlur={formik.handleBlur} />
@@ -137,7 +133,6 @@ const Index = () => {
                             <FormLabel>{t("settings.editProfile.lastname")}</FormLabel>
                             <Input type='text'
                                 defaultValue={detail?.lastname}
-                                disabled = {userId == adminId ? true : false}
                                 name='lastname'
                                 onChange={formik.handleChange}
                                 onBlur={formik.handleBlur} />
@@ -146,7 +141,6 @@ const Index = () => {
                     <FormLabel>{t("settings.editProfile.about")}</FormLabel>
                     <Textarea placeholder={t("settings.editProfile.addAbout")}
                         defaultValue={detail?.about}
-                        disabled = {userId == adminId ? true : false}
                         name='about'
                         onChange={formik.handleChange}
                         onBlur={formik.handleBlur}
@@ -154,7 +148,6 @@ const Index = () => {
                     <FormLabel>{t("settings.editProfile.gender")}</FormLabel>
                     <Select placeholder='Add your pronouns'
                         onChange={formik.handleChange}
-                        disabled = {userId == adminId ? true : false}
                         name="gender"
                     >
                         <option value='male'>{t("settings.editProfile.male")}</option>
@@ -170,7 +163,7 @@ const Index = () => {
                         onBlur={formik.handleBlur}/>
                 </FormControl>
                 {error ? <div style={{ color: "red" }}>{error}</div> : <></>}
-                <button disabled={userId == adminId ? true : false} className={Styles.saveBtn} onClick={formik.handleSubmit}>{t("settings.editProfile.save")}</button>
+                <button className={Styles.saveBtn} onClick={formik.handleSubmit}>{t("settings.editProfile.save")}</button>
             </div>
         </div>
     );

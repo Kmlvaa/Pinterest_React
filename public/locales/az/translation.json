@@ -406,7 +406,10 @@
             "register": "Qeydiyyatdan keç",
             "logout": "Çıxış et",
             "users": "İstifadəçilər",
-            "posts": "Postlar"
+            "posts": "Postlar",
+            "profile": "Profilə baxın",
+            "delete": "İstifadəçini sil",
+            "placeholder": "Axtar"
         }
     }
 }

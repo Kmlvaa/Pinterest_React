@@ -12,13 +12,11 @@
 .dropdown_menu ul li {
     cursor: pointer;
     font-weight: 500;
-    padding: 8px 10px;
     border: 0;
     border-radius: 8px;
-}
-
-.dropdown_menu ul li:hover {
-    background-color: #dfdfdf;
+    a{
+        padding: 8px 10px;
+    }
 }
 
 .dropdown_menu p {
@@ -40,8 +38,12 @@
     }
 }
 
-#users {
-    background-color: #989898;
+.active {
+    background-color: #dddddd;
+    padding: 8px 10px;
+    border: 0;
+    border-radius: 8px;
+    width: 100%;
 }
 
 
@@ -55,6 +57,9 @@
                     display: none;
                 }
             }
+        }
+        .dropdown_menu ul{
+            align-items: center !important;
         }
     }
 }

@@ -67,7 +67,7 @@ const Home = () => {
     return (
         <>
             <div className={Styles.header}>
-                <div className={`${open ? Styles.activePage : Styles.inactivePage}`} ref={menuRef}>
+                <div className={`${open ? Styles.activePage : Styles.inactivePage}`}>
                     <div className={Styles.menu}>
                         <button className={Styles.resp_btn} onClick={() => { setPage(`${t("layout.home")}`) }}>
                             <NavLink to='/'>{t("layout.home")}</NavLink>
@@ -79,8 +79,8 @@ const Home = () => {
                 </div>
                 <div className={Styles.header_left}>
                     <div className={Styles.logo}><Link to='/'><img src={logo} width={30} height={30} /></Link></div>
-                    <div className={Styles.left_links}>
-                        <button className={Styles.header_btn} onClick={() => { setOpen(!open) }}>
+                    <div className={Styles.left_links} ref={menuRef}>
+                        <button className={Styles.header_btn} onClick={() => { setOpen(!open); }}>
                             {page}
                         </button>
                         <button className={Styles.header_btn}><NavLink className={({ isActive }) => {
@@ -130,8 +130,7 @@ const Home = () => {
                     </div>
                     <div className={Styles.icon}>
                         <NavLink to='/profile/created'>
-                            {userId != adminId ? <img src={"http://localhost:5174/Images/" + details?.profileUrl} />
-                                : <img src={user} />}
+                            <img src={"http://localhost:5174/Images/" + details?.profileUrl} />
                         </NavLink></div>
                     <div className={Styles.dropdown}><DropDown /></div>
                 </div>

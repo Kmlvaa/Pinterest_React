@@ -23,6 +23,9 @@ export const GetUsers = () => {
 export const DeleteUsers = (id) => {
     return httpClient.delete(`deleteUser/${id}`)
 }
+export const GetAdminDetails = () => {
+    return httpClient.get('getAdminDetails')
+}
 export const SearchResult = (input) => {
     return httpClient.get("searchUsers", input)
 }

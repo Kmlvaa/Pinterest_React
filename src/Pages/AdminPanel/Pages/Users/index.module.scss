@@ -74,21 +74,23 @@
             }
 
             .deleteUser {
-                background-color: #e95353;
-                color: white;
+                background-color: white;
+                color: black;
+                border: 1px solid black;
             }
 
             .deleteUser:hover {
-                background-color: #a94141;
+                background-color: black;
+                color: white;
             }
 
             .profileDetails {
-                background-color: #b56ac1;
+                background-color: #7c95cb;
                 color: white;
             }
 
             .profileDetails:hover {
-                background-color: #854e8e;
+                background-color: #465e93;
             }
         }
     }

@@ -178,7 +178,19 @@
         border-radius: 50%;
     }
 }
-
+.comm{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    .deleteComment{
+        color:#5e5e5e;
+    }
+    .deleteComment:hover{
+        cursor: pointer;
+        color: #b60000;
+    }
+}
 .commentSec {
     margin-top: 10px;
     display: flex;
@@ -229,6 +241,15 @@
 
 @media (max-width: 580px) {
     .main {
-        width: auto;
+        width: 450px;
+        .img_section{
+            width: 400px;
+        }
+        .content_section{
+            width: 400px;
+        }
+        .comment_about{
+            width: 250px;
+        }
     }
 }

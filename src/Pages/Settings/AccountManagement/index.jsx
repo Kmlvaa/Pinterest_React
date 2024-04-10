@@ -20,8 +20,6 @@ const Index = () => {
     const [details, setDetails] = useState(null);
     const handleClick = () => setShow(!show)
     const { t, i18n } = useTranslation();
-    const adminId = "5b539870-feb9-494a-bdd1-746832ebbea6";
-    const userId = localStorage.getItem("id");
 
     const clickHandler = async (lang) => {
         await i18n.changeLanguage(lang);
@@ -30,7 +28,6 @@ const Index = () => {
         try {
             let resp = await accountDetailsGet();
             setDetails(resp.data);
-            console.log(resp.data);
         }
         catch (err) {
             console.log(err.response.data);
@@ -38,7 +35,7 @@ const Index = () => {
     }
     useEffect(() => {
         getDetails();
-    }, [])
+    }, [details])
 
     const formik = useFormik({
         initialValues: {
@@ -93,7 +90,6 @@ const Index = () => {
                             onBlur={formik.handleBlur}
                             onChange={formik.handleChange}
                             defaultValue={details?.email}
-                            disabled = {userId == adminId ? true : false}
                         />
                         <FormLabel>{t("settings.management.username")}</FormLabel>
                         <Input type='text' id='username'
@@ -102,7 +98,6 @@ const Index = () => {
                             onBlur={formik.handleBlur}
                             onChange={formik.handleChange}
                             defaultValue={details?.username}
-                            disabled = {userId == adminId ? true : false}
                         />
                     </div>
                     <FormLabel>{t("settings.management.birthdate")}</FormLabel>
@@ -115,11 +110,9 @@ const Index = () => {
                         onBlur={formik.handleBlur}
                         onChange={formik.handleChange}
                         defaultValue={details?.birthdate}
-                        disabled = {userId == adminId ? true : false}
                     />
                     <FormLabel>{t("settings.management.country")}</FormLabel>
                     <Select
-                        disabled = {userId == adminId ? true : false}
                         value={details?.country}
                         name='country'
                         onBlur={formik.handleBlur}
@@ -130,7 +123,7 @@ const Index = () => {
                         <option value="Germany">{t("settings.management.germany")}</option>
                     </Select>
                 </FormControl>
-                <button disabled={userId == adminId ? true : false} className={Styles.saveBtn} onClick={formik.handleSubmit}>{t("settings.management.save")}</button>
+                <button className={Styles.saveBtn} onClick={formik.handleSubmit}>{t("settings.management.save")}</button>
             </div>
             <div className={Styles.lang_sec}>
                 <h1>{t("settings.management.lang")}</h1>

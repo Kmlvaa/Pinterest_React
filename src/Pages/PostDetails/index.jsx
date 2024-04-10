@@ -9,13 +9,14 @@ import { ExternalLinkIcon, TriangleDownIcon } from '@chakra-ui/icons'
 import { useTranslation } from 'react-i18next';
 import { deletePost, getPostDetails } from '../../services/PostService';
 import { Link, NavLink, useNavigate, useParams } from 'react-router-dom';
-import { addComment, getComments } from '../../services/CommentService';
+import { addComment, deleteComment, getComments } from '../../services/CommentService';
 import { useFormik } from 'formik';
 import { addLike, getLikes, isPostLiked, unLike } from '../../services/LikeService';
 import { addFollower, getFollowers, isUserFollowed, unFollow } from '../../services/FollowerService';
 import { addSaved, deleteSaved, isPostSaved } from '../../services/SavedPosts';
 import { OtherUserDetailsGet, UserDetailsGet } from '../../services/UserService';
 import { useDisclosure, useToast } from '@chakra-ui/react';
+import { SmallCloseIcon } from '@chakra-ui/icons';
 
 const Index = () => {
     const { t } = useTranslation();
@@ -35,9 +36,7 @@ const Index = () => {
     const toast = useToast();
     const { id } = useParams();
     const navigate = useNavigate();
-    const { isOpen, onOpen, onClose } = useDisclosure()
     const adminId = "5b539870-feb9-494a-bdd1-746832ebbea6";
-    const userId = localStorage.getItem("id");
 
     const postDetails = async () => {
         try {
@@ -55,6 +54,7 @@ const Index = () => {
             let comments = await getComments(id);
             setComments(comments.data);
             setCommentCount(comments.data.length);
+            console.log(comments.data)
 
             let likes = await getLikes(id);
             setLike(likes.data.length);
@@ -177,6 +177,15 @@ const Index = () => {
             console.log(err.response.data);
         }
     }
+    const commDelete = async (commentId) => {
+        try{
+            deleteComment(commentId);
+            postDetails();
+        }
+        catch(err){
+            console.log(err.response.data);
+        }
+    }
 
 
     return (
@@ -186,7 +195,7 @@ const Index = () => {
                 <div className={Styles.content_section}>
                     <div className={Styles.section1}>
                         <div className={Styles.update_sec}>
-                            {details?.userId == userID ? <button style={{ marginRight: "10px" }}
+                            {details?.userId == userID || userID == adminId ? <button style={{ marginRight: "10px" }}
                                 onClick={() => {
                                     postDelete();
                                 }}>{t("pin.delete")}</button> : <></>}
@@ -230,18 +239,23 @@ const Index = () => {
                         <div className={Styles.overflow}>
                             {comments?.map((comment) => {
                                 return (
-                                    <div className={Styles.commentSec}>
-                                        <div className={Styles.input_img} style={{ width: "35px", height: "35px" }}>
-                                            <img src={"http://localhost:5174/Images/" + comment.url} />
-                                        </div>
-                                        <div>
-                                            <div className={Styles.comment_about}>
-                                                <p><NavLink to={comment?.userId != userID ? `/userProfile/${comment?.userId}/created`
-                                                    : `/profile/created`}>{comment.username}</NavLink></p>
-                                                <p>{comment.comment}</p>
+                                    <div className={Styles.comm} key={comment.id}>
+                                        <div className={Styles.commentSec}>
+                                            <div className={Styles.input_img} style={{ width: "35px", height: "35px" }}>
+                                                <img src={"http://localhost:5174/Images/" + comment.url} />
                                             </div>
-                                            <div className={Styles.commentDate}>{comment.createdAt}</div>
+                                            <div>
+                                                <div className={Styles.comment_about}>
+                                                    <p><NavLink to={comment?.userId != userID ? `/userProfile/${comment?.userId}/created`
+                                                        : `/profile/created`}>{comment.username}</NavLink></p>
+                                                    <p>{comment.comment}</p>
+                                                </div>
+                                                <div className={Styles.commentDate}>{comment.createdAt}</div>
+                                            </div>
                                         </div>
+                                        {comment?.userId == userID ? <div className={Styles.deleteComment}
+                                        onClick={()=>{commDelete(comment.id)}}><SmallCloseIcon /></div>
+                                        : <div></div>}
                                     </div>
                                 )
                             })}
@@ -261,7 +275,7 @@ const Index = () => {
                         </div>
                         <div className={Styles.input}>
                             <div className={Styles.input_img}>
-                                {userId != adminId ? <img src={"http://localhost:5174/Images/" + myDetails?.profileUrl} />
+                                {userID != adminId ? <img src={"http://localhost:5174/Images/" + myDetails?.profileUrl} />
                                     : <img src={User} />}
                             </div>
                             <input placeholder={t("pin.addComment")}

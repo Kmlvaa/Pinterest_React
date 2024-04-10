@@ -405,7 +405,10 @@
             "register": "Register",
             "logout": "logOut",
             "users": "Users",
-            "posts": "Posts"
+            "posts": "Posts",
+            "profile": "See Profile",
+            "delete": "Delete user",
+            "placeholder": "Search"
         }
     }
 }

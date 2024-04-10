@@ -39,24 +39,23 @@ const Index = () => {
             <div className={Styles.main}>
                 <div className={Styles.first_section}>
                     <div className={Styles.profile_pic}>
-                        {userId == adminId ? <img src={user} />
-                            : <img src={"http://localhost:5174/Images/" + details?.profileUrl} />}
+                        <img src={"http://localhost:5174/Images/" + details?.profileUrl} />
                     </div>
-                    {userId != adminId ?
-                        <>
-                            <div className={Styles.PersonalInfo}>
-                                <div className={Styles.info}>
-                                    <img src={logo} width={25} height={25} />
-                                    <h1>{details.username}</h1>
-                                </div>
-                                <p>{details.firstname} {details.lastname} / {details?.gender != 'Gender' ? details?.gender : <></>}</p>
-                                <div>{details?.about != 'About' ?
-                                    details?.about : <></>}</div>
+                    <>
+                        <div className={Styles.PersonalInfo}>
+                            <div className={Styles.info}>
+                                <img src={logo} width={25} height={25} />
+                                <h1>{details.username}</h1>
                             </div>
-                            <div>{follower} {t("profile.following")}</div>
-                            <div className={Styles.btn}>
-                                <GreyButton text={t("profile.edit")} link="/settings/editProfile"></GreyButton>
-                            </div></> : <div>ADMIN</div>}
+                            <p>{details.firstname} {details.lastname} / {details?.gender != 'Gender' ? details?.gender : <></>}</p>
+                            <div>{details?.about != 'About' ?
+                                details?.about : <></>}</div>
+                        </div>
+                        <div>{follower} {t("profile.following")}</div>
+                        <div className={Styles.btn}>
+                            <GreyButton text={t("profile.edit")} link="/settings/editProfile"></GreyButton>
+                        </div>
+                    </>
                 </div>
                 {userId != adminId ?
                     <>

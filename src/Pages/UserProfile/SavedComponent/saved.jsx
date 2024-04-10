@@ -29,7 +29,7 @@ const Saved = () => {
             <div className={Styles.main}>
                 {saved?.map((data) => {
                     return (
-                        <Pin id={data.id} pinSize={data.id} url={"http://localhost:5174/Images/" + data.url} />
+                        <Pin key={data.id} id={data.id} pinSize={data.id} url={"http://localhost:5174/Images/" + data.url} />
                     )
                 })}
             </div>

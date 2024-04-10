@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import Styles from './home.module.scss'
 import Pin from '../../Components/Pin/Pin';
-import pic from '../../Images/Screenshot 2024-01-31 011531.png'
 import { getAllPosts } from '../../services/PostService';
 
 const Home = () => {

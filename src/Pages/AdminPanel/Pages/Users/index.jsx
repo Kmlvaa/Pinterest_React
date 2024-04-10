@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import Styles from './index.module.scss'
 import { DeleteUsers, GetUsers } from '../../../../services/UserService';
 import User from '../../../../Images/user.png'
-import { getFollowers } from '../../../../services/FollowerService';
 import { NavLink } from 'react-router-dom';
 import { useToast } from '@chakra-ui/react';
 import { useTranslation } from 'react-i18next';
@@ -42,7 +41,7 @@ const Index = () => {
         <div className={Styles.container}>
             {details?.map((data) => {
                 return (
-                    <div className={Styles.userCard}>
+                    <div className={Styles.userCard} key={data.id}>
                         <div className={Styles.userDetails}>
                             <div className={Styles.profile_pic}>
                                 {data.image != "user.jpg" ?
@@ -61,13 +60,13 @@ const Index = () => {
                         </div>
                         <div className={Styles.updateBtn}>
                             <button className={Styles.profileDetails}>
-                                <NavLink to={`/userProfile/${data.userId}/created`}>Profile details</NavLink>
+                                <NavLink to={`/userProfile/${data.userId}/created`}>{t("admin.sidebar.profile")}</NavLink>
                             </button>
                             <button className={Styles.deleteUser}
                                 onClick={() => {
                                     handleUserDelete(data.userId)
                                 }}
-                            >Delete user</button>
+                            >{t("admin.sidebar.delete")}</button>
                         </div>
                     </div>
                 )

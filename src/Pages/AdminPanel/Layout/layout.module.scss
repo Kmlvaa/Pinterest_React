@@ -13,11 +13,10 @@
         position: relative;
         top: 0;
         left: 270px;
-        right: 20px;
         width: calc(100% - 270px);
         margin-right: 10px;
 
-        .cover{
+        .cover {
             position: fixed;
             z-index: 100;
             width: calc(100% - 270px);
@@ -33,6 +32,7 @@
             column-gap: 20px;
             padding: 10px 20px;
             margin-top: 10px;
+            margin-right: 10px;
             width: auto;
             background-color: white;
             border: 1px solid rgb(0, 0, 0, 0.05);
@@ -49,6 +49,39 @@
                 flex-direction: row;
                 column-gap: 15px;
                 align-items: center;
+                position: relative;
+
+                .imageCover {
+                    width: 45px;
+                    height: 45px;
+                    border-radius: 50%;
+
+                    img {
+                        width: 100%;
+                        height: 100%;
+                        border-radius: 50%;
+                    }
+                    img:hover{
+                        cursor: pointer;
+                    }
+                }
+
+                .subMenu {
+                    display: flex;
+                    background-color: white;
+                    width: 200px;
+                    position: absolute;
+                    top: 45px;
+                    right: 0;
+                    z-index: 200;
+                    padding: 10px;
+                    border-radius: 15px;
+                    text-align: center;
+                    flex-direction: column;
+                    row-gap: 12px;
+                    border: 1px solid rgb(0, 0, 0, 0.05);
+                    box-shadow: 0 1px 7px -2px rgb(0, 0, 0, 0.05), 0 3px 7px 1px rgb(0, 0, 0, 0.05), 0 1px 4px 2px rgb(0, 0, 0, 0.05);
+                }
             }
         }
     }
