@@ -8,16 +8,16 @@ import user from '../../Images/user.png'
 import { Message } from '@mui/icons-material';
 import { useTranslation } from 'react-i18next';
 import { GetUsers, SearchResult, UserDetailsGet } from '../../services/UserService';
+import { setIn } from 'formik';
 
 const Home = () => {
     const { t, i18n } = useTranslation();
     const [open, setOpen] = useState(false);
     const [page, setPage] = useState(`${t("layout.home")}`);
-    const [users, setUsers] = useState([]);
+    const [users, setUsers] = useState(null);
     const [details, setDetails] = useState([]);
-    const [search, setSearch] = useState('');
-    const adminId = "5b539870-feb9-494a-bdd1-746832ebbea6";
-    const userId = localStorage.getItem("id");
+    const [input, setInput] = useState('');
+    const [error, setError] = useState(null);
 
     let menuRef = useRef();
     useEffect(() => {
@@ -30,6 +30,18 @@ const Home = () => {
         }
         document.addEventListener('mousedown', handler);
     }, [open])
+
+    let searchRef = useRef();
+    useEffect(() => {
+        let handler = (e) => {
+            if(searchRef.current != null) {
+                if(!searchRef.current.contains(e.target)) {
+                    document.getElementById('search_result').style.display = "none";
+                }
+            }
+        }
+        document.addEventListener('mousedown', handler);
+    },[])
 
     const getProfileDetails = async () => {
         try {
@@ -45,23 +57,31 @@ const Home = () => {
         getProfileDetails();
     }, [])
 
+    const clickHandler = async (lang) => {
+        await i18n.changeLanguage(lang);
+    }
+
     const renderSearchResult = async (input) => {
         try {
             if (!input) {
-                console.error('Input is empty');
+                console.log('Input is empty');
                 return;
             }
-
             let result = await SearchResult(input);
             console.log(result.data)
             setUsers(result.data);
+            setError(null)
         }
         catch (err) {
             console.log(err.response.data);
+            setError(err.response.data);
         }
     }
-    const clickHandler = async (lang) => {
-        await i18n.changeLanguage(lang);
+
+    const handleChange = (value) => {
+        setInput(value);
+        renderSearchResult(value);
+        console.log("Search value:", value);
     }
 
     return (
@@ -99,26 +119,32 @@ const Home = () => {
                         }} to='/create'>{t("layout.create")}</NavLink></button>
                     </div>
                 </div>
-                <div className={Styles.input_container}>
+                <div className={Styles.input_container} ref={searchRef}>
                     <div className={Styles.input_field}>
                         <span className={Styles.search_icon}><SearchIcon /></span>
                         <input placeholder={t("layout.search")} className={Styles.search_input} id='search_input'
+                            value={input}
                             onChange={(e) => {
-                                const searchValue = e.target.value.trim();
-                                console.log("Search value:", searchValue);
-                                if (searchValue !== "") {
-                                    renderSearchResult(searchValue);
-                                    // document.getElementById('search_result').style.display = "flex";
-                                } else {
-                                    console.log("value is null");
-                                }
+                                handleChange(e.target.value.trim());
+                                document.getElementById('search_result').style.display = "flex";
                             }} />
                     </div>
                     <div className={Styles.search_result} id='search_result'>
                         <ul>
-                            {users?.map((data) => {
-                                <li key={data.id}>{data.username}</li>
-                            })}
+                            {error ? <li>{error}</li>
+                                : <>
+                                    {users?.map((data) => {
+                                        return (
+                                            <li key={data.Id}>
+                                                <div className={Styles.img_cover}>
+                                                    <img src={"http://localhost:5174/Images/" + data?.image} width={30} height={30} />
+                                                </div>
+                                                <p><NavLink to={`/userProfile/${data.id}/created`} 
+                                                >{data.username}</NavLink></p>
+                                            </li>
+                                        )
+                                    })}
+                                </>}
                         </ul>
                     </div>
                 </div>
