@@ -4,7 +4,7 @@ import { Navigate, Outlet } from 'react-router-dom';
 const PrivateRoutes = () => {
     const id = localStorage.getItem('id');
     return (
-       id == "5b539870-feb9-494a-bdd1-746832ebbea6" ? <Outlet/> : id == null ? <Navigate to='/login' /> : <Navigate to='/accessDenied'/>
+       id == "f402f0ac-a652-4920-8cb1-fb1a0bc53208" ? <Outlet/> : id == null ? <Navigate to='/login' /> : <Navigate to='/accessDenied'/>
     );
 }
 

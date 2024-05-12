@@ -64,7 +64,7 @@ const SideModal = () => {
                         <Link to='/profile/created'>
                             <div className={Styles.profile}>
                                 <div className={Styles.imageCover}>
-                                    <img src={"http://localhost:5174/Images/" + userDetails?.profileUrl} width={50} height={50} />
+                                    <img src={"https://localhost:7030/Images/" + userDetails?.profileUrl} width={50} height={50} />
                                 </div>
                                 <h3>{userDetails?.username} <br /><span style={{fontSize: "14px"}}>{accountDetails?.email}</span></h3>
                             </div>

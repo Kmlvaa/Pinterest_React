@@ -15,9 +15,9 @@ import { loginPost } from '../../services/AuthService';
 import { loginSchema } from '../../schemas/LoginSchema';
 import { useTranslation } from 'react-i18next';
 import Background from '../../Images/background.png'
-import { useDispatch } from 'react-redux';
-import { logInAction } from '../../redux/accountSlice';
-import { useSelector } from 'react-redux'
+// import { useDispatch } from 'react-redux';
+// import { logInAction } from '../../redux/accountSlice';
+// import { useSelector } from 'react-redux'
 
 const Login = () => {
     const { t } = useTranslation();
@@ -25,8 +25,8 @@ const Login = () => {
     const [err, setError] = useState(null)
     const handleClick = () => setShow(!show);
     const navigate = useNavigate();
-    const dispatch = useDispatch();
-    const { userId } = useSelector(x => x.account);
+    // const dispatch = useDispatch();
+    // const { userId } = useSelector(x => x.account);
 
     const formik = useFormik({
         initialValues: {
@@ -36,12 +36,12 @@ const Login = () => {
         onSubmit: async (values, actions) => {
             try {
                 const res = await loginPost(values);
-                dispatch(logInAction(res.data));
+                // dispatch(logInAction(res.data));
                 localStorage.setItem('token', res.data.token);
                 localStorage.setItem('id', res.data.id);
                 setError(res.data);
                 actions.resetForm();
-                if (localStorage.getItem('id') == "5b539870-feb9-494a-bdd1-746832ebbea6") {
+                if (localStorage.getItem('id') == "f402f0ac-a652-4920-8cb1-fb1a0bc53208") {
                     navigate('/admin');
                 }
                 else {

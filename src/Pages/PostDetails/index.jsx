@@ -36,7 +36,7 @@ const Index = () => {
     const toast = useToast();
     const { id } = useParams();
     const navigate = useNavigate();
-    const adminId = "5b539870-feb9-494a-bdd1-746832ebbea6";
+    const adminId = "f402f0ac-a652-4920-8cb1-fb1a0bc53208";
 
     const postDetails = async () => {
         try {
